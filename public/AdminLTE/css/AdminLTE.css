@@ -26,6 +26,9 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
 }
+.bawah{
+  margin-top: 50px;  
+}
 /* Layout */
 .wrapper {
   min-height: 100%;
@@ -469,7 +472,7 @@ a:focus {
 .user-panel {
   position: relative;
   width: 100%;
-  padding: 30px;
+  padding: 10px;
   overflow: hidden;
 }
 .user-panel:before,
@@ -482,19 +485,17 @@ a:focus {
 }
 .user-panel > .image > img {
   width: 100%;
-  margin-left: 30px;
-  margin-bottom: 30px;
+  margin-left: 50px;
+  margin-bottom: 10px;
   max-width: 100px;
   height: auto;
 }
 .user-panel > .info {
-  padding: 5px 5px 5px 15px;
+  width: 100%;
+  position: center;
   line-height: 1;
-  margin-top: 20px;
-  position: absolute;
-  left: 45px;
+  align:;
   text-align: center;
-  top:120px;
 }
 .user-panel > .info > p {
   font-weight: 600;

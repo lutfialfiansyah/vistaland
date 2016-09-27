@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('/home', function () {
+	$date = date('Y');
+    return view('page.dashboard',compact('date'));
+});
 Route::get('/', function () {
-    return view('page.dashboard');
+	$date = date('Y');
+    return view('page.login',compact('date'));
 });

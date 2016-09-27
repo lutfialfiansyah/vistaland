@@ -4,10 +4,10 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image"> 
-            <img src="{{ ('AdminLTE/img/avatar5.png') }}" class="img-circle"  alt="User Image">
+            <img src="{{ ('AdminLTE/img/avatar04.png') }}" class="img-circle"  alt="User Image">
         </div>
-        <div class="pull-right info">
-            <p class="text-warning">Alexander Pierce</p>
+        <div class="pull-left info">
+            <p class="control-sidebar-dark">Alexander Pierce Dashboard</p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>

@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Vistaland</title>
-	<link rel="icon" type="image/png" href="{{ asset('icon.png') }}">
+	<link rel="icon" type="image/png" href="{{ asset('home.png') }}">
 	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('AdminLTE/css/AdminLTE.css') }}">
 	<link rel="stylesheet" href="{{ asset('AdminLTE/css/skins/_all-skins.min.css') }}">
@@ -38,7 +38,7 @@
 	<!-- Jquery -->
 	<script src="{{ asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 	<!-- jQuery UI 1.11.4 -->
-	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<script src="{{ asset('plugins/jQueryUI/1.11.4/jquery-ui.min.js') }}"></script>
 	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 	<script>
 	  $.widget.bridge('uibutton', $.ui.button);
