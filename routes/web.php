@@ -11,11 +11,13 @@
 |
 */
 
-Route::get('/home', function () {
-	$date = date('Y');
-    return view('page.dashboard',compact('date'));
+Route::get('/',function(){
+	return view('welcome');
 });
-Route::get('/', function () {
-	$date = date('Y');
-    return view('page.login',compact('date'));
-});
+Route::get('/home',[
+	'uses' => 'userController@getHome',
+	'middleware' => 'auth'
+]);
+Route::get('/login','userController@getLogin');
+Route::post('/login','userController@postLogin');
+Route::get('/logout','userController@logout');

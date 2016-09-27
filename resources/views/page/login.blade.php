@@ -19,15 +19,16 @@
               <h3 class="box-title">Login</h3>
             </div>
            
-          <form role="form">
+          <form role="form" action="{{ url('/login') }}" method="post">
+          {!! csrf_field() !!}
               <div class="box-body">
                 <div class="form-group{{ $errors->has('username') ? ' has-error' : ''}}">
-                  <label for="exampleInputEmail1">Username</label>
+                  <label for="username">Username</label>
                   <div class="input-group">  
                     <div class="input-group-addon">
                       <i class="fa fa-user" aria-hidden="true"></i>
                     </div>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter username">
+                    <input type="text" name="username" class="form-control" id="exampleInputEmail1" placeholder="Enter username">
                   </div>
                     @if($errors->has('username'))
                       <span class="help-block">
@@ -36,12 +37,12 @@
                     @endif
                 </div>
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : ''}}">
-                  <label for="exampleInputPassword1">Password</label>
+                  <label for="password">Password</label>
                   <div class="input-group">  
                     <div class="input-group-addon">
                       <i class="fa fa-lock" aria-hidden="true"></i>
                     </div>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                   </div>
                     @if($errors->has('password'))
                       <span class="help-block">
