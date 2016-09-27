@@ -469,7 +469,7 @@ a:focus {
 .user-panel {
   position: relative;
   width: 100%;
-  padding: 10px;
+  padding: 30px;
   overflow: hidden;
 }
 .user-panel:before,
@@ -482,14 +482,19 @@ a:focus {
 }
 .user-panel > .image > img {
   width: 100%;
-  max-width: 45px;
+  margin-left: 30px;
+  margin-bottom: 30px;
+  max-width: 100px;
   height: auto;
 }
 .user-panel > .info {
   padding: 5px 5px 5px 15px;
   line-height: 1;
+  margin-top: 20px;
   position: absolute;
-  left: 55px;
+  left: 45px;
+  text-align: center;
+  top:120px;
 }
 .user-panel > .info > p {
   font-weight: 600;
@@ -499,7 +504,7 @@ a:focus {
   text-decoration: none;
   padding-right: 5px;
   margin-top: 3px;
-  font-size: 11px;
+  font-size: 13px;
 }
 .user-panel > .info > a > .fa,
 .user-panel > .info > a > .ion,

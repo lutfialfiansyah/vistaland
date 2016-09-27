@@ -6,7 +6,7 @@
 	<title>Vistaland</title>
 	<link rel="icon" type="image/png" href="{{ asset('icon.png') }}">
 	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('AdminLTE/css/AdminLTE.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('AdminLTE/css/AdminLTE.css') }}">
 	<link rel="stylesheet" href="{{ asset('AdminLTE/css/skins/_all-skins.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('font-awesome-4.6.3/css/font-awesome.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('AdminLTE/css/skins/_all-skins.min.css') }}">
