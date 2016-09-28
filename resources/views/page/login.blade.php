@@ -23,6 +23,9 @@
           <form role="form" action="{{ url('/login') }}" method="post">
           {!! csrf_field() !!}
               <div class="box-body">
+              @if(Session::has('pesanError'))
+                <div class="alert alert-danger">{{ Session::get('pesanError') }}</div> 
+              @endif
                 <div class="form-group{{ $errors->has('username') ? ' has-error' : ''}}">
                   <label for="username">Username</label>
                   <div class="input-group">  
