@@ -7,7 +7,7 @@
             <img src="{{ ('AdminLTE/img/avatar04.png') }}" class="img-circle"  alt="User Image">
         </div>
         <div class="pull-left info">
-            <p class="control-sidebar-dark">{{ Auth::user()->name }}</p>
+            <p>{{ Auth::user()->name }}</p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>

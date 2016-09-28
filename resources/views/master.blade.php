@@ -4,12 +4,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Vistaland</title>
-<<<<<<< HEAD
 	<link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/keyframes.css')}}">
-	<link rel="icon" type="image/png" href="{{ asset('icon.png') }}">
-=======
 	<link rel="icon" type="image/png" href="{{ asset('home.png') }}">
->>>>>>> 80c31494ca68e37c0bb47ded8714562725d9f8a1
 	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('AdminLTE/css/AdminLTE.css') }}">
 	<link rel="stylesheet" href="{{ asset('AdminLTE/css/skins/_all-skins.min.css') }}">

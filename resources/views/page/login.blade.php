@@ -32,7 +32,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user" aria-hidden="true"></i>
                     </div>
-                    <input type="text" name="username" class="form-control" id="exampleInputEmail1" placeholder="Enter username email">
+                    <input type="text" name="username" class="form-control" id="exampleInputEmail1" placeholder="Enter username">
                   </div>
                     @if($errors->has('username'))
                       <span class="help-block">

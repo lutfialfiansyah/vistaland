@@ -19,17 +19,14 @@ class UserController extends Controller
     	]);
 
     	if(Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])){
-    		return redirect()->to('/home');
-    		return Auth::guard('userlogin');
+    		return redirect()->to('/');
     	}else{
     		return redirect()->to('/login')->with('pesanError','Maaf username atau password Anda salah');
     	}
-    	return redirect()->back();
     }
 
     public function getHome(){
-    	$date = date('Y');
-    	return view('page.dashboard',compact('date'));
+    	return view('page.dashboard');
     }
 
     public function logout(){
