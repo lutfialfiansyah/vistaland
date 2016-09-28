@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('page.dashboard');
+Route::get('/',function(){
+	return view('welcome');
 });
+Route::get('/home',[
+	'uses' => 'userController@getHome',
+	'middleware' => 'auth'
+]);
+Route::get('/login','userController@getLogin');
+Route::post('/login','userController@postLogin');
+Route::get('/logout','userController@logout');
