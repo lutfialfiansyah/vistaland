@@ -18,8 +18,11 @@ class UserController extends Controller
     		'password' => 'required'
     	]);
 
-    	if(Auth::attempt(['name' => $request->input('username'), 'password' => $request->input('password')])){
+    	if(Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])){
     		return redirect()->to('/home');
+    		return Auth::guard('userlogin');
+    	}else{
+    		return redirect()->to('/login')->with('pesanError','Maaf username atau password Anda salah');
     	}
     	return redirect()->back();
     }
@@ -31,7 +34,7 @@ class UserController extends Controller
 
     public function logout(){
     	Auth::logout();
-    	return redirect()->to('/');
+    	return redirect()->to('/login');
     }
 
 }
