@@ -8,6 +8,7 @@ use Auth;
 
 class UserController extends Controller
 {
+	
     public function getLogin(){
     	return view('page.login');
     }

@@ -32,7 +32,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user" aria-hidden="true"></i>
                     </div>
-                    <input type="text" name="username" class="form-control" id="exampleInputEmail1" placeholder="Enter username">
+                    <input type="text" name="username" class="form-control" id="exampleInputEmail1" placeholder="Enter username" value="{{ old('username') }}">
                   </div>
                     @if($errors->has('username'))
                       <span class="help-block">
@@ -46,7 +46,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-lock" aria-hidden="true"></i>
                     </div>
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                   </div>
                     @if($errors->has('password'))
                       <span class="help-block">
