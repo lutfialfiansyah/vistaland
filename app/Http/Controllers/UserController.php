@@ -12,7 +12,9 @@ class UserController extends Controller
     public function getLogin(){
     	return view('page.login');
     }
-
+    public function getEdit(){
+        return view('page.editprofile');
+    }
     public function postLogin(Request $request){
     	$this->validate($request,[
     		'username' => 'required',

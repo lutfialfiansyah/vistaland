@@ -20,3 +20,4 @@ Route::get('/login',[
 ]);
 Route::post('/login','userController@postLogin');
 Route::get('/logout','userController@logout');
+Route::get('/editprofile','userController@getEdit');
