@@ -84,7 +84,10 @@
     transform: rotateZ(60deg) translate(1em, -9em);
   }
 }
-        
+
+{
+    animation: BounceRate;
+}        
 .box.box-primary.bawah{
     animation: sliding 1.5s;
 }
@@ -93,4 +96,7 @@ table {
 }
 .wrapper{
     animation: fadein 1.5s;
+}
+.info-box{
+    animation: Bouncerate 6s;
 }

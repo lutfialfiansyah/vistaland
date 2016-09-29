@@ -16,7 +16,7 @@ Route::get('/',[
 ]);
 Route::get('/login',[
 	'uses' => 'userController@getLogin',
-	'middleware'=> 'guest'
+	'middleware'=> 'guest',
 ]);
 Route::post('/login','userController@postLogin');
 Route::get('/logout','userController@logout');

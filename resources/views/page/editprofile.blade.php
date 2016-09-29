@@ -17,7 +17,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Table</h3>
+              <h3 class="box-title">Data Profile</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -33,10 +33,10 @@
               </thead>
                 <tbody>
                   <tr>
-                    <td>Trident</td>
-                    <td>Internet Explorer 4.0</td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
+                    <td>{{ Auth::user()->name }}</td>
+                    <td>{{ Auth::user()->email }}</td>
+                    <td>{{ Auth::user()->username }}</td>
+                    <td>{{ Auth::user()->password }}</td>
                     <td><a href="#" class="btn bg-purple btn-sm" role="button">Edit</a></td>
                   </tr>
                 </tbody>
