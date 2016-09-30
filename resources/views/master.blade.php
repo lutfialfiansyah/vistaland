@@ -40,11 +40,14 @@
 		<div class="control-sidebar-bg"></div>
 	</div>
 
+	<!-- jQuery -->
+
 	<!-- Jquery -->
 	<script src="{{ asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 	<!-- Data Tables -->
 	<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
 	<script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
+	@stack('script')
 	<!-- Bootstrap 3.3.6 -->
 	<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 	<!-- jQuery UI 1.11.4 -->
@@ -81,6 +84,5 @@
 	<!-- AdminLTE for demo purposes -->
 	<script src="{{ asset('AdminLTE/js/demo.js') }}"></script>
 	<!-- page script -->
-	@stack('script')
 </body>
 </html> 

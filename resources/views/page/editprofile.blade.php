@@ -21,31 +21,15 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="data2" class="table table-bordered table-hover">
+              <table id="data" class="table table-bordered table-hover table-striped table-condesed">
               <thead>
                 <tr>
                   <th>Name</th>
                   <th>Email</th>
                   <th>Username</th>
-                  <th>Password</th>
+                  <th>Action</th>
                 </tr>
               </thead>
-              @if(count($user) < 0)
-                <tr>
-                  <td><strong>No Record</strong></td>
-                </tr>
-              @else
-                @foreach($user as $data)
-              <tbody>
-                <tr>
-                  <td>{{ $data->name }}</td>
-                  <td>{{ $data->email }}</td>
-                  <td>{{ $data->username }}</td>
-                  <td>{{ $data->password }}</td>
-                </tr>    
-              </tbody>
-                @endforeach
-              @endif
               </table>
             </div>
             <!-- /.box-body -->
@@ -57,7 +41,7 @@
 @push('script')
 <script>
   $(function () {
-    $('#data2').DataTable({
+    $('#data').DataTable({
       "processing" : true,
       "serverSide" : true,
       "ajax" : "{{ url('editprofile/get-profile') }}",
@@ -65,7 +49,7 @@
         { data : 'name', name: 'name' },
         { data : 'email', name: 'email' },
         { data : 'username', name: 'username' },
-        { data : 'password', name: 'password' }
+        { data : 'action', name:'action', orderable: false, searchable: false },
       ]
     });
   });
