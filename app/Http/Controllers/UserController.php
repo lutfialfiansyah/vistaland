@@ -22,13 +22,11 @@ class UserController extends Controller
     	return Datatables::of($user)
             ->addColumn('action',function($user){
                 return
-                "<a href='editprofile/edit/$user->id' class='btn btn-xs btn-primary'><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Edit</a>
-                 <a href='editprofile/hapus/$user->id') }}' class='btn btn-xs btn-danger'>
-                 <i class='fa fa-trash-o' aria-hidden='true'></i> Hapus</a>
-                ";    
+                '<a href="editprofile/edit/'.$user->id.'" class="btn btn-xs btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                 <a href="editprofile/hapus/'.$user->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus '. $user->name.' ?\')">
+                 <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
+                 ';    
               })
-            ->editColumn('id', 'ID: {{$id}}')
-            ->removeColumn('password')
             ->make(true);
     }
     public function postLogin(Request $request){
