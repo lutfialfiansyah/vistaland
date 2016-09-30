@@ -24,7 +24,8 @@
           {!! csrf_field() !!}
               <div class="box-body">
               @if(Session::has('pesanError'))
-                <div class="alert alert-danger">{{ Session::get('pesanError') }}</div> 
+                <div class="alert alert-danger"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> 
+                {{ Session::get('pesanError') }}</div> 
               @endif
                 <div class="form-group{{ $errors->has('username') ? ' has-error' : ''}}">
                   <label for="username">Username</label>
@@ -32,7 +33,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user" aria-hidden="true"></i>
                     </div>
-                    <input type="text" name="username" class="form-control" id="exampleInputEmail1" placeholder="Enter username" value="{{ old('username') }}">
+                    <input type="text" name="username" class="form-control" id="username" placeholder="Enter username" value="{{ old('username') }}">
                   </div>
                     @if($errors->has('username'))
                       <span class="help-block">

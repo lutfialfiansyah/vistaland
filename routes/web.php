@@ -20,4 +20,8 @@ Route::get('/login',[
 ]);
 Route::post('/login','userController@postLogin');
 Route::get('/logout','userController@logout');
-Route::get('/editprofile','userController@getEdit');
+
+Route::group(['middleware' => ['web']], function () {
+    Route::get('editprofile','userController@getEdit');
+    Route::get('editprofile/get-profile','userController@getEditdata');
+});

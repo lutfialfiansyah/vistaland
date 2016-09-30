@@ -4,6 +4,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Vistaland</title>
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/keyframes.css')}}">
 	<link rel="icon" type="image/png" href="{{ asset('home.png') }}">
 	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
@@ -17,6 +19,8 @@
 	<link rel="stylesheet" href="{{ asset('plugins/morris/morris.css') }}">
 	<!-- jvectormap -->
 	<link rel="stylesheet" href="{{ asset('plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}">
+	<!-- DataTables -->
+  	<link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap.css') }}">
 	<!-- Date Picker -->
 	<link rel="stylesheet" href="{{ asset('plugins/datepicker/datepicker3.css') }}">
 	<!-- Daterange picker -->
@@ -38,14 +42,17 @@
 
 	<!-- Jquery -->
 	<script src="{{ asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+	<!-- Data Tables -->
+	<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ asset('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
+	<!-- Bootstrap 3.3.6 -->
+	<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 	<!-- jQuery UI 1.11.4 -->
 	<script src="{{ asset('plugins/jQueryUI/1.11.4/jquery-ui.min.js') }}"></script>
 	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 	<script>
 	  $.widget.bridge('uibutton', $.ui.button);
 	</script>
-	<!-- Bootstrap 3.3.6 -->
-	<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 	<!-- Morris.js charts -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 	<script src="{{ asset('plugins/morris/morris.min.js') }}"></script>
@@ -73,6 +80,7 @@
 	<script src="{{ asset('AdminLTE/js/pages/dashboard.js') }}"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="{{ asset('AdminLTE/js/demo.js') }}"></script>
-
+	<!-- page script -->
+	@stack('script')
 </body>
 </html> 

@@ -21,42 +21,53 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example2" class="table table-bordered table-hover table-striped table-condesed">
+              <table id="data2" class="table table-bordered table-hover">
               <thead>
                 <tr>
                   <th>Name</th>
                   <th>Email</th>
                   <th>Username</th>
                   <th>Password</th>
-                  <th>Action</th>
                 </tr>
               </thead>
-                <tbody>
-                  <tr>
-                    <td>{{ Auth::user()->name }}</td>
-                    <td>{{ Auth::user()->email }}</td>
-                    <td>{{ Auth::user()->username }}</td>
-                    <td>{{ Auth::user()->password }}</td>
-                    <td><a href="#" class="btn bg-purple btn-sm" role="button">Edit</a></td>
-                  </tr>
-                </tbody>
-                <tfoot>
+              @if(count($user) < 0)
                 <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Username</th>
-                  <th>Password</th>
-                  <th>Action</th>
+                  <td><strong>No Record</strong></td>
                 </tr>
-                </tfoot>
+              @else
+                @foreach($user as $data)
+              <tbody>
+                <tr>
+                  <td>{{ $data->name }}</td>
+                  <td>{{ $data->email }}</td>
+                  <td>{{ $data->username }}</td>
+                  <td>{{ $data->password }}</td>
+                </tr>    
+              </tbody>
+                @endforeach
+              @endif
               </table>
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
-
-
-
     </section>
   
 @endsection
+@push('script')
+<script>
+  $(function () {
+    $('#data2').DataTable({
+      "processing" : true,
+      "serverSide" : true,
+      "ajax" : "{{ url('editprofile/get-profile') }}",
+      "columns" : [
+        { data : 'name', name: 'name' },
+        { data : 'email', name: 'email' },
+        { data : 'username', name: 'username' },
+        { data : 'password', name: 'password' }
+      ]
+    });
+  });
+</script>
+@endpush

@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 use Auth;
+use Datatables;
 
 class UserController extends Controller
 {
@@ -13,7 +14,12 @@ class UserController extends Controller
     	return view('page.login');
     }
     public function getEdit(){
-        return view('page.editprofile');
+    	$user = User::all();
+        return view('page.editprofile',compact('user'));
+    }
+    public function getEditdata(){
+    	$user = User::select('name','email','username','password')->get();
+    	return Datatables::of($user)->make(true);
     }
     public function postLogin(Request $request){
     	$this->validate($request,[
