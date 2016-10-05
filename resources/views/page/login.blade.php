@@ -34,7 +34,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user" aria-hidden="true"></i>
                     </div>
-                    <input type="text" name="username" class="form-control" id="username" placeholder="Enter username" value="{{ old('username') }}">
+                    <input type="text" name="username" autofocus="autofocus" class="form-control" id="username" placeholder="Enter username" value="{{ old('username') }}">
                   </div>
                     @if($errors->has('username'))
                       <span class="help-block">
@@ -58,10 +58,11 @@
                 </div>
               </div>
 
-              <div class="box-footer">
+              <div class="box-header">
                 <button type="submit" class="btn btn-primary col-md-12 col-sm-12 col-xs-12">
                 <i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
               </div>
+
               <script src="{{ asset('dist/sweetalert.min.js')}}"></script>
               @include('sweet::alert')
           </form>

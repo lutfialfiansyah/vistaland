@@ -45,13 +45,14 @@ class UserController extends Controller
     }
 
     public function getHome(){
+
     	return view('page.dashboard');
     }
 
     public function logout(){
     	Auth::logout();
-        Alert()->success('You have been logged out.', 'Good bye!');
-    	return redirect()->to('/login');
+				Alert()->success('Category sign out successfully', 'Success')->persistent("Close");
+			return redirect()->to('/login');
     }
     public function edit($id)
     {

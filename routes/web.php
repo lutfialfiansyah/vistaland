@@ -19,7 +19,11 @@ Route::get('/login',[
 	'middleware'=> 'guest',
 ]);
 Route::post('/login','userController@postLogin');
-Route::get('/logout','userController@logout');
+
+Route::get('/logout', [
+    'uses' => 'userController@logout',
+    'as' => 'admin.logout',
+]);
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('editprofile','userController@getEdit');
