@@ -6,6 +6,7 @@
 	<title>Vistaland</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" type="text/css" href="{{ asset('dist/sweetalert.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/keyframes.css')}}">
 	<link rel="icon" type="image/png" href="{{ asset('home.png') }}">
 	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
@@ -33,6 +34,7 @@
 	<div class="wrapper">
 		@include('bagian.header')
 		@include('bagian.aside')
+			@include('sweet::alert')
 		<div class="content-wrapper">
 			@yield('konten')
 		</div>
@@ -57,6 +59,7 @@
 	  $.widget.bridge('uibutton', $.ui.button);
 	</script>
 	<!-- Morris.js charts -->
+	<script type="text/javascript" src="{{ asset('dist/sweetalert.min.js') }}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 	<script src="{{ asset('plugins/morris/morris.min.js') }}"></script>
 	<!-- Sparkline -->

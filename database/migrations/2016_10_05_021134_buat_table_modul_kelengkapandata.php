@@ -36,7 +36,7 @@ class BuatTableModulKelengkapandata extends Migration
             $table->string('appeal_status');
             $table->string('kpr_reviewed_status');
             $table->unsignedInteger('spr_id');
-            $table->foreign('spr_id')->references('id')->on('SPR')->onDelete('CASCADE'); 
+            $table->foreign('spr_id')->references('id')->on('SPR')->onDelete('CASCADE');
         });
         Schema::create('cash', function (Blueprint $table) {
             $table->increments('id');
@@ -45,7 +45,7 @@ class BuatTableModulKelengkapandata extends Migration
             $table->string('divorce_paper');
             $table->string('npwp');
             $table->unsignedInteger('spr_id');
-            $table->foreign('spr_id')->references('id')->on('SPR')->onDelete('CASCADE'); 
+            $table->foreign('spr_id')->references('id')->on('SPR')->onDelete('CASCADE');
         });
         Schema::create('interview', function (Blueprint $table) {
             $table->increments('id');
@@ -57,7 +57,7 @@ class BuatTableModulKelengkapandata extends Migration
             $table->unsignedInteger('kpr_id');
             $table->foreign('kpr_id')->references('id')->on('KPR')->onDelete('CASCADE');
             $table->unsignedInteger('interview_id');
-            $table->foreign('interview_id')->references('id')->on('interview')->onDelete('CASCADE');  
+            $table->foreign('interview_id')->references('id')->on('interview')->onDelete('CASCADE');
         });
     }
 
@@ -74,28 +74,3 @@ class BuatTableModulKelengkapandata extends Migration
         Schema::drop('interview_detail');
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
