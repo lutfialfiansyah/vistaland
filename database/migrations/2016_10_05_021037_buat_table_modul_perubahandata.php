@@ -17,18 +17,18 @@ class BuatTableModulPerubahandata extends Migration
             $table->increments('id');
             $table->integer('customer_id_old');
             $table->integer('customer_id_name');
-            $table->varchar('reason');
-            $table->varchar('status');
+            $table->string('reason');
+            $table->string('status');
             $table->unsignedInteger('spr_id');
             $table->foreign('spr_id')->references('id')->on('SPR')->onDelete('CASCADE');
         });
 
         Schema::create('moving_kavling', function (Blueprint $table) {
             $table->increments('id');
-            $table->varchar('kavling_from');
-            $table->varchar('kavling_to');
-            $table->varchar('reason');
-            $table->varchar('status');
+            $table->string('kavling_from');
+            $table->string('kavling_to');
+            $table->string('reason');
+            $table->string('status');
             $table->unsignedInteger('spr_id');
             $table->foreign('spr_id')->references('id')->on('SPR')->onDelete('CASCADE');
         });
@@ -37,8 +37,8 @@ class BuatTableModulPerubahandata extends Migration
             $table->increments('id');
             $table->unsignedInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customer')->onDelete('CASCADE');
-            $table->varchar('reason');
-            $table->varchar('status');
+            $table->string('reason');
+            $table->string('status');
             $table->unsignedInteger('spr_id');
             $table->foreign('spr_id')->references('id')->on('SPR')->onDelete('CASCADE');
         });
@@ -56,3 +56,4 @@ class BuatTableModulPerubahandata extends Migration
         Schema::drop('customer_void');
     }
 }
+

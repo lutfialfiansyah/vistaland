@@ -13,15 +13,15 @@ class BuatTableModulPembayaran extends Migration
      */
     public function up()
     {
-        Schema::create('payment', function (Blueprint $table) {
+       Schema::create('payment', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('total');
-            $table->varchar('method');
-            $table->varchar('description');
-            $table->varchar('bank_reference');
-            $table->varchar('type');
+            $table->string('method');
+            $table->string('description');
+            $table->string('bank_reference');
+            $table->string('type');
             // transaction_id;
-            $table->varchar('transaction_id'); 
+            $table->string('transaction_id'); 
             //            
             $table->unsignedInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customer')->onDelete('CASCADE');

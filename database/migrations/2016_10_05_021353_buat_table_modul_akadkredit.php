@@ -15,7 +15,7 @@ class BuatTableModulAkadkredit extends Migration
     {
         Schema::create('kpr_status', function (Blueprint $table) {
             $table->increments('id');
-            $table->varchar('place');
+            $table->string('place');
             $table->date('date');
         });
         Schema::create('kpr_status_detail', function (Blueprint $table) {
@@ -28,15 +28,15 @@ class BuatTableModulAkadkredit extends Migration
         });
         Schema::create('safekeeping', function (Blueprint $table) {
             $table->increments('id');
-            $table->varchar('disbursement_value');
-            $table->varchar('ajb');
-            $table->varchar('imb');
-            $table->varchar('split_certificate');
-            $table->varchar('transfer_of_title');
-            $table->varchar('electricity');
-            $table->varchar('bestek');
-            $table->varchar('cuts_debt');
-            $table->varchar('status');
+            $table->string('disbursement_value');
+            $table->string('ajb');
+            $table->string('imb');
+            $table->string('split_certificate');
+            $table->string('transfer_of_title');
+            $table->string('electricity');
+            $table->string('bestek');
+            $table->string('cuts_debt');
+            $table->string('status');
             $table->unsignedInteger('kpr_id');
             $table->foreign('kpr_id')->references('id')->on('KPR')->onDelete('CASCADE');
         });

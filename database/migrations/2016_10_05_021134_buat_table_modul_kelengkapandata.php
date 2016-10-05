@@ -1,4 +1,4 @@
-<?php
+string<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,41 +15,41 @@ class BuatTableModulKelengkapandata extends Migration
     {
         Schema::create('KPR', function (Blueprint $table) {
             $table->increments('id');
-            $table->varchar('family_card');
-            $table->varchar('marriage_certificate');
-            $table->varchar('divorce_paper');
-            $table->varchar('employment_certificate');
-            $table->varchar('employment_certificate_expired');
-            $table->varchar('pay_slip');
-            $table->varchar('pay_slip_expired');
-            $table->varchar('npwp');
-            $table->varchar('saving_book');
-            $table->varchar('btn_form');
-            $table->varchar('bi_checking_status');
-            $table->varchar('missing_data_memo');
-            $table->varchar('mk_value');
-            $table->varchar('sp3k');
-            $table->varchar('down_payment_deviation');
-            $table->varchar('bank_status');
-            $table->varchar('memo');
-            $table->varchar('interview_attempt');
-            $table->varchar('appeal_status');
-            $table->varchar('kpr_reviewed_status');
+            $table->string('family_card');
+            $table->string('marriage_certificate');
+            $table->string('divorce_paper');
+            $table->string('employment_certificate');
+            $table->string('employment_certificate_expired');
+            $table->string('pay_slip');
+            $table->string('pay_slip_expired');
+            $table->string('npwp');
+            $table->string('saving_book');
+            $table->string('btn_form');
+            $table->string('bi_checking_status');
+            $table->string('missing_data_memo');
+            $table->string('mk_value');
+            $table->string('sp3k');
+            $table->string('down_payment_deviation');
+            $table->string('bank_status');
+            $table->string('memo');
+            $table->string('interview_attempt');
+            $table->string('appeal_status');
+            $table->string('kpr_reviewed_status');
             $table->unsignedInteger('spr_id');
             $table->foreign('spr_id')->references('id')->on('SPR')->onDelete('CASCADE'); 
         });
         Schema::create('cash', function (Blueprint $table) {
             $table->increments('id');
-            $table->varchar('family_card');
-            $table->varchar('marriage_certificate');
-            $table->varchar('divorce_paper');
-            $table->varchar('npwp');
+            $table->string('family_card');
+            $table->string('marriage_certificate');
+            $table->string('divorce_paper');
+            $table->string('npwp');
             $table->unsignedInteger('spr_id');
             $table->foreign('spr_id')->references('id')->on('SPR')->onDelete('CASCADE'); 
         });
         Schema::create('interview', function (Blueprint $table) {
             $table->increments('id');
-            $table->varchar('place');
+            $table->string('place');
             $table->date('date');
         });
         Schema::create('interview_detail', function (Blueprint $table) {
@@ -61,7 +61,7 @@ class BuatTableModulKelengkapandata extends Migration
         });
     }
 
-    /**
+    /**string
      * Reverse the migrations.
      *
      * @return void
@@ -74,3 +74,28 @@ class BuatTableModulKelengkapandata extends Migration
         Schema::drop('interview_detail');
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
