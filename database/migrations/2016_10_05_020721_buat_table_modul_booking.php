@@ -52,6 +52,9 @@ class BuatTableModulBooking extends Migration
             $table->string('comission_status');
             $table->unsignedInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customer')->onDelete('CASCADE');
+            /*
+            belum jelas
+             */
             $table->integer('agen_id');
         });
 

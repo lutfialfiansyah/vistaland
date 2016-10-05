@@ -116,6 +116,7 @@ class BuatTableModulProject extends Migration
         });
         Schema::create('lpa', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('number');
             $table->integer('ppjb_no');
             $table->date('ppjb_date');
             $table->string('ppjb_notary');

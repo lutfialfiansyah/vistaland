@@ -15,8 +15,7 @@ class BuatTableModulAkadkredit extends Migration
     {
         Schema::create('kpr_status', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('place');
-            $table->date('date');
+            $table->string('status');
         });
         Schema::create('kpr_status_detail', function (Blueprint $table) {
             $table->increments('id');
