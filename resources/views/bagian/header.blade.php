@@ -212,7 +212,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="{{ ('AdminLTE/img/avatar04.png') }}" class="user-image" alt="User Image">
-              <span class="hidden-xs"> {{Auth::user()->name}} <i class="fa fa-caret-down" aria-hidden="true"></i></span>
+              <span class="hidden-xs"> {{Auth::user()->name}} <i class="fa fa-cogs" aria-hidden="true"></i></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
