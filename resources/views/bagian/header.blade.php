@@ -231,7 +231,7 @@
                   <a href="{{url('/editprofile')}}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="{{url('/logout')}}" class="btn btn-default btn-flat">Logout</a>
+                  <a href="{{url('/logout')}}" class="btn btn-default btn-flat" onclick="return confirm('Click Ok untuk logout !')">Logout</a>
                 </div>
               </li>
             </ul>
@@ -241,4 +241,3 @@
       </div>
     </nav>
   </header>
-  

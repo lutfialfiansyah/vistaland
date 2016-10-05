@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Hashing;
+use Illuminate\Session; 
+use Illuminate\Support\Facades\Input;  
 use App\User;
 use Auth;
 use Datatables;
@@ -50,5 +53,29 @@ class UserController extends Controller
     	Auth::logout();
     	return redirect()->to('/login');
     }
+
+    public function getlocked(){
+       if(Auth::check()){
+            Session::put('locked',true);
+
+            return view('lockscreen');
+       }
+       return redirect('/login');
+    }
+
+    public function locked(){
+        if(!Auth::check()){
+            return redirect('/login');
+        }
+
+        $password = Input::get('password');
+
+        if(Has::check($password, Auth::user()->password)){
+            Session::forget('locaked');
+            return redirect('home');
+        }
+
+    }
+        
 
 }

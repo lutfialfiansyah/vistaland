@@ -14,14 +14,25 @@ Route::get('/',[
 	'uses' => 'userController@getHome',
 	'middleware' => 'auth'
 ]);
+
 Route::get('/login',[
 	'uses' => 'userController@getLogin',
 	'middleware'=> 'guest',
 ]);
 Route::post('/login','userController@postLogin');
+
 Route::get('/logout','userController@logout');
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('editprofile','userController@getEdit');
     Route::get('editprofile/get-profile','userController@getEditdata');
 });
+
+Route::get('/lockscreen',[
+	'uses' => 'userController@getlocked',
+	'as' => 'user.locked'
+]);
+Route::post('/lockscreen',[
+	'uses' => 'userController@locked',
+	'as' => 'user.locked'
+]);
