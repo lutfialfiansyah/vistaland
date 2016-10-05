@@ -25,3 +25,4 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('editprofile','userController@getEdit');
     Route::get('editprofile/get-profile','userController@getEditdata');
 });
+Route::get('editprofile/edit/{id}','userController@edit');
