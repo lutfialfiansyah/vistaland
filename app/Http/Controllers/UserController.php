@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use Illuminate\Hashing;
-use Illuminate\Session; 
+use App\Http\Requests; 
 use Illuminate\Support\Facades\Input;  
 use App\User;
 use Auth;
@@ -26,7 +24,7 @@ class UserController extends Controller
     	return Datatables::of($user)
             ->addColumn('action',function($user){
                 return
-                '<a href="editprofile/edit/'.$user->id.'" class="btn btn-xs btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                '<a href="editprofile/'.$user->id.'" class="btn btn-xs btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
                  <a href="editprofile/hapus/'.$user->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus user '. $user->name.' ?\')">
                  <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
                  ';
@@ -54,8 +52,8 @@ class UserController extends Controller
 
     public function logout(){
     	Auth::logout();
-				Alert()->success('Category sign out successfully', 'Success')->persistent("Close");
-			return redirect()->to('/login');
+		Alert()->success('Sign out successfully', 'Success')->persistent("Close");
+		return redirect()->to('/login');
     }
     public function edit($id)
     {
@@ -64,14 +62,14 @@ class UserController extends Controller
     }
 
     public function getlocked(){
-       if(Auth::check()){
-            Session::put('locked',true);
+       if(!Auth::check()){
+            \Session::put('locked',true);
 
-            return view('lockscreen');
+            return view('bagian.lockscreen');
        }
        return redirect('/login');
     }
-
+/*
     public function locked(){
         if(!Auth::check()){
             return redirect('/login');
@@ -79,12 +77,13 @@ class UserController extends Controller
 
         $password = Input::get('password');
 
-        if(Has::check($password, Auth::user()->password)){
-            Session::forget('locaked');
-            return redirect('home');
+        if(\Has::check($password, Auth::user()->password)){
+            \Session::forget('locked');
+            return redirect('/');
         }
 
     }
+*/
         
 
 }

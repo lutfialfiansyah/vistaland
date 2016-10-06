@@ -211,13 +211,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{ ('AdminLTE/img/avatar04.png') }}" class="user-image" alt="User Image">
+              <img src="{{ asset('AdminLTE/img/avatar04.png') }}" class="user-image" alt="User Image">
               <span class="hidden-xs"> {{Auth::user()->name}} <i class="fa fa-cogs" aria-hidden="true"></i></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{ ('AdminLTE/img/avatar04.png') }}" class="img-circle" alt="User Image">
+                <img src="{{ asset('AdminLTE/img/avatar04.png') }}" class="img-circle" alt="User Image">
 
                 <p>
                   {{Auth::user()->name}}
@@ -231,9 +231,9 @@
                   <a href="{{url('/editprofile')}}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="{{url('/logout')}}" class="btn btn-default btn-flat" onclick="return confirm('Click Ok untuk logout !')">Logout</a>
+                  <a id="logout-btn" href="{{ url('/logout') }}" class="btn btn-default btn-flat" onclick="return confirm('Click Ok untuk logout !')">Logout</a>
 
-                  <a id="logout-btn" href="{{url('/logout')}}" class="btn btn-default btn-flat" onclick="return confirm('Click Ok untuk logout !')">Sign out</a>
+                  
 
                 </div>
               </li>
