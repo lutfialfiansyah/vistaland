@@ -52,8 +52,10 @@ class UserController extends Controller
 
     public function logout(){
     	Auth::logout();
-		Alert()->success('Sign out successfully', 'Success')->persistent("Close");
-		return redirect()->to('/login');
+
+			alert()->success('You have been logged out.', 'Good bye!');
+			return redirect()->to('/login');
+
     }
     public function edit($id)
     {
