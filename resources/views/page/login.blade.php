@@ -62,7 +62,6 @@
                 <button type="submit" class="btn btn-primary col-md-12 col-sm-12 col-xs-12">
                 <i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
               </div>
-
               <script src="{{ asset('dist/sweetalert.min.js')}}"></script>
               @include('sweet::alert')
           </form>

@@ -33,7 +33,7 @@ class BuatTableModulPerubahandata extends Migration
             $table->foreign('spr_id')->references('id')->on('SPR')->onDelete('CASCADE');
         });
 
-        Schema::create('costumer_void', function (Blueprint $table) {
+        Schema::create('customer_void', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customer')->onDelete('CASCADE');
@@ -51,9 +51,11 @@ class BuatTableModulPerubahandata extends Migration
      */
     public function down()
     {
-        Schema::drop('change_name');
-        Schema::drop('moving_kavling');
-        Schema::drop('customer_void');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+            Schema::drop('change_name');
+            Schema::drop('moving_kavling');
+            Schema::drop('customer_void');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
 

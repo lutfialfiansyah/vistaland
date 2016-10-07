@@ -228,10 +228,11 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="{{url('/editprofile')}}" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{ url('/editprofile') }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a id="logout-btn" href="{{ url('/logout') }}" class="btn btn-default btn-flat" onclick="return confirm('Click Ok untuk logout !')">Logout</a>
+                  <a id="logout-btn" href="{{ url('/logout') }}" class="btn btn-default btn-flat"  
+                  onclick="return confirm('Click OK untuk keluar !')">Logout</a>
 
                   
 
@@ -244,9 +245,9 @@
       </div>
     </nav>
 
-  </header>
-
-    <script>
+</header>
+<!--
+<script>
     $(document).on('click', '#logout-btn', function(e) {
         e.preventDefault();
         var link = $(this);
@@ -269,5 +270,5 @@
          });
     });
 </script>
-  </header>
+-->
 

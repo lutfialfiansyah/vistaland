@@ -35,6 +35,8 @@ class BuatTableModulPembayaran extends Migration
      */
     public function down()
     {
-        Schema::drop('payment');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+            Schema::drop('payment');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

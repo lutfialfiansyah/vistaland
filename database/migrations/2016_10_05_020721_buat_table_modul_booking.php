@@ -99,12 +99,14 @@ class BuatTableModulBooking extends Migration
      */
     public function down()
     {
-        Schema::drop('customer');
-        Schema::drop('customer_phone');
-        Schema::drop('NUP');
-        Schema::drop('promo');
-        Schema::drop('BF');
-        Schema::drop('SPR');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+            Schema::drop('customer');
+            Schema::drop('customer_phone');
+            Schema::drop('NUP');
+            Schema::drop('promo');
+            Schema::drop('BF');
+            Schema::drop('SPR');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
 
