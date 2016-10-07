@@ -231,11 +231,19 @@
                   <a href="{{ url('/editprofile') }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
+
                   <a id="logout-btn" href="{{ url('/logout') }}" class="btn btn-default btn-flat"  
                   onclick="return confirm('Click OK untuk keluar !')">Logout</a>
 
+
+<a id="logout-btn" href="{{url('/logout')}}" class="btn btn-default btn-flat" onclick="return confirm('Are you sure want sign out ?')">Sign out</a>
+
+                  <a id="logout-btn" href="{{ url('/logout') }}" class="btn btn-default btn-flat" onclick="return confirm('Click Ok untuk logout !')">Logout</a>
+>>>>>>> e55637dcbf48fd86c59bb38e1de88fa24b2ccb46
+
                   
 
+>>>>>>> 348b191d733238654f542aaad7e09e94dfebe3bc
                 </div>
               </li>
             </ul>
@@ -244,6 +252,7 @@
         </ul>
       </div>
     </nav>
+<<<<<<< HEAD
 
 </header>
 <!--
@@ -272,3 +281,6 @@
 </script>
 -->
 
+=======
+  </header>
+>>>>>>> e55637dcbf48fd86c59bb38e1de88fa24b2ccb46

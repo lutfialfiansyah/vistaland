@@ -43,7 +43,6 @@
 	</div>
 
 	<!-- jQuery -->
-
 	<!-- Jquery -->
 	<script src="{{ asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 	<!-- Data Tables -->
@@ -89,4 +88,4 @@
 	<!-- page script -->
 	
 </body>
-</html> 
+</html>

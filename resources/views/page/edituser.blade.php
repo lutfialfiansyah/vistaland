@@ -17,12 +17,17 @@
         <div class="col-md-8">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Edit Profile</h3> 
+              <h3 class="box-title">Edit Profile</h3>
             </div>
 
             <!-- /.box-header -->
+<<<<<<< HEAD
+
+<form role="form" method="post">
+=======
             
           <form role="form" method="post">
+>>>>>>> 348b191d733238654f542aaad7e09e94dfebe3bc
              <table>
               <div class="box-body">
                 <div class="form-group">
@@ -37,21 +42,7 @@
                   <label for="username">Username</label>
                   <input type="email" class="form-control" id="username" placeholder="Enter username" value="{{$tampiledit->username}}" disabled>
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputFile">File input</label>
-                  <input type="file" id="exampleInputFile">
-
-                  <p class="help-block">Example block-level help text here.</p>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> Check me out
-                  </label>
-                </div>
+                
               </div>
               <!-- /.box-body -->
 
@@ -64,5 +55,5 @@
           </div>
 
     </section>
-  
+
 @endsection
