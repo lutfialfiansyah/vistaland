@@ -231,10 +231,7 @@
                   <a href="{{url('/editprofile')}}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="{{url('/logout')}}" class="btn btn-default btn-flat" onclick="return confirm('Click Ok untuk logout !')">Logout</a>
-
-                  <a id="logout-btn" href="{{url('/logout')}}" class="btn btn-default btn-flat" onclick="return confirm('Click Ok untuk logout !')">Sign out</a>
-
+<a id="logout-btn" href="{{url('/logout')}}" class="btn btn-default btn-flat" onclick="return confirm('Are you sure want sign out ?')">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -243,31 +240,4 @@
         </ul>
       </div>
     </nav>
-
   </header>
-
-    <script>
-    $(document).on('click', '#logout-btn', function(e) {
-        e.preventDefault();
-        var link = $(this);
-        swal({
-            title: "Confirm Sign out!",
-            text: "Are you sure?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes",
-            closeOnConfirm: true
-         },
-         function(isConfirm){
-             if(isConfirm){
-                window.location = link.attr('href');
-             }
-             else{
-                swal("cancelled","Category deletion Cancelled", "error");
-             }
-         });
-    });
-</script>
-  </header>
-

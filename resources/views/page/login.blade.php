@@ -19,7 +19,7 @@
 
         <div class="box box-primary bawah">
             <div class="box-header with-border">
-              <h3 class="box-title">Login</h3>
+              <h3 class="box-title">Login Vistaland</h3>
             </div>
           <form role="form" action="{{ url('/login') }}" method="post">
           {!! csrf_field() !!}
@@ -34,7 +34,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user" aria-hidden="true"></i>
                     </div>
-                    <input type="text" name="username" autofocus="autofocus" class="form-control" id="username" placeholder="Enter username" value="{{ old('username') }}">
+                    <input type="text" name="username" autofocus class="form-control" id="username" placeholder="Enter username" value="{{ old('username') }}">
                   </div>
                     @if($errors->has('username'))
                       <span class="help-block">
@@ -48,7 +48,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-lock" aria-hidden="true"></i>
                     </div>
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                    <input type="password"  name="password" class="form-control" id="password" placeholder="Password">
                   </div>
                     @if($errors->has('password'))
                       <span class="help-block">
@@ -59,7 +59,7 @@
               </div>
 
               <div class="box-header">
-                <button type="submit" class="btn btn-primary col-md-12 col-sm-12 col-xs-12">
+                <button type="submit" class="btn btn-primary col-md-12 col-sm-12 col-xs-12" >
                 <i class="fa fa-sign-in" aria-hidden="true"></i> Login</button>
               </div>
 

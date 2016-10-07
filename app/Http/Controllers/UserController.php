@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Hashing;
-use Illuminate\Session; 
-use Illuminate\Support\Facades\Input;  
+use Illuminate\Session;
+use Illuminate\Support\Facades\Input;
 use App\User;
 use Auth;
 use Datatables;
@@ -36,26 +36,29 @@ class UserController extends Controller
     }
     public function postLogin(Request $request){
     	$this->validate($request,[
+            alert()->warning('Enter your Username & Password !', 'Please')->persistent('Okey'),
     		'username' => 'required',
-    		'password' => 'required'
-    	]);
-
+    		'password' => 'required',
+             
+        ]);
     	if(Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])){
-    		return redirect()->to('/');
+
+      	return redirect()->to('/');
     	}else{
-    		return redirect()->to('/login')->with('pesanError','Maaf username atau password Anda salah');
-    	}
+            alert()->info('Username or Password is Incorrect !', 'Sorry');
+        return redirect()->to('/login')->with('pesanError','Maaf username atau password Anda salah');
+
+        }
     }
 
     public function getHome(){
-
     	return view('page.dashboard');
     }
 
     public function logout(){
-    	Auth::logout();
-				alert()->success('You have been logged out.', 'Good bye!');
-			return redirect()->to('/login');
+    alert()->info('You have been logged out.', 'Good bye!');
+      Auth::logout();
+      return redirect()->to('/login');
     }
     public function edit($id)
     {
@@ -85,6 +88,6 @@ class UserController extends Controller
         }
 
     }
-        
+
 
 }

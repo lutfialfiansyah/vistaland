@@ -43,7 +43,6 @@
 	</div>
 
 	<!-- jQuery -->
-
 	<!-- Jquery -->
 	<script src="{{ asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 	<!-- Data Tables -->
@@ -88,4 +87,4 @@
 	<script src="{{ asset('AdminLTE/js/demo.js') }}"></script>
 	<!-- page script -->
 </body>
-</html> 
+</html>
