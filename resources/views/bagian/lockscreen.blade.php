@@ -31,7 +31,7 @@
     <!-- /.lockscreen-image -->
 
     <!-- lockscreen credentials (contains the form) -->
-    <form class="lockscreen-credentials">
+    <form class="lockscreen-credentials" action="{{ url('/locked') }}">
       <div class="input-group">
         <input type="password" name="password" class="form-control" placeholder="password">
 

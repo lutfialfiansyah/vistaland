@@ -7,7 +7,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li class="active">Edit Profile</li>
       </ol>
     </section>
 
@@ -21,8 +21,13 @@
             </div>
 
             <!-- /.box-header -->
+<<<<<<< HEAD
 
 <form role="form" method="post">
+=======
+            
+          <form role="form" method="post">
+>>>>>>> 348b191d733238654f542aaad7e09e94dfebe3bc
              <table>
               <div class="box-body">
                 <div class="form-group">

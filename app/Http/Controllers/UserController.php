@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use App\Http\Requests;
 use Illuminate\Hashing;
 use Illuminate\Session;
 use Illuminate\Support\Facades\Input;
+=======
+use App\Http\Requests; 
+use Illuminate\Support\Facades\Input;  
+>>>>>>> 348b191d733238654f542aaad7e09e94dfebe3bc
 use App\User;
 use Auth;
 use Datatables;
@@ -26,7 +31,7 @@ class UserController extends Controller
     	return Datatables::of($user)
             ->addColumn('action',function($user){
                 return
-                '<a href="editprofile/edit/'.$user->id.'" class="btn btn-xs btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                '<a href="editprofile/'.$user->id.'" class="btn btn-xs btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
                  <a href="editprofile/hapus/'.$user->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus user '. $user->name.' ?\')">
                  <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
                  ';
@@ -56,9 +61,17 @@ class UserController extends Controller
     }
 
     public function logout(){
+<<<<<<< HEAD
     alert()->info('You have been logged out.', 'Good bye!');
       Auth::logout();
       return redirect()->to('/login');
+=======
+    	Auth::logout();
+
+			alert()->success('You have been logged out.', 'Good bye!');
+			return redirect()->to('/login');
+
+>>>>>>> 348b191d733238654f542aaad7e09e94dfebe3bc
     }
     public function edit($id)
     {
@@ -67,14 +80,14 @@ class UserController extends Controller
     }
 
     public function getlocked(){
-       if(Auth::check()){
-            Session::put('locked',true);
+       if(!Auth::check()){
+            \Session::put('locked',true);
 
-            return view('lockscreen');
+            return view('bagian.lockscreen');
        }
        return redirect('/login');
     }
-
+/*
     public function locked(){
         if(!Auth::check()){
             return redirect('/login');
@@ -82,12 +95,17 @@ class UserController extends Controller
 
         $password = Input::get('password');
 
-        if(Has::check($password, Auth::user()->password)){
-            Session::forget('locaked');
-            return redirect('home');
+        if(\Has::check($password, Auth::user()->password)){
+            \Session::forget('locked');
+            return redirect('/');
         }
 
     }
+<<<<<<< HEAD
 
+=======
+*/
+        
+>>>>>>> 348b191d733238654f542aaad7e09e94dfebe3bc
 
 }
