@@ -45,7 +45,7 @@ class UserController extends Controller
 
       	return redirect()->to('/');
     	}else{
-            alert()->info('Username or Password is Incorrect !', 'Sorry');
+            alert()->info('Username or Password is Incorrect !', 'Sorry')->persistent('Try again');
         return redirect()->to('/login')->with('pesanError','Maaf username atau password Anda salah');
 
         }
@@ -91,8 +91,6 @@ class UserController extends Controller
             return redirect('/');
         }
 
-    }
-
-        
+    }   
 
 }
