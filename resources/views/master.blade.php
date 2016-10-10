@@ -86,5 +86,6 @@
 	<!-- AdminLTE for demo purposes -->
 	<script src="{{ asset('AdminLTE/js/demo.js') }}"></script>
 	<!-- page script -->
+	
 </body>
 </html>

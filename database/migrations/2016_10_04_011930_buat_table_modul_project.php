@@ -145,17 +145,19 @@ class BuatTableModulProject extends Migration
      */
     public function down()
     {
-        Schema::drop('project');
-        Schema::drop('siteplan');
-        Schema::drop('kavling_type');
-        Schema::drop('kavling_image');
-        Schema::drop('strategic_type');
-        Schema::drop('strategic_type_price');
-        Schema::drop('kavling');
-        Schema::drop('price');
-        Schema::drop('complaint');
-        Schema::drop('tax_payment');
-        Schema::drop('fractional_certificate');
-        Schema::drop('lpa');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+            Schema::drop('project');
+            Schema::drop('siteplan');
+            Schema::drop('kavling_type');
+            Schema::drop('kavling_image');
+            Schema::drop('strategic_type');
+            Schema::drop('strategic_type_price');
+            Schema::drop('kavling');
+            Schema::drop('price');
+            Schema::drop('complaint');
+            Schema::drop('tax_payment');
+            Schema::drop('fractional_certificate');
+            Schema::drop('lpa');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

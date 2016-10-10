@@ -17,6 +17,31 @@ Route::group(['middleware' => ['auth','lock']],function(){
 	]);
 
 	Route::group(['middleware' => ['web']], function () {
+		// project
+		Route::get('project',[
+			'uses' => 'ProjectController@getProject',
+			'as' => 'project.view'
+		]);
+		Route::get('project/edit/{id}',[
+			'uses' => 'ProjectController@getEditProject',
+			'as' => 'project.edit'
+		]);
+		Route::get('project/hapus/{id}',[
+			'uses' => 'ProjectController@getHapusProject',
+			'as' => 'project.hapus'
+		]);
+		Route::post('project/update/{id}',[
+			'uses' => 'ProjectController@postUpdateProject',
+			'as' => 'project.update'
+		]);
+		Route::get('project/add','ProjectController@getAddProject');
+		Route::post('project/add',[
+			'uses' => 'ProjectController@postAddProject',
+			'as' => 'project.add'
+		]);
+    	Route::get('project/get-project','ProjectController@getProjectdata');
+
+    	// profile
     	Route::get('editprofile','userController@getEdit');
     	Route::get('editprofile/get-profile','userController@getEditdata');
 	});

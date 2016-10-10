@@ -48,8 +48,10 @@ class BuatTableModulAkadkredit extends Migration
      */
     public function down()
     {
-        Schema::drop('kpr_status');
-        Schema::drop('kpr_status_detail');
-        Schema::drop('safekeeping');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+            Schema::drop('kpr_status');
+            Schema::drop('kpr_status_detail');
+            Schema::drop('safekeeping');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

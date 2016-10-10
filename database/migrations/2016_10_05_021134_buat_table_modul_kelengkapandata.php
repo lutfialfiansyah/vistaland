@@ -68,9 +68,11 @@ class BuatTableModulKelengkapandata extends Migration
      */
     public function down()
     {
-        Schema::drop('KPR');
-        Schema::drop('cash');
-        Schema::drop('interview');
-        Schema::drop('interview_detail');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+            Schema::drop('KPR');
+            Schema::drop('cash');
+            Schema::drop('interview');
+            Schema::drop('interview_detail');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
