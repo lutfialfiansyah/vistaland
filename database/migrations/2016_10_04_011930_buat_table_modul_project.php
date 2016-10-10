@@ -49,8 +49,8 @@ class BuatTableModulProject extends Migration
         });
         Schema::create('strategic_type_price', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('stategic_type_id');
-            $table->foreign('stategic_type_id')->references('id')->on('strategic_type')->onDelete('CASCADE');
+            $table->unsignedInteger('strategic_type_id');
+            $table->foreign('strategic_type_id')->references('id')->on('strategic_type')->onDelete('CASCADE');
             $table->unsignedInteger('project_id');
             $table->foreign('project_id')->references('id')->on('project')->onDelete('CASCADE');
             $table->integer('price');
@@ -69,8 +69,8 @@ class BuatTableModulProject extends Migration
             $table->string('pln_no');
             $table->string('status');
             $table->string('progress');
-            $table->unsignedInteger('stategic_type_id');
-            $table->foreign('stategic_type_id')->references('id')->on('strategic_type')->onDelete('CASCADE');
+            $table->unsignedInteger('strategic_type_id');
+            $table->foreign('strategic_type_id')->references('id')->on('strategic_type')->onDelete('CASCADE');
             $table->unsignedInteger('project_id');
             $table->foreign('project_id')->references('id')->on('project')->onDelete('CASCADE');
             $table->unsignedInteger('kavling_type_id');

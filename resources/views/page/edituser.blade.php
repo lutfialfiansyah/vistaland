@@ -21,13 +21,8 @@
             </div>
 
             <!-- /.box-header -->
-<<<<<<< HEAD
 
-<form role="form" method="post">
-=======
-            
           <form role="form" method="post">
->>>>>>> 348b191d733238654f542aaad7e09e94dfebe3bc
              <table>
               <div class="box-body">
                 <div class="form-group">
