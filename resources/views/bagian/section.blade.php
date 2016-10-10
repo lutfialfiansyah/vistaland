@@ -72,21 +72,7 @@
             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <div class="col-lg-3 col-xs-6">
-<div class="small-box bg-aqua ">
-<div class="inner">
-<h3>
-<p>Permata Puri Harmoni 2</p>
-</div>
-<div class="icon">
-<i class="ion-ios-bookmarks"></i>
-</div>
-<a class="small-box-footer" href="http://vistaland.unityerp.com/session/6">
-Select This Project
-<i class="fa fa-arrow-circle-right"></i>
-</a>
-</div>
-</div>
+        
         <!-- ./col -->
     </section>
     <!-- /.content -->

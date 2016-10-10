@@ -6,7 +6,7 @@
         <small>Control Panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active"><a href="{{ url('/project') }}">Project</a></li>
         <li class="active"><a href="{{ url('/project/add') }}">Add Project</a></li>
       </ol>
