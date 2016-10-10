@@ -231,14 +231,8 @@
                   <a href="{{url('/editprofile')}}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-<<<<<<< HEAD
 <a id="logout-btn" href="{{url('/logout')}}" class="btn btn-default btn-flat" onclick="return confirm('Are you sure want sign out ?')">Sign out</a>
-=======
-                  <a id="logout-btn" href="{{ url('/logout') }}" class="btn btn-default btn-flat" onclick="return confirm('Click Ok untuk logout !')">Logout</a>
 
-                  
-
->>>>>>> 348b191d733238654f542aaad7e09e94dfebe3bc
                 </div>
               </li>
             </ul>
