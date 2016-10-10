@@ -43,7 +43,7 @@ class UserController extends Controller
 
       	return redirect()->to('/');
     	}else{
-            alert()->info('Username or Password is Incorrect !', 'Sorry');
+            alert()->info('Username or Password is Incorrect !', 'Sorry')->persistent('Try again');
         return redirect()->to('/login')->with('pesanError','Maaf username atau password Anda salah');
 
         }
@@ -54,9 +54,11 @@ class UserController extends Controller
     }
 
     public function logout(){
+
         alert()->info('You have been logged out.', 'Good bye!');
         Auth::logout();
         return redirect()->to('/login');
+
     }
     public function edit($id)
     {
@@ -72,7 +74,6 @@ class UserController extends Controller
        }
        return redirect('/login');
     }
-/*
     public function locked(){
         if(!Auth::check()){
             return redirect('/login');
@@ -85,7 +86,8 @@ class UserController extends Controller
             return redirect('/');
         }
 
-    }
-*/
+
+    } 
+
 }
 

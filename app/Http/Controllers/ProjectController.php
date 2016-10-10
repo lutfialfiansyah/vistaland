@@ -92,12 +92,12 @@ class ProjectController extends Controller
     	$project = project::where('id',$id)->first();
     	$project->name = $request->input('name');
     	$project->company = $request->input('company');
-		$project->area = $request->input('area');
-		$project->unit_total = $request->input('unit_total');
-		$project->location = $request->input('location');
-		$project->booking_free = $request->input('booking_free');
-		$project->booking_comission = $request->input('booking_comission');
-		$project->nup_free = $request->input('nup_free');
+		  $project->area = $request->input('area');
+		  $project->unit_total = $request->input('unit_total');
+		  $project->location = $request->input('location');
+		  $project->booking_free = $request->input('booking_free');
+		  $project->booking_comission = $request->input('booking_comission');
+		  $project->nup_free = $request->input('nup_free');
   		$project->nup_comission = $request->input('nup_comission');  	
   		$project->akad_comission = $request->input('akad_comission');
   		$project->update();
