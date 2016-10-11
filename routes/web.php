@@ -10,14 +10,16 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-Route::group(['middleware' => ['auth','lock']],function(){
+Route::group(['middleware' => ['auth']],function(){
 	Route::get('/',[
 		'uses' => 'userController@getHome',
 		'as' => 'user.home'
 	]);
 
 	Route::group(['middleware' => ['web']], function () {
-		// project
+		/*
+		 *****project*****
+		 */
 		Route::get('project',[
 			'uses' => 'ProjectController@getProject',
 			'as' => 'project.view'
@@ -34,16 +36,37 @@ Route::group(['middleware' => ['auth','lock']],function(){
 			'uses' => 'ProjectController@postUpdateProject',
 			'as' => 'project.update'
 		]);
-		Route::get('project/add','ProjectController@getAddProject');
+		Route::get('project/add',[
+			'uses'=>'ProjectController@getAddProject',
+		]);
 		Route::post('project/add',[
 			'uses' => 'ProjectController@postAddProject',
 			'as' => 'project.add'
 		]);
     	Route::get('project/get-project','ProjectController@getProjectdata');
 
+    	/*
+		 *****kavling*****
+		 */
+		Route::get('project/{id}/kavling',[
+			'uses' => 'ProjectController@getKavling',
+			'as' => 'kavling.view'
+		]);
+		Route::get('project/{id}/kavling/add',[
+			'uses' => 'ProjectController@getAddKavling',
+			'as' => 'kavling.add'
+		]);
+		Route::post('project/kavling/add',[
+			'uses' => 'ProjectController@postAddKavling',
+			'as' => 'kavling.add'
+		]);
+		Route::get('project/{id}/get-kavling','ProjectController@getKavlingdata');
+
+
     	// profile
     	Route::get('editprofile','userController@getEdit');
     	Route::get('editprofile/get-profile','userController@getEditdata');
+
 	});
 
 	Route::get('editprofile/{id}','userController@edit');

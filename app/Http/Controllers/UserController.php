@@ -40,12 +40,10 @@ class UserController extends Controller
              
         ]);
     	if(Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])){
-
-      	return redirect()->to('/');
-    	}else{
+            return redirect()->to('/');
+        }else{
             alert()->info('Username or Password is Incorrect !', 'Sorry')->persistent('Try again');
-        return redirect()->to('/login')->with('pesanError','Maaf username atau password Anda salah');
-
+            return redirect()->to('/login')->with('pesanError','Maaf username atau password Anda salah');
         }
     }
 
