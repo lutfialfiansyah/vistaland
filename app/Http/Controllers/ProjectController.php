@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\project;
+use App\siteplan;
 use Datatables;
 
 class ProjectController extends Controller
@@ -35,7 +36,7 @@ class ProjectController extends Controller
     	$this->validate($request,[
 			'name'=>'required|min:3',    	
 			'company'=>'required|min:3',
-			'area'=>'required|numeric|min:0|max:30|',
+			'area'=>'required|numeric|min:0',
 			'unit_total'=>'required|numeric',
 			'location'=>'required',
 			'booking_free'=>'required|numeric',
@@ -44,6 +45,22 @@ class ProjectController extends Controller
 			'nup_comission'=>'required|numeric',
 			'akad_comission'=>'required|numeric',
     	]);
+
+    	$project = new project();
+    	$project->name = $request->input('name');
+    	$project->company = $request->input('company');
+		$project->area = $request->input('area');
+		$project->unit_total = $request->input('unit_total');
+		$project->location = $request->input('location');
+		$project->booking_free = $request->input('booking_free');
+		$project->booking_comission = $request->input('booking_comission');
+		$project->nup_free = $request->input('nup_free');
+  		$project->nup_comission = $request->input('nup_comission');  	
+  		$project->akad_comission = $request->input('akad_comission');
+		$project->save();
+		alert()->success('Data berhasil disimpan !');
+		return redirect()->route('project.view');
+  	
     }
 
     public function getEditProject($id){

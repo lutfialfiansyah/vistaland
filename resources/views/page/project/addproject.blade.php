@@ -19,7 +19,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Add Project</h3>
-              <a href="{{ url('/project') }}" class="btn-xs btn-success">
+              <a href="{{ url('/project') }}" class="btn btn-xs btn-success">
                 <i class="fa fa-eye" aria-hidden="true"></i> Lihat data
               </a>
             </div>
@@ -128,8 +128,9 @@
                 </div>
                 
                 <div class="form-group">
-                  <input type="reset" value="RESET" class="btn btn-default">
-                  <input type="submit" class="btn btn-primary pull-right" value="SIMPAN">
+                  <button type="reset" class="btn btn-default">RESET</button>
+                  <input type="submit" class="btn btn-primary" value="SIMPAN">
+
                 </div>
 
               </form>

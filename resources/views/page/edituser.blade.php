@@ -21,8 +21,6 @@
             </div>
 
             <!-- /.box-header -->
-
-   
           <form role="form" method="post">
              <table>
               <div class="box-body">

@@ -18,9 +18,14 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Data Project</h3>
-              <a href="{{ url('project/add') }}" class="btn-xs btn-success">
+              <a href="{{ url('project/add') }}" class="btn btn-xs btn-success">
                 <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Data
               </a>
+              
+              <a href="{{ url('project') }}" class="btn btn-xs btn-success">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+              </a>
+
             </div>
             <!-- /.box-header -->
             <div class="box-body">

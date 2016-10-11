@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Illuminate\Hashing;
-use Illuminate\Session;
 use Illuminate\Support\Facades\Input;
 use App\User;
 use Auth;
@@ -56,13 +54,10 @@ class UserController extends Controller
     }
 
     public function logout(){
-    alert()->info('You have been logged out.', 'Good bye!');
-      Auth::logout();
-      return redirect()->to('/login');
-    	Auth::logout();
 
-			alert()->success('You have been logged out.', 'Good bye!');
-			return redirect()->to('/login');
+        alert()->info('You have been logged out.', 'Good bye!');
+        Auth::logout();
+        return redirect()->to('/login');
 
     }
     public function edit($id)
@@ -91,6 +86,8 @@ class UserController extends Controller
             return redirect('/');
         }
 
-    }   
+
+    } 
 
 }
+

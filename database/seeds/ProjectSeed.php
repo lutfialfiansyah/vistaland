@@ -49,5 +49,17 @@ class ProjectSeed extends Seeder
             'nup_comission' =>  48000,
             'akad_comission' =>  2000,
         ]);
+
+         DB::table('siteplan')->insert([
+            'id' =>  1,
+            'image' =>  'satu.jpg',
+            'project_id' =>  1,
+        ]);
+
+        DB::table('siteplan')->insert([
+            'id' =>  2,
+            'image' =>  'dua.jpg',
+            'project_id' =>  1,
+        ]);
     }
 }
