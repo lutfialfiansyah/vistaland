@@ -90,9 +90,9 @@ Route::get('/logout', [
     'as' => 'admin.logout',
 ]);
 
-Route::get('customer','CustomerController@getCustomer');
-Route::get('customer/add','CustomerController@getAddCustomer');
+Route::get('customer','BookingController@getCustomer');
+Route::get('customer/add','BookingController@getAddCustomer');
 Route::post('customer/add',[
-	'uses' => 'CustomerController@postAddProject',
+	'uses' => 'BookingController@postAddProject',
 	'as' => 'customer.add'
 ]);

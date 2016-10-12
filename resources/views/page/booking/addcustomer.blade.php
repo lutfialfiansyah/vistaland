@@ -64,7 +64,7 @@
                     <i class="fa fa-calendar">
                     </i>
                   </div>
-                  <input type="text" name="ktp_expired" class="form-control pull-right" id="datepicker" value="{{old('ktp_expired')}}">
+                  <input type="text" name="ktp_expired" class="form-control pull-right col-xs-5" id="datepicker" value="{{old('ktp_expired')}}">
                 @if ($errors->has('ktp_expired'))
                   <span class="help-block">
                     <strong>{{$errors->first('ktp_expired')}}</strong>
@@ -166,6 +166,66 @@
                     @endif
                 </div>
 
+                <div class="form-group{{ $errors->has('spouse_name') ? ' has-error' : '' }}">
+                  <label for="spouse_name">Spouse Name </label>
+                 <input type="text" name="spouse_name" class="form-control" value="{{ old('spouse_name') }}">
+                    @if($errors->has('spouse_name'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('spouse_name') }}</strong>
+                      </span>
+                    @endif
+                </div>
+
+                <div class="form-group{{ $errors->has('spouse_ktp') ? ' has-error' : '' }}">
+                  <label for="spouse_ktp">Spouse KTP </label>
+                 <input type="text" name="spouse_ktp" class="form-control" value="{{ old('spouse_ktp') }}">
+                    @if($errors->has('spouse_ktp'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('spouse_ktp') }}</strong>
+                      </span>
+                    @endif
+                </div>
+
+                <div class="form-group{{ $errors->has('bank_account') ? ' has-error' : '' }}">
+                  <label for="bank_account">Bank Account Number </label>
+                  <input type="text" name="bank_account" class="form-control" value="{{ old('bank_account') }}">
+                    @if($errors->has('bank_account'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('bank_account') }}</strong>
+                      </span>
+                    @endif
+                </div>
+
+                <div class="form-group{{ $errors->has('btn_id') ? ' has-error' : '' }}">
+                  <label for="btn_id">BTN Id </label>
+                  <input type="text" name="btn_id" class="form-control" value="{{ old('btn_id') }}">
+                    @if($errors->has('btn_id'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('btn_id') }}</strong>
+                      </span>
+                    @endif
+                </div>
+
+                <div class="form-group{{ $errors->has('btn_account') ? ' has-error' : '' }}">
+                  <label for="btn_account">BTN Account Number</label>
+                  <input type="text" name="btn_account" class="form-control" value="{{ old('btn_account') }}">
+                    @if($errors->has('btn_account'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('btn_account') }}</strong>
+                      </span>
+                    @endif
+                </div>
+
+                <div class="form-group{{ $errors->has('btn_branch') ? ' has-error' : '' }}">
+                  <label for="btn_branch">BTN Branch</label>
+                  <input type="text" name="btn_branch" class="form-control" value="{{ old('btn_branch') }}">
+                    @if($errors->has('btn_branch'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('btn_branch') }}</strong>
+                      </span>
+                    @endif
+                </div>
+
                 <div class="form-group{{ $errors->has('mk_application') ? ' has-error' : '' }}">
                   <label for="mk_application">MK Application</label>
                   <input type="text" name="mk_application" class="form-control" value="{{ old('mk_application') }}">
@@ -197,6 +257,28 @@
                   </select>
                   <span class="help-block"></span>
                 </div>
+                  <div class="form-group">
+                <label>Marketer</label>
+                <select name="marketer" class="marketer form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                <option value="" selected disabled>Choose One</option>
+                <option value="1">Oswaldo Predovic</option>
+                <option value="2">Luisa Dickens</option>
+                <option value="3">Mr. Stephan Boyer IV </option>
+                <option value="4">Kaelyn Casper</option>
+                <option value="5">Dr. Gregory Deckow </option>
+                <option value="6">Jazmin Gislason </option>
+                <option value="7">Conner Romaguera </option>
+                <option value="8">Americo Ryan </option>
+                <option value="9">Dexter Thompson Sr. </option>
+                <option value="10">Wilbert Pfeffer </option>
+                <option value="11">Kari D'Amore </option>
+                <option value="12">Brayan Mante MD </option>
+                <option value="13">Dr. Jose Crooks </option>
+                <option value="14">Gaston Pacocha </option>
+                <option value="15">Mallie Price</option>
+                </select>
+                <span class="help-block"></span>
+              </div>
                 <div class="form-group">
                   <button type="reset" class="btn btn-default">RESET</button>
                   <input type="submit" class="btn btn-primary pull-right" value="SIMPAN">
@@ -215,6 +297,7 @@
 <script>
 $( function() {
   $( "#datepicker" ).datepicker();
+  $( ".marketer" ).select2();
 } );
 </script>
 @endpush

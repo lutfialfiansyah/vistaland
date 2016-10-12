@@ -88,11 +88,11 @@
 .box.box-primary.bawah{
     animation: sliding 1.5s;
 }
-table{
-    animation: BounceRate 3s;
+.table{
+    animation: BounceRate 1.8s;
 }
 .wrapper{
-    animation: fadein 1.5s;
+    animation: fadein 1s;
 }
 .info-box{
     animation: Bouncerate 6s;

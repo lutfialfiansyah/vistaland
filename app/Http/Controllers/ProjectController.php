@@ -54,15 +54,15 @@ class ProjectController extends Controller
     	$project = new project();
     	$project->name = $request->input('name');
     	$project->company = $request->input('company');
-		$project->area = $request->input('area');
-		$project->unit_total = $request->input('unit_total');
-		$project->location = $request->input('location');
-		$project->booking_free = $request->input('booking_free');
-		$project->booking_comission = $request->input('booking_comission');
-		$project->nup_free = $request->input('nup_free');
+		  $project->area = $request->input('area');
+		  $project->unit_total = $request->input('unit_total');
+		  $project->location = $request->input('location');
+		  $project->booking_free = $request->input('booking_free');
+		  $project->booking_comission = $request->input('booking_comission');
+		  $project->nup_free = $request->input('nup_free');
   		$project->nup_comission = $request->input('nup_comission');
   		$project->akad_comission = $request->input('akad_comission');
-		$project->save();
+		    $project->save();
 		alert()->success('Data berhasil disimpan !');
 		return redirect()->route('project.view');
 
@@ -97,7 +97,6 @@ class ProjectController extends Controller
     	$project = project::where('id',$id)->first();
     	$project->name = $request->input('name');
     	$project->company = $request->input('company');
-<<<<<<< HEAD
 		  $project->area = $request->input('area');
 		  $project->unit_total = $request->input('unit_total');
 		  $project->location = $request->input('location');
@@ -105,7 +104,6 @@ class ProjectController extends Controller
 		  $project->booking_comission = $request->input('booking_comission');
 		  $project->nup_free = $request->input('nup_free');
   		$project->nup_comission = $request->input('nup_comission');
-=======
 		$project->area = $request->input('area');
 		$project->unit_total = $request->input('unit_total');
 		$project->location = $request->input('location');
@@ -113,7 +111,6 @@ class ProjectController extends Controller
 		$project->booking_comission = $request->input('booking_comission');
 		$project->nup_free = $request->input('nup_free');
   		$project->nup_comission = $request->input('nup_comission');  	
->>>>>>> de606b0507fd068b06f1285055690a0318924d83
   		$project->akad_comission = $request->input('akad_comission');
   		$project->update();
   		alert()->success('Data berhasil diupdate !');
@@ -121,8 +118,6 @@ class ProjectController extends Controller
 
     }
 
-    ///// kavling
-    ///
 
     public function getAddKavling(){
     	$s_kavling_type = kavling_type::all();
