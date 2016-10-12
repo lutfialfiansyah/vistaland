@@ -36,7 +36,7 @@
                   <label for="username">Username</label>
                   <input type="text" class="form-control" id="username" placeholder="Enter username" value="{{$tampiledit->username}}" disabled>
                 </div>
-                
+
               </div>
               <!-- /.box-body -->
 
@@ -52,7 +52,7 @@
             <h2 class="box-title">Change Password</h2>
             <div class="box-tools pull-left">
                 <button class="btn btn-default btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                
+
             </div>
         </div>
         <div style="display: none;" class="box-body">
@@ -68,11 +68,11 @@
                 <input name="updatepass" type="submit" class="btn btn-primary btn-sm pull-right" value="Update">
               </div>
         </div><!-- /.box-body -->
-    </div><!-- /.box -->   
+    </div><!-- /.box -->
           </form>
           </div>
-          <!-- /.row -->          
-        
+          <!-- /.row -->
+
     </section>
 
 @endsection

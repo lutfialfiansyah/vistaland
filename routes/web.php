@@ -124,6 +124,7 @@ Route::get('/login',[
 	'middleware'=> 'guest',
 ]);
 Route::post('/login','userController@postLogin');
+
 Route::get('/logout','userController@logout');
 
 /*	
@@ -132,3 +133,16 @@ Route::get('/logout','userController@logout');
 		'as' => 'user.locked'
 	]);
 */
+
+Route::get('/logout', [
+    'uses' => 'userController@logout',
+    'as' => 'admin.logout',
+]);
+
+Route::get('customer','BookingController@getCustomer');
+Route::get('customer/add','BookingController@getAddCustomer');
+Route::post('customer/add',[
+	'uses' => 'BookingController@postAddProject',
+	'as' => 'customer.add'
+]);
+

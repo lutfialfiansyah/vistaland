@@ -19,7 +19,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Add Project</h3>
-              <a href="{{ url('/project') }}" class="btn btn-xs btn-success">
+              <a href="{{ url('/project') }}" class="btn btn-xs btn-success pull-right">
                 <i class="fa fa-eye" aria-hidden="true"></i> Lihat data
               </a>
             </div>
@@ -53,7 +53,7 @@
                       <span class="help-block">
                         <strong>{{ $errors->first('location') }}</strong>
                       </span>
-                    @endif                    
+                    @endif
                 </div>
 
                 <div class="form-group{{ $errors->has('area') ? ' has-error' : '' }}">
@@ -108,13 +108,13 @@
 
                 <div class="form-group{{ $errors->has('booking_comission') ? ' has-error' : '' }}">
                   <label for="booking_comission">Booking Comission</label>
-                  <input type="number" placeholder="example: 200000" name="booking_comission" class="form-control" 
+                  <input type="number" placeholder="example: 200000" name="booking_comission" class="form-control"
                   value="{{ old('booking_comission') }}">
                     @if($errors->has('booking_comission'))
                       <span class="help-block">
                         <strong>{{ $errors->first('booking_comission') }}</strong>
                       </span>
-                    @endif                      
+                    @endif
                 </div>
 
                 <div class="form-group{{ $errors->has('akad_comission') ? ' has-error' : '' }}">
@@ -124,12 +124,12 @@
                       <span class="help-block">
                         <strong>{{ $errors->first('akad_comission') }}</strong>
                       </span>
-                    @endif                     
+                    @endif
                 </div>
-                
+
                 <div class="form-group">
                   <button type="reset" class="btn btn-default">RESET</button>
-                  <input type="submit" class="btn btn-primary" value="SIMPAN">
+                  <input type="submit" class="btn btn-primary pull-right" value="SIMPAN">
 
                 </div>
 
@@ -139,5 +139,5 @@
           </div>
           <!-- /.box -->
     </section>
-  
+
 @endsection
