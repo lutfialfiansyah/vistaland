@@ -34,7 +34,7 @@ class ProjectController extends Controller
 
     public function postAddProject(Request $request){
     	$this->validate($request,[
-			'name'=>'required|min:3',    	
+			'name'=>'required|min:3',
 			'company'=>'required|min:3',
 			'area'=>'required|numeric|min:0',
 			'unit_total'=>'required|numeric',
@@ -55,12 +55,12 @@ class ProjectController extends Controller
 		$project->booking_free = $request->input('booking_free');
 		$project->booking_comission = $request->input('booking_comission');
 		$project->nup_free = $request->input('nup_free');
-  		$project->nup_comission = $request->input('nup_comission');  	
+  		$project->nup_comission = $request->input('nup_comission');
   		$project->akad_comission = $request->input('akad_comission');
 		$project->save();
 		alert()->success('Data berhasil disimpan !');
 		return redirect()->route('project.view');
-  	
+
     }
 
     public function getEditProject($id){
@@ -98,12 +98,12 @@ class ProjectController extends Controller
 		  $project->booking_free = $request->input('booking_free');
 		  $project->booking_comission = $request->input('booking_comission');
 		  $project->nup_free = $request->input('nup_free');
-  		$project->nup_comission = $request->input('nup_comission');  	
+  		$project->nup_comission = $request->input('nup_comission');
   		$project->akad_comission = $request->input('akad_comission');
   		$project->update();
   		alert()->success('Data berhasil diupdate !');
   		return redirect()->route('project.view');
-  		
+
     }
 
 }

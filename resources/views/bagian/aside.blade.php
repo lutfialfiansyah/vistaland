@@ -3,7 +3,7 @@
     <section class="sidebar">
       <!-- Sidebar user panel -->
       <div class="user-panel">
-        <div class="pull-left image"> 
+        <div class="pull-left image">
             <img src="{{ asset('AdminLTE/img/avatar04.png') }}" class="img-circle"  alt="User Image">
         </div>
         <div class="pull-left info">
@@ -42,8 +42,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Konsumen</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> SPR</a></li>
+            <li><a href="{{url('/customer')}}"><i class="fa fa-group"></i> Customer</a></li>
+            <li><a href=""><i class="fa fa-file-o"></i>NUP</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -91,7 +91,7 @@
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-table"></i> 
+            <i class="fa fa-table"></i>
             <span>Akad Kredit</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -104,7 +104,7 @@
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-gavel" aria-hidden="true"></i> 
+            <i class="fa fa-gavel" aria-hidden="true"></i>
             <span>Legalitas</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -129,9 +129,17 @@
             <li><a href=""><i class="fa fa-circle-o"></i> Data Kavling</a></li>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-file-text-o"></i> <span>Report</span>
+           </a>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-users"></i> <span>User</span>
+           </a>
+        </li>
         </ul>
     </section>
     <!-- /.sidebar -->
   </aside>
-
- 

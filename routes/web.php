@@ -61,23 +61,15 @@ Route::get('/login',[
 ]);
 
 Route::post('/login','userController@postLogin');
-Route::get('/logout','userController@logout');
-
-/*
-Route::get('/logout','userController@logout');
-*/
 
 Route::get('/logout', [
     'uses' => 'userController@logout',
     'as' => 'admin.logout',
 ]);
 
-
-
-	
-/*	
-	Route::post('/lockscreen',[
-		'uses' => 'userController@locked',
-		'as' => 'user.locked'
-	]);
-*/
+Route::get('customer','CustomerController@getCustomer');
+Route::get('customer/add','CustomerController@getAddCustomer');
+Route::post('customer/add',[
+	'uses' => 'CustomerController@postAddProject',
+	'as' => 'customer.add'
+]);

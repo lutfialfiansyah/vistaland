@@ -15,7 +15,7 @@
                                 margin-top: 0px;
                             }
                         }
-                        
+
                         @keyframes fadein {
                             from {
                                 opacity: 0;
@@ -24,7 +24,7 @@
                                 opacity: 1;
                             }
                         }
-                        
+
                         @keyframes identifier {
                             0% {
                                 top: 0;
@@ -41,7 +41,7 @@
                                 margin-top: 0;
                             }
                         }
-                        
+
                         @keyframes important1 {
                             from {
                                 margin-top: 50px;
@@ -54,7 +54,7 @@
                                 margin-top: 100px;
                             }
                         }
-                        
+
                         @keyframes important2 {
                             from {
                                 margin-top: 50px;
@@ -70,7 +70,7 @@
                         @keyframes sliding{
                                 from{transform:translate(-500px,0px);opacity:0}
                                 to{transform:translate(0px,0px);opacity:1.1;}}
-	
+
     					@keyframes BounceRate{
     0%{transform:translate(0px,0px) scale(0.0);opacity:1}
 20%{transform:translate(0px,0px) scale(0.0);opacity:1;}
@@ -85,13 +85,10 @@
   }
 }
 
-{
-    animation: BounceRate;
-}        
 .box.box-primary.bawah{
     animation: sliding 1.5s;
 }
-table {
+table{
     animation: BounceRate 3s;
 }
 .wrapper{
