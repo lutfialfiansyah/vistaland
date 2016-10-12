@@ -58,7 +58,7 @@ class BuatTableModulProject extends Migration
         Schema::create('kavling', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('number');
-            $table->string('file_size');
+            $table->string('field_size');
             $table->string('bpn_size');
             $table->string('left_over_size');
             $table->string('Imb_parent');

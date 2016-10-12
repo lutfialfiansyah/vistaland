@@ -18,14 +18,15 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Data Project</h3>
-              <a href="{{ url('project/add') }}" class="btn btn-xs btn-success">
-                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Data
-              </a>
-              
-              <a href="{{ url('project') }}" class="btn btn-xs btn-success">
-                <i class="fa fa-refresh" aria-hidden="true"></i>
-              </a>
+              <div class="box-tools pull-right">
+                <a href="{{ url('project') }}" class="btn btn-xs btn-success">
+                  <i class="fa fa-refresh" aria-hidden="true"></i>
+                </a>
 
+                <a href="{{ url('project/add') }}" class="btn btn-xs btn-success">
+                  <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Project
+                </a>
+              </div>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -37,11 +38,7 @@
                   <th>Area</th>
                   <th>Unit Total</th>
                   <th>Location</th>
-                  <th>Booking free</th>
-                  <th>Booking comission</th>
-                  <th>NUP free</th>
-                  <th>NUP comission</th>
-                  <th>Akad comission</th>
+                  <th>Siteplan</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -68,11 +65,7 @@
         { data : 'area', name: 'area' },
         { data : 'unit_total', name: 'unit_total' },
         { data : 'location', name: 'location' },
-        { data : 'booking_free', name: 'booking_free' },
-        { data : 'booking_comission', name: 'booking_comission' },
-        { data : 'nup_free', name: 'nup_free' },
-        { data : 'nup_comission', name: 'nup_comission' },
-        { data : 'akad_comission', name: 'akad_comission' },
+        { data : 'image', name: 'image', orderable: false, searchable: false },
         { data : 'action', name:'action', orderable: false, searchable: false },
       ]
     });

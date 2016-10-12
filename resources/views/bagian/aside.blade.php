@@ -29,8 +29,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('/project') }}"><i class="fa fa-circle-o"></i> Proyek Umum</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Kavling Rumah</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Price</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> Promo</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -131,6 +130,7 @@
         </li>
         <li class="treeview">
           <a href="#">
+<<<<<<< HEAD
             <i class="fa fa-file-text-o"></i> <span>Report</span>
            </a>
         </li>
@@ -138,6 +138,11 @@
           <a href="#">
             <i class="fa fa-users"></i> <span>User</span>
            </a>
+=======
+            <i class="fa fa-users" aria-hidden="true"></i>
+            <span>Users</span>
+          </a>
+>>>>>>> de606b0507fd068b06f1285055690a0318924d83
         </li>
         </ul>
     </section>
