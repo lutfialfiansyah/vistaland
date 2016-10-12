@@ -79,8 +79,8 @@ class ProjectSeed extends Seeder
             'Imb_fraction_date' =>  50000,
             'pbb' =>  30000,
             'pln_no' =>  2000,
-            'status' =>  2000,
-            'progress' =>  2000,
+            'status' =>  "Open",
+            'progress' =>  "Genteng",
             'strategic_type_id' =>  2,
             'project_id' =>  2,
             'kavling_type_id' =>  1,
@@ -97,8 +97,8 @@ class ProjectSeed extends Seeder
             'Imb_fraction_date' =>  50000,
             'pbb' =>  48000,
             'pln_no' =>  2000,
-            'status' =>  2000,
-            'progress' =>  2000,
+            'status' =>  "Open",
+            'progress' =>  "Keramik",
             'strategic_type_id' =>  1,
             'project_id' =>  2,
             'kavling_type_id' =>  1,           
@@ -114,6 +114,32 @@ class ProjectSeed extends Seeder
             'id' =>  2,
             'image' =>  'dua.jpg',
             'project_id' =>  1,
+        ]);
+        DB::table('price')->insert([
+            'expired_date' =>  '2016-10-12',
+            'price' =>  '10000000',
+            'administration_price' =>'400000',
+            'renovation_price'=>'500000',
+            'left_over_price'=>'200000',
+            'move_kavling_price'=>'100000',
+            'change_name_price'=>'50000',
+            'management_confirm_status'=>'10000',
+            'memo'=>'tidak ada kata untuk memo',
+            'project_id'=>2,
+            'kavling_type_id'=>1
+        ]);
+        DB::table('price')->insert([
+            'expired_date' =>  '2016-10-12',
+            'price' =>  '10000000',
+            'administration_price' =>'400000',
+            'renovation_price'=>'500000',
+            'left_over_price'=>'200000',
+            'move_kavling_price'=>'100000',
+            'change_name_price'=>'50000',
+            'management_confirm_status'=>'10000',
+            'memo'=>'tidak ada kata untuk memo',
+            'project_id'=>1,
+            'kavling_type_id'=>2
         ]);
 
        

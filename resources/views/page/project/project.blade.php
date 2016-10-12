@@ -15,7 +15,7 @@
     <section class="content">
      <div class="row">
         <div class="col-xs-12">
-          <div class="box">
+          <div class="box box-primary">
             <div class="box-header">
               <h3 class="box-title">Data Project</h3>
               <div class="box-tools pull-right">
@@ -30,7 +30,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="data" class="table table-bordered table-hover table-striped table-condesed">
+            <table id="data" class="table table-bordered table-hover table-striped table-condesed">
               <thead>
                 <tr>
                   <th>Name</th>
@@ -43,6 +43,7 @@
                 </tr>
               </thead>
               </table>
+
             </div>
             <!-- /.box-body -->
           </div>

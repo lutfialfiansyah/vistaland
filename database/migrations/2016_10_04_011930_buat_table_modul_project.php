@@ -80,7 +80,7 @@ class BuatTableModulProject extends Migration
             $table->increments('id');
             $table->date('expired_date');
             $table->integer('price');
-            $table->integer('administation_price');
+            $table->integer('administration_price');
             $table->integer('renovation_price');
             $table->integer('left_over_price');
             $table->integer('move_kavling_price');

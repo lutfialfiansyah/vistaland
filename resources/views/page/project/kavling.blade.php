@@ -16,7 +16,7 @@
     <section class="content">
      <div class="row">
         <div class="col-xs-12">
-          <div class="box">
+          <div class="box box-primary">
             <div class="box-header">
               <h3 class="box-title">Data Kavling <strong><u>{{ $project->name }}</u></strong></h3>
               <div class="box-tools pull-right"><a href='{{ url("project/$project->id/kavling/add") }}' class="btn btn-xs btn-success">
@@ -25,7 +25,8 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="data" class="table table-bordered table-hover table-striped table-condesed ">
+              
+              <table id="data" class="table table-condensed table-bordered table-hover dataTable no-footer" role="grid" style="width: 1082px;">
               <thead>
                 <tr>
                   <th>Number</th>
@@ -44,6 +45,7 @@
                 </tr>
               </thead>
               </table>
+              
             </div>
             <!-- /.box-body -->
           </div>

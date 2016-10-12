@@ -56,14 +56,55 @@ Route::group(['middleware' => ['auth']],function(){
 			'uses' => 'ProjectController@getAddKavling',
 			'as' => 'kavling.add'
 		]);
-		Route::post('project/kavling/add',[
+		Route::post('project/{id}/kavling/add',[
 			'uses' => 'ProjectController@postAddKavling',
 			'as' => 'kavling.add'
 		]);
+		Route::get('project/{id}/kavling/edit/{kav_id}',[
+			'uses' => 'ProjectController@getEditKavling',
+			'as' => 'kavling.edit'
+		]);
+		Route::post('project/{id}/kavling/update/{kav_id}',[
+			'uses' => 'ProjectController@postUpdateKavling',
+			'as' => 'kavling.update'
+		]);
+		Route::get('project/{id}/kavling/hapus/{kav_id}',[
+			'uses' => 'ProjectController@getHapusKavling',
+			'as' => 'kavling.hapus'
+		]);
 		Route::get('project/{id}/get-kavling','ProjectController@getKavlingdata');
 
+		/*
+		 *****Price List*****
+		 */
+		Route::get('project/{id}/pricelist',[
+			'uses' => 'ProjectController@getPricelist',
+			'as' => 'pricelist.view'
+		]);
+		Route::get('project/{id}/pricelist/add',[
+			'uses' => 'ProjectController@getAddPricelist',
+			'as' => 'pricelist.add'
+		]);
+		Route::post('project/{id}/pricelist/add',[
+			'uses' => 'ProjectController@postAddPricelist',
+			'as' => 'pricelist.add'
+		]);
+		Route::get('project/{id}/pricelist/edit/{price_id}',[
+			'uses' => 'ProjectController@getEditPricelist',
+			'as' => 'pricelist.edit'
+		]);
+		Route::post('project/{id}/pricelist/update/{price_id}',[
+			'uses' => 'ProjectController@postUpdatePricelist',
+			'as' => 'pricelist.update'
+		]);
+		Route::get('project/{id}/pricelist/hapus/{price_id}',[
+			'uses' => 'ProjectController@getHapusPricelist',
+			'as' => 'pricelist.hapus'
+		]);
 
-    	// profile
+    	/*
+		 *****Profile*****
+		 */
     	Route::get('editprofile','userController@getEdit');
     	Route::get('editprofile/get-profile','userController@getEditdata');
 
@@ -82,22 +123,9 @@ Route::get('/login',[
 	'uses' => 'userController@getLogin',
 	'middleware'=> 'guest',
 ]);
-
 Route::post('/login','userController@postLogin');
 Route::get('/logout','userController@logout');
 
-/*
-Route::get('/logout','userController@logout');
-*/
-
-Route::get('/logout', [
-    'uses' => 'userController@logout',
-    'as' => 'admin.logout',
-]);
-
-
-
-	
 /*	
 	Route::post('/lockscreen',[
 		'uses' => 'userController@locked',

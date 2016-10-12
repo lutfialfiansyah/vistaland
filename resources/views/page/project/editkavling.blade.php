@@ -7,9 +7,9 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class=""><a href="{{ url('project') }}">Project</a></li>
-        <li class=""><a href='{{ url("project/$project->id/kavling") }}'>Kavling</a></li>
-        <li class="active"><a href="">Add Kavling</a></li>
+        <li class=""><a href="{{ url('/project') }}">Project</a></li>
+        <li class=""><a href='{{ route("kavling.view",$edit->project_id) }}'>Kavling</a></li>
+        <li class="active"><a href="">Edit Kavling</a></li>
       </ol>
     </section>
 
@@ -19,24 +19,18 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Add Kavling</h3>
-              <a href='{{ url("project/$project->id/kavling") }}' class="btn btn-xs btn-success">
-                <i class="fa fa-eye" aria-hidden="true"></i> Lihat data
-              </a>
+              <h3 class="box-title">Edit Kavling</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-            @if(Session::has('success'))
-              <div class="alert alert-success">
-                {{ Session::get('success') }}
-              </div>
-            @endif
-              <form action='{{ url("project/$project->id/kavling/add") }}' method="post">
+              <form action='{{ url("project/$edit->project_id/kavling/update/$edit->id") }}' method="post">
               {!! csrf_field() !!}
                 <div class="form-group{{ $errors->has('kavling_type_id') ? ' has-error' : '' }}">
                   <label for="">Type Kavling</label>
                   <select class="form-control" name="kavling_type_id">
-                    <option value="" selected="selected"></option>
+                    <option value="{{ $edit->kavling_type_id }}" selected="selected">{{$edit->kavling_type->type }}
+                    </option>
+                    <option value=""></option>
                     @foreach($s_kavling_type as $data)
                       <option value="{{ $data->id }}">{{ $data->type }}</option>
                     @endforeach
@@ -50,6 +44,8 @@
                 <div class="form-group{{ $errors->has('strategic_type_id') ? ' has-error' : '' }}">
                   <label for="">Strategic Type</label>
                   <select class="form-control" name="strategic_type_id" >
+                    <option value="{{ $edit->strategic_type_id }}" selected="selected">{{$edit->strategic_type->type }}
+                    </option>
                     <option value=""></option>
                     @foreach($s_strategic_type as $data)
                       <option value="{{ $data->id }}">{{ $data->type }}</option>
@@ -63,7 +59,7 @@
                 </div>
                 <div class="form-group{{ $errors->has('number') ? ' has-error' : '' }}">
                   <label for="number">Number</label>
-                  <input type="text" class="form-control" name="number" value="">
+                  <input type="text" class="form-control" name="number" value="{{ $edit->number }}">
                     @if($errors->has('number'))
                       <span class="help-block">
                         {{ $errors->first('number') }}
@@ -72,7 +68,7 @@
                 </div>
                 <div class="form-group{{ $errors->has('field_size') ? ' has-error' : '' }}">
                   <label for="">Field Size</label>
-                  <input type="text" class="form-control" name="field_size" value="">
+                  <input type="text" class="form-control" name="field_size" value="{{ $edit->field_size }}">
                    @if($errors->has('field_size'))
                       <span class="help-block">
                         {{ $errors->first('field_size') }}
@@ -81,7 +77,7 @@
                 </div>
                 <div class="form-group{{ $errors->has('bpn_size') ? ' has-error' : '' }}">
                   <label for="">BPN Size</label>
-                  <input type="text" class="form-control" name="bpn_size" value="">
+                  <input type="text" class="form-control" name="bpn_size" value="{{ $edit->bpn_size }}">
                    @if($errors->has('bpn_size'))
                       <span class="help-block">
                         {{ $errors->first('bpn_size') }}
@@ -90,7 +86,7 @@
                 </div>
                 <div class="form-group{{ $errors->has('left_over_size') ? ' has-error' : '' }}">
                   <label for="">Left Over Size</label>
-                  <input type="text" class="form-control" name="left_over_size" value="">
+                  <input type="text" class="form-control" name="left_over_size" value="{{ $edit->left_over_size }}">
                    @if($errors->has('left_over_size'))
                       <span class="help-block">
                         {{ $errors->first('left_over_size') }}
@@ -99,7 +95,7 @@
                 </div>
                 <div class="form-group{{ $errors->has('Imb_parent') ? ' has-error' : '' }}">
                   <label for="">Imb Parent</label>
-                  <input type="text" class="form-control" name="Imb_parent" value="">
+                  <input type="text" class="form-control" name="Imb_parent" value="{{ $edit->Imb_parent }}">
                    @if($errors->has('Imb_parent'))
                       <span class="help-block">
                         {{ $errors->first('Imb_parent') }}
@@ -110,7 +106,7 @@
                   <label for="">Imb Parent Date</label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-                    <input type="date" class="form-control" name="Imb_parent_date" value="">
+                    <input type="date" class="form-control" name="Imb_parent_date" value="{{$edit->Imb_parent_date}}">
                   </div>
                    @if($errors->has('Imb_parent_date'))
                       <span class="help-block">
@@ -120,7 +116,7 @@
                 </div>
                 <div class="form-group{{ $errors->has('Imb_fraction') ? ' has-error' : '' }}">
                   <label for="">Imb Fraction</label>
-                  <input type="text" class="form-control" name="Imb_fraction" value="">
+                  <input type="text" class="form-control" name="Imb_fraction" value="{{ $edit->Imb_fraction }}">
                    @if($errors->has('Imb_fraction'))
                       <span class="help-block">
                         {{ $errors->first('Imb_fraction') }}
@@ -131,7 +127,7 @@
                   <label for="">Imb Fraction Date</label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-                    <input type="date" class="form-control" name="Imb_fraction_date" value="">
+                    <input type="date" class="form-control" name="Imb_fraction_date" value="{{ $edit->Imb_fraction_date }}">
                   </div>
                    @if($errors->has('Imb_fraction_date'))
                       <span class="help-block">
@@ -141,7 +137,7 @@
                 </div>
                 <div class="form-group{{ $errors->has('pbb') ? ' has-error' : '' }}">
                   <label for="">PBB</label>
-                  <input type="text" class="form-control" name="pbb" value="">
+                  <input type="text" class="form-control" name="pbb" value="{{ $edit->pbb }}">
                    @if($errors->has('pbb'))
                       <span class="help-block">
                         {{ $errors->first('pbb') }}
@@ -150,7 +146,7 @@
                 </div>
                 <div class="form-group{{ $errors->has('pln_no') ? ' has-error' : '' }}">
                   <label for="">PLN NO</label>
-                  <input type="text" class="form-control" name="pln_no" value="">
+                  <input type="text" class="form-control" name="pln_no" value="{{ $edit->pln_no }}">
                    @if($errors->has('pln_no'))
                       <span class="help-block">
                         {{ $errors->first('pln_no') }}
@@ -160,6 +156,8 @@
                 <div class="form-group{{ $errors->has('progress') ? ' has-error' : '' }}">
                   <label for="">Progress</label>
                   <select class="form-control" name="progress">
+                    <option value="{{ $edit->progress }}">{{ $edit->progress }}</option>
+                    <option></option>
                     <option value="Boplang">Boplang</option>
                     <option value="Pondasi">Pondasi</option>
                     <option value="Sloof">Sloof</option>
@@ -185,6 +183,8 @@
                 <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
                   <label for="">Status</label>
                   <select class="form-control" name="status" >
+                    <option value="{{ $edit->status }}">{{ $edit->status }}</option>
+                    <option></option>
                     <option value="Close">Close</option>
                     <option value="Open">Open</option>
                     <option value="Reserved">Reserved</option>
@@ -207,8 +207,9 @@
                 </div>
       
                 <div class="form-group">
-                  <button type="reset" class="btn btn-default">RESET</button>
-                  <input type="submit" class="btn btn-primary" value="SIMPAN">
+                  <a href="{{ route('kavling.view',$edit->project_id) }}" class="btn btn-danger" 
+                  onclick="return confirm('Clik OK to confirm !')">BATAL</a>
+                  <input type="submit" class="btn btn-primary" value="UPDATE">
                 </div>
 
               </form>
