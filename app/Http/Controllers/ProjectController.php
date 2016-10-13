@@ -44,7 +44,7 @@ class ProjectController extends Controller
 
     public function postAddProject(Request $request){
     	$this->validate($request,[
-			'name'=>'required|min:3|unique:project,name',    	
+		  	'name'=>'required|min:3|unique:project,name',    	
 			'company'=>'required|min:3',
 			'area'=>'required|numeric|min:0',
 			'unit_total'=>'required|numeric|min:0',

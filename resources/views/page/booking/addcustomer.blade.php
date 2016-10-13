@@ -126,15 +126,6 @@
                     @endif
                 </div>
 
-                <div class="form-group{{ $errors->has('photo') ? ' has-error' : '' }}">
-                  <label for="photo">Photo</label>
-                  <input type="file" name="photo" class="form-control" value="{{ old('photo') }}">
-                    @if($errors->has('photo'))
-                      <span class="help-block">
-                        <strong>{{ $errors->first('photo') }}</strong>
-                      </span>
-                    @endif
-                </div>
 
                 <div class="form-group{{ $errors->has('relative_name') ? ' has-error' : '' }}">
                   <label for="relative_name">Relative Name</label>
@@ -182,6 +173,16 @@
                     @if($errors->has('spouse_ktp'))
                       <span class="help-block">
                         <strong>{{ $errors->first('spouse_ktp') }}</strong>
+                      </span>
+                    @endif
+                </div>
+
+                <div class="form-group{{ $errors->has('photo') ? ' has-error' : '' }}">
+                  <label for="photo">Photo</label>
+                  <input type="file" name="photo" class="form-control" value="{{ old('photo') }}">
+                    @if($errors->has('photo'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('photo') }}</strong>
                       </span>
                     @endif
                 </div>
@@ -245,15 +246,19 @@
                       </span>
                     @endif
                 </div>
-
+                <div class="form-group">
+                  <label>Status</label>
+                  <select name="status" id="status" class="form-control" required>
+                    <option value="0">Active</option>
+                    <option value="1">Nonactive </option>
+                  </select>
+                  <span class="help-block"></span>
+                </div>
                 <div class="form-group">
                   <label>Priority Status</label>
                   <select name="priority_status" id="priority_status" class="form-control" required>
                     <option value="0">Not Priority</option>
                     <option value="1">Data Priority</option>
-                    <option value="2">KPR Priority</option>
-                    <option value="3">Down Payment Priority</option>
-                    <option value="4">Building Priority</option>
                   </select>
                   <span class="help-block"></span>
                 </div>
@@ -264,18 +269,6 @@
                 <option value="1">Oswaldo Predovic</option>
                 <option value="2">Luisa Dickens</option>
                 <option value="3">Mr. Stephan Boyer IV </option>
-                <option value="4">Kaelyn Casper</option>
-                <option value="5">Dr. Gregory Deckow </option>
-                <option value="6">Jazmin Gislason </option>
-                <option value="7">Conner Romaguera </option>
-                <option value="8">Americo Ryan </option>
-                <option value="9">Dexter Thompson Sr. </option>
-                <option value="10">Wilbert Pfeffer </option>
-                <option value="11">Kari D'Amore </option>
-                <option value="12">Brayan Mante MD </option>
-                <option value="13">Dr. Jose Crooks </option>
-                <option value="14">Gaston Pacocha </option>
-                <option value="15">Mallie Price</option>
                 </select>
                 <span class="help-block"></span>
               </div>
