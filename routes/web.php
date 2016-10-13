@@ -102,6 +102,38 @@ Route::group(['middleware' => ['auth']],function(){
 			'as' => 'pricelist.hapus'
 		]);
 
+		/*
+		 *****Siteplan*****
+		 */
+		Route::get('project/siteplan/{id}',[
+			'uses' => 'ProjectController@getSiteplan',
+			'as' => 'siteplan.view'
+		]);
+		Route::get('project/siteplan/{id}/add',[
+			'uses' => 'ProjectController@getAddSiteplan',
+			'as' => 'siteplan.add'
+		]);
+		Route::post('project/siteplan/{id}/add',[
+			'uses' => 'ProjectController@postAddSiteplan',
+			'as' => 'siteplan.add'
+		]);
+		Route::get('project/siteplan/{id}/edit/{siteplan_id}',[
+			'uses' => 'ProjectController@getEditSiteplan',
+			'as' => 'siteplan.edit'
+		]);
+		Route::post('project/siteplan/{id}/update/{siteplan_id}',[
+			'uses' => 'ProjectController@postUpdateSiteplan',
+			'as' => 'pricelist.update'
+		]);
+		Route::get('project/siteplan/{id}/hapus/{siteplan_id}',[
+			'uses' => 'ProjectController@getHapusSiteplan',
+			'as' => 'siteplan.hapus'
+		]);
+		Route::get('project/siteplan/{id}/hapus/',[
+			'uses' => 'ProjectController@getDropSiteplan',
+			'as' => 'siteplan.drop'
+		]);
+
     	/*
 		 *****Profile*****
 		 */

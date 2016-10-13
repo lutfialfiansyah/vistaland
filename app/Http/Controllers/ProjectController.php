@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Input;
+use Intervention\Image\ImageManagerStatic as Image;
 use App\project;
 use App\kavling;
 use App\price;
@@ -22,7 +24,7 @@ class ProjectController extends Controller
     	$project = project::all();
     	return Datatables::of($project)
     		->addColumn('image',function($project){
-    			return '<a class="btn thumbnail"><i class="fa fa-picture-o" aria-hidden="true" style="font-size:50px;color:black;"></i></a>'; 		
+    			return '<a href="project/siteplan/'.$project->id.'" class="btn thumbnail"><i class="fa fa-picture-o" aria-hidden="true" style="font-size:50px;color:black;"></i></a>'; 		
     		})
             ->addColumn('action',function($project){
                 return
@@ -139,6 +141,12 @@ class ProjectController extends Controller
     public function getKavlingdata($id){
     	$kavling = kavling::all()->where('project_id','=',$id);
     	return Datatables::of($kavling)
+    		->addColumn('type',function($kavling){
+    			return $kavling->kavling_type->type;
+    			})
+    		->addColumn('price',function($kavling){
+    			return "Rp.".number_format($kavling->kavling_type->price->price,2,',','.');
+    			})
             ->addColumn('action',function($kavling){
                 return
                 '<a href="kavling/edit/'.$kavling->id.'" class="btn btn-xs btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
@@ -199,7 +207,7 @@ class ProjectController extends Controller
     public function postUpdateKavling(Request $request,$id,$kav_id){
     	$this->validate($request,[
     		'number'=>'required|numeric',
-    	
+    		'kavling_type_id'=>'required',
     		'strategic_type_id'=>'required',
     		'field_size'=>'required|numeric',
     		'bpn_size'=>'required|numeric',
@@ -237,12 +245,12 @@ class ProjectController extends Controller
     }
 
     // Pricelist
-     public function getPricelist($id){
+    public function getPricelist($id){
     	$project= project::where('id','=',$id)->first();
         return view('page.project.pricelist',compact('project'));
     }
 
-     public function getAddPricelist($id){
+    public function getAddPricelist($id){
     	$project = project::where('id',$id)->first();
     	$s_kavling_type = kavling_type::all();
     	$s_strategic_type = strategic_type::all();
@@ -322,5 +330,79 @@ class ProjectController extends Controller
     	alert()->success('Data berhasil dihapus !');
     	return redirect()->route('pricelist.view',$id);
     }	
+
+    // Siteplan
+    public function getSiteplan($id){
+    	$project= project::where('id','=',$id)->first();
+        return view('page.project.siteplan',compact('project'));
+    }
+    public function getAddSiteplan($id){
+    	$project = project::where('id',$id)->first();
+    	$s_kavling_type = kavling_type::all();
+    	$s_strategic_type = strategic_type::all();
+    	return view('page.project.addsiteplan',compact('s_kavling_type','s_strategic_type','project'));
+    }
+
+    public function postAddSiteplan(Request $request,$id){
+    	$this->validate($request,[
+    		'file'=>'required|image|mimes:jpeg,png,jpg'
+    	]);
+    	$files = Input::file('file');
+    	$jumlah = 0;
+    	foreach($files as $file) {
+			$filename = $file->getClientOriginalName();
+			$path = public_path('image/'.$filename);
+	        $upload = Image::make($file->getRealPath())->resize(500,500)->save($path);
+	        $siteplan = new siteplan();
+	        $siteplan->image = $filename;
+	        $siteplan->project_id = $id;
+	        $siteplan->save();
+	        if($upload){
+	        	$jumlah++;
+	        }
+	    }
+    	return redirect()->route('siteplan.add',$id)->with('success','Upload '. $jumlah .' foto berhasil !');
+    }
+
+     public function getEditSiteplan($id,$siteplan_id){
+     	$edit = siteplan::where('id','=',$siteplan_id,'and','project_id','=',$id)->first();
+    	return view('page.project.editsiteplan',compact('edit'));
+    }
+
+    public function postUpdateSiteplan(Request $request,$id,$siteplan_id){
+    	$this->validate($request,[
+    		'file'=>'image|mimes:jpeg,png,jpg|'
+    	]);
+    	$update = siteplan::where('id','=',$siteplan_id,'and','project_id','=',$id)->first();
+    	if(empty(Input::file('file'))){
+    		$update->image = $update->image;
+    		alert()->error('Update foto gagal !');
+    	}else{
+	    	$image = Input::file('file');
+	        $namafile = time().'.'.$image->getClientOriginalExtension();
+	        $path = public_path('image/'.$namafile);
+	        Image::make($image->getRealPath())->resize(500,500)->save($path);
+
+	        $update->image = $namafile;
+	        alert()->success('Update foto berhasil !');
+    	}
+    	$update->update();
+    	return redirect()->route('siteplan.view',$id);
+
+    }
+
+    public function getHapusSiteplan($id,$siteplan_id){
+    	$siteplan = siteplan::where('id','=',$siteplan_id,'and','project_id','=',$id)->first();
+    	$siteplan->delete();
+    	alert()->success('Data berhasil dihapus !');
+    	return redirect()->route('siteplan.view',$id);
+    }
+    public function getDropSiteplan($id){
+    	$siteplan = siteplan::where('project_id','=',$id);
+    	$siteplan->delete();
+    	alert()->success('Data berhasil dihapus !');
+    	return redirect()->route('siteplan.view',$id);
+    }	
+	
 
 }
