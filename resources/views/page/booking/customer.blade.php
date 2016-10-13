@@ -32,13 +32,11 @@
               <table id="data" class="table table-bordered table-hover table-striped table-condesed">
               <thead>
                 <tr>
-                  <th>Barcode</th>
                   <th>Name</th>
                   <th>Email</th>
                   <th>Phone</th>
                   <th>Image</th>
                   <th>Bank</th>
-                  <th>Marketer Name</th>
                   <th>Status</th>
                   <th>Priority</th>
                   <th>Action</th>
@@ -51,5 +49,28 @@
           <!-- /.box -->
     </section>
 <script src="{{ asset('dist/sweetalert.min.js')}}"></script>
-@include('sweet::alert')
+@include('sweet::alert')  
 @endsection
+
+@push('script')
+<script>
+  $(function () {
+    $('#data').DataTable({
+      "processing" : true,
+      "serverSide" : true,
+      "ajax" : "{{ url('project/get-project') }}",
+      "columns" : [
+        { data : 'name', name: 'name' },
+        { data : 'email', name: 'email' },
+        { data : 'phone', name: 'phone' },
+        { data : 'image', name: 'image', orderable: false, searchable: false },
+        { data : 'bank', name: 'bank' },
+        { data : 'status', name: 'status' },
+        { data : 'priority', name: 'priority' },
+        { data : 'action', name:'action', orderable: false, searchable: false },
+      ]
+    });
+  });
+  
+</script>
+@endpush
