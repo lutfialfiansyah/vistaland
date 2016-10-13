@@ -51,5 +51,27 @@
           <!-- /.box -->
     </section>
 <script src="{{ asset('dist/sweetalert.min.js')}}"></script>
-@include('sweet::alert')
+@include('sweet::alert')  
 @endsection
+
+@push('script')
+<script>
+  $(function () {
+    $('#data').DataTable({
+      "processing" : true,
+      "serverSide" : true,
+      "ajax" : "{{ url('project/get-project') }}",
+      "columns" : [
+        { data : 'name', name: 'name' },
+        { data : 'company', name: 'company' },
+        { data : 'area', name: 'area' },
+        { data : 'unit_total', name: 'unit_total' },
+        { data : 'location', name: 'location' },
+        { data : 'image', name: 'image', orderable: false, searchable: false },
+        { data : 'action', name:'action', orderable: false, searchable: false },
+      ]
+    });
+  });
+  
+</script>
+@endpush
