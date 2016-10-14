@@ -10,6 +10,14 @@ class bf extends Model
     protected $fillable = ['comission_status','nup_id','kavling_id','promo_id'];
 
     public function nup(){
-    	return $this->belongsTo('App\nup','id');
+    	return $this->belongsTo('App\nup','nup_id');
+    }
+    public function promo()
+    {
+      return $this->belongsTo('App\promo','promo_id');
+    }
+    public function spr()
+    {
+      return $this->hasOne('App\spr','bf_id');
     }
 }

@@ -11,5 +11,9 @@ class priority_detail extends Model
     public function priority(){
     	return $this->belongsTo('App\priority','priority_id');
     }
+    public function customer(){
+    	return $this->belongsTo('App\customer','priority_id');
+    }
+
     public $timestamps = false;
 }

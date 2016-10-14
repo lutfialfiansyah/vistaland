@@ -2,12 +2,12 @@
 @section('konten')
    <section class="content-header">
       <h1>
-        Customer
+        NUP
         <small>Control Panel</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Customer</li>
+        <li class="active">NUP</li>
       </ol>
     </section>
 
@@ -17,12 +17,12 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Customer</h3>
-              <a href="{{ url('customer/add') }}" class="btn btn-xs btn-success pull-right">
-                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Data Customer
+              <h3 class="box-title">Data NUP</h3>
+              <a href="{{ url('nup/add') }}" class="btn btn-xs btn-success pull-right">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add NUP 
               </a>
 
-              <a href="{{ url('/customer') }}" class="btn btn-xs btn-success">
+              <a href="{{ url('/nup') }}" class="btn btn-xs btn-success">
                 <i class="fa fa-refresh" aria-hidden="true"></i>
               </a>
 
@@ -32,13 +32,11 @@
               <table id="data" class="table table-bordered table-hover table-striped table-condesed">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                  <th>Image</th>
-                  <th>Bank</th>
-                  <th>Status</th>
-                  <th>Priority</th>
+                  <th>Project</th>
+                  <th>Customer</th>
+                  <th>NUP Fee</th>
+                  <th>Comission Status</th>
+                  <th>Payment Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -58,15 +56,13 @@
     $('#data').DataTable({
       "processing" : true,
       "serverSide" : true,
-      "ajax" : "{{ url('customer/get-customer') }}",
+      "ajax" : "{{ url('nup/get-nup') }}",
       "columns" : [
-        { data : 'first_name', name: 'first_name' },
-        { data : 'email', name: 'email' },
-        { data : 'house_phone', name: 'house_phone' },
-        { data : 'image', name: 'image', orderable: false, searchable: false },
-        { data : 'bank_account_number', name: 'bank_account_number' },
-        { data : 'status', name: 'status' },
-        { data : 'priority_status', name: 'priority_status' },
+        { data : 'project', name: 'project' },
+        { data : 'customer', name: 'customer' },
+        { data : 'nup', name: 'nup' },
+        { data : 'comission_status', name: 'comission_status' },
+        { data : 'payment_status', name: 'payment_statusstatus' },
         { data : 'action', name:'action', orderable: false, searchable: false },
       ]
     });

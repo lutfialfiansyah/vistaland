@@ -126,23 +126,70 @@ Route::get('/login',[
 Route::post('/login','userController@postLogin');
 
 Route::get('/logout','userController@logout');
-
-/*	
-	Route::post('/lockscreen',[
-		'uses' => 'userController@locked',
-		'as' => 'user.locked'
-	]);
-*/
-
 Route::get('/logout', [
     'uses' => 'userController@logout',
     'as' => 'admin.logout',
 ]);
 
+/*
+*****customer*****
+*/
 Route::get('customer','BookingController@getCustomer');
+Route::get('customer',[
+			'uses' => 'BookingController@getCustomer',
+			'as' => 'customer.view'
+		]);
 Route::get('customer/add','BookingController@getAddCustomer');
 Route::post('customer/add',[
-	'uses' => 'BookingController@postAddProject',
+	'uses' => 'BookingController@postAddcustomer',
 	'as' => 'customer.add'
 ]);
+Route::get('customer/get-customer','BookingController@getCustomerdata');
+/*end customer*/
 
+/*
+*****nup*****
+*/
+Route::get('nup','BookingController@getNup');
+Route::get('nup',[
+	'uses' => 'BookingController@getNup',
+	'as' => 'nup.view'
+	]);
+Route::get('nup/add','BookingController@getAddNup');
+Route::post('nup/add',[
+	'uses' => 'BookingController@postAddnup',
+	'as' => 'nup.add'
+]);
+Route::get('nup/get-nup','BookingController@getNupdata');
+/*end up*/
+
+/*
+*****booking fee*****
+*/
+Route::get('booking-fee','BookingController@getBooking');
+Route::get('booking-fee',[
+	'uses' => 'BookingController@getBooking',
+	'as' => 'booking.view'
+	]);
+Route::get('booking/add','BookingController@getAddBooking');
+Route::post('booking/add',[
+	'uses' => 'BookingController@postAddBooking',
+	'as' => 'booking.add'
+]);
+Route::get('booking/get-booking','BookingController@getBookingdata');
+/*end customer*/
+/*
+*****SPR*****
+*/
+Route::get('spr','BookingController@getSpr');
+Route::get('spr',[
+	'uses' => 'BookingController@getSpr',
+	'as' => 'spr.view'
+	]);
+Route::get('spr/add','BookingController@getAddSpr');
+Route::post('spr/add',[
+	'uses' => 'BookingController@postAddSpr',
+	'as' => 'spr.add'
+]);
+Route::get('spr/get-spr','BookingController@getSprdata');
+/*end SPR*/
