@@ -27,8 +27,8 @@
             @if(Session::has('success'))
               <div class="alert alert-success">{{ Session::get('success') }} Click<a href="{{ route('siteplan.view',$project->id) }}"> disini</a> untuk melihat foto !</div>
             @endif
-            @if($errors->has('file'))
-              <div class="alert alert-danger">{{ $errors->first('file') }}
+            @if($errors->has('image'))
+              <div class="alert alert-danger">{{ $errors->first('image') }}
               <a href="" class="btn btn-xs btn-danger pull-right">x</a>
               </div>
             @endif
@@ -37,17 +37,19 @@
               {!! csrf_field() !!}
                 <div class="form-group">
                   <label for="foto">Upload Foto</label>
-                  <input type="file" name="file[]" multiple="multiple">
+                  <input type="file" name="image[]" value="" multiple>
                 </div>
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary">UPLOAD</button>
                 </div>
               </form>
-            </div>
+          
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
+        </div>
+     </div>
     </section>
 @endsection
 

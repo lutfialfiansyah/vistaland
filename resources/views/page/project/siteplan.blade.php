@@ -24,7 +24,7 @@
                 @if(count($project->siteplan) > 0)
                   <a href='{{ url("project/siteplan/$project->id/hapus") }}' class="btn btn-xs btn-danger"
                   onclick="return confirm('Apakah Anda yakin ?')">
-                  <i class="fa fa-trash" aria-hidden="true"></i> Hapus</a>
+                  <i class="fa fa-trash" aria-hidden="true"></i> Drop Image</a>
                 @endif
               </div>
             </div>

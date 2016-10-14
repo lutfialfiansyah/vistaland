@@ -345,12 +345,13 @@ class ProjectController extends Controller
 
     public function postAddSiteplan(Request $request,$id){
     	$this->validate($request,[
-    		'file'=>'required|image|mimes:jpeg,png,jpg'
+    		'image' =>'required'
     	]);
-    	$files = Input::file('file');
+    	$files = Input::file('image');
     	$jumlah = 0;
     	foreach($files as $file) {
-			$filename = $file->getClientOriginalName();
+    	
+			$filename = time().'.'.$file->getClientOriginalName();
 			$path = public_path('image/'.$filename);
 	        $upload = Image::make($file->getRealPath())->resize(500,500)->save($path);
 	        $siteplan = new siteplan();
@@ -361,7 +362,8 @@ class ProjectController extends Controller
 	        	$jumlah++;
 	        }
 	    }
-    	return redirect()->route('siteplan.add',$id)->with('success','Upload '. $jumlah .' foto berhasil !');
+	     return redirect()->route('siteplan.add',$id)->with('success','Upload '. $jumlah .' foto berhasil !');
+    	
     }
 
      public function getEditSiteplan($id,$siteplan_id){
@@ -371,7 +373,7 @@ class ProjectController extends Controller
 
     public function postUpdateSiteplan(Request $request,$id,$siteplan_id){
     	$this->validate($request,[
-    		'file'=>'image|mimes:jpeg,png,jpg|'
+    		'file'=>'image|mimes:jpeg,png,jpg'
     	]);
     	$update = siteplan::where('id','=',$siteplan_id,'and','project_id','=',$id)->first();
     	if(empty(Input::file('file'))){

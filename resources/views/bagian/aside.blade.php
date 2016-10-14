@@ -55,9 +55,9 @@
           </a>
           <ul class="treeview-menu">
             <li><a href=""><i class="fa fa-circle-o"></i> </a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> </a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> </a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> </a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> KPR Payment</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> PBB Payment</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> Tax Payment</a></li>
           </ul>
         </li>
         <li class="treeview">

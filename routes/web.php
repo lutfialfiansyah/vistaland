@@ -123,7 +123,7 @@ Route::group(['middleware' => ['auth']],function(){
 		]);
 		Route::post('project/siteplan/{id}/update/{siteplan_id}',[
 			'uses' => 'ProjectController@postUpdateSiteplan',
-			'as' => 'pricelist.update'
+			'as' => 'siteplan.update'
 		]);
 		Route::get('project/siteplan/{id}/hapus/{siteplan_id}',[
 			'uses' => 'ProjectController@getHapusSiteplan',
@@ -133,6 +133,40 @@ Route::group(['middleware' => ['auth']],function(){
 			'uses' => 'ProjectController@getDropSiteplan',
 			'as' => 'siteplan.drop'
 		]);
+
+		/*
+		 ***************************Pembayaran**************************
+		 */
+		
+			/*
+				******Tax Payment******
+			*/
+		Route::get('taxpayment',[
+			'uses' => 'PaymentController@getTaxpayment',
+			'as' => 'taxpayment.view'
+		]);
+		Route::get('taxpayment/add',[
+			'uses' => 'PaymentController@getAddTaxpayment',
+			'as' => 'taxpayment.add'
+		]);
+		Route::post('taxpayment/add',[
+			'uses' => 'PaymentController@postAddTaxpayment',
+			'as' => 'taxpayment.add'
+		]);
+		Route::get('taxpayment/edit/{id}',[
+			'uses' => 'PaymentController@getEditTaxpayment',
+			'as' => 'taxpayment.edit'
+		]);
+		Route::post('taxpayment/update/{id}',[
+			'uses' => 'PaymentController@postUpdateTaxpayment',
+			'as' => 'taxpayment.update'
+		]);
+		Route::get('taxpayment/hapus/{id}',[
+			'uses' => 'PaymentController@getHapusTaxpayment',
+			'as' => 'taxpayment.hapus'
+		]);
+		Route::get('taxpayment/get-taxpayment','PaymentController@getTaxpaymentdata');
+		
 
     	/*
 		 *****Profile*****
