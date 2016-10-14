@@ -19,5 +19,9 @@ class kavling_type extends Model
     	return $this->hasMany('App\kavling_image','house_type_id');
     }
 
+    public function price(){
+        return $this->hasOne('App\price','kavling_type_id');
+    }
+
 	public $timestamps = false;
 }

@@ -30,7 +30,7 @@
                   <select class="form-control" name="kavling_type_id">
                     <option value="{{ $edit->kavling_type_id }}" selected="selected">{{$edit->kavling_type->type }}
                     </option>
-                    <option value=""></option>
+                    <option ></option>
                     @foreach($s_kavling_type as $data)
                       <option value="{{ $data->id }}">{{ $data->type }}</option>
                     @endforeach
