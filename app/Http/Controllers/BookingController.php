@@ -3,8 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\customer;
 use App\Http\Requests;
+use App\customer;
+use App\nup;
+use App\booking;
+use App\spr;
+use App\bf;
+use App\priority;
+use Datatables;
 
 class BookingController extends Controller
 {
@@ -16,33 +22,114 @@ class BookingController extends Controller
     	$customer = customer::all();
     	return Datatables::of($customer)
     		->addColumn('image',function($customer){
-    			return '<a class="btn thumbnail"><i class="fa fa-picture-o" aria-hidden="true" style="font-size:50px;color:black;"></i></a>'; 		
+    			return '<a class="btn thumbnail"><i class="fa fa-picture-o" aria-hidden="true" style="font-size:50px;color:black;"></i></a>';
     		})
             ->addColumn('action',function($customer){
                 return
-                '<a href="project/edit/'.$customer->id.'" class="btn btn-xs btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                 <a href="#" class="btn btn-xs btn-success"><i class="fa fa-users" aria-hidden="true"></i> Authorized user</a>
-                 <a href="project/'.$customer->id.'/kavling" class="btn btn-xs btn-info"><i class="fa fa-home" aria-hidden="true"></i> Kavling</a>
-                 <a href="project/'.$customer->id.'/pricelist" class="btn btn-xs btn-warning"><i class="fa fa-money" aria-hidden="true"></i> Price List</a>
-                 <a href="project/hapus/'.$customer->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus project '. $customer->name.' ?\')">
+                '<a href="customer/edit/'.$customer->id.'" class="btn btn-xs btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                 <a href="customer/hapus/'.$customer->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus customer '. $customer->name.' ?\')">
                  <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
                  ';
               })
             ->make(true);
 
     }
-    public function postAddProject(Request $request){
-    	$this->validate($request,[
-		  'name'=>'required|min:3|unique:customer,name',    	
-			'company'=>'required|min:3',
-			'area'=>'required|numeric|min:0',
-			'unit_total'=>'required|numeric|min:0',
-			'location'=>'required',
-	
-    	]);
+		public function postAddcustomer(Request $request){
+			$this->validate($request,[
+			'first_name'=>'required|min:3|unique:customer,name',
+			'last_name'=>'required|min:3|unique:customer,name',
+			'house_address'=>'required|min:3',
+			'ktp_number'=>'required|numeric|min:0',
+			'ktp_expire'=>'required|numeric|min:0',
+			'email'=>'required',
 
-    }
+			]);
+
+			$customer = new customer();
+		$customer->first_name = $request->input('first_name');
+		$customer->last_name = $request->input('last_name');
+		$customer->ktp_number = $request->input('ktp_number');
+		$customer->ktp_expire = $request->input('ktp_expire');
+		$customer->house_address = $request->input('house_address');
+		$customer->office_address = $request->input('office_addres');
+		$customer->email = $request->input('email');
+		$customer->house_phone = $request->input('house_phone');
+		$customer->office_phone = $request->input('office_phone');
+		$customer->relative_name = $request->input('relative_name');
+		$customer->relative_phone = $request->input('relative_phone');
+		$customer->relative_ktp = $request->input('relative_ktp');
+		$customer->spouse_name = $request->input('spouse_name');
+		$customer->spouse_ktp = $request->input('spouse_ktp');
+		$customer->image = $request->input('image');
+		$customer->bank_account_number = $request->input('bank_account_number');
+		$customer->btn_id = $request->input('btn_id');
+		$customer->btn_account_number = $request->input('btn_account_number');
+		$customer->btn_branch = $request->input('btn_branch');
+		$customer->mk_application = $request->input('mk_application');
+		$customer->deposit_loan_akad = $request->input('deposit_loan_akad');
+		$customer->status = $request->input('status');
+		$customer->priority_status = $request->input('priority_status');
+			$customer->save();
+		alert()->success('Data berhasil disimpan !');
+		return redirect()->route('customer.view');
+
+		}
+
     public function getAddcustomer(){
         return view('page.booking.addcustomer');
     }
+
+
+
+
+
+    public function getNup(){
+        $nup = nup::all();
+            return view('page.booking.nup',compact('nup'));
+    }
+
+    public function getAddnup(){
+        return view('page.booking.addnup');
+    }
+    public function getNupdata(){
+        $nup = nup::all();
+        return Datatables::of($nup)
+            ->addColumn('image',function($nup){
+                return '<a class="btn thumbnail"><i class="fa fa-picture-o" aria-hidden="true" style="font-size:50px;color:black;"></i></a>';
+            })
+            ->addColumn('action',function($nup){
+                return
+                '<a href="nup/edit/'.$nup->id.'" class="btn btn-xs btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                 <a href="nup/hapus/'.$nup->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus customer '. $nup->name.' ?\')">
+                 <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
+                 ';
+              })
+            ->make(true);
+		}
+
+
+
+		public function getSpr(){
+				$booking = customer::all();
+						return view('page.booking.spr',compact('spr'));
+		}
+		public function getAddspr(){
+			return view('page.booking.addspr');
+		}
+        public function getSprdata(){
+        $spr = spr::all();
+        return Datatables::of($spr)
+            ->addColumn('image',function($spr){
+                return '<a class="btn thumbnail"><i class="fa fa-picture-o" aria-hidden="true" style="font-size:50px;color:black;"></i></a>';
+            })
+            ->addColumn('action',function($spr){
+                return
+                '<a href="spr/edit/'.$spr->id.'" class="btn btn-xs btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                 <a href="spr/hapus/'.$spr->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus customer '. $spr->name.' ?\')">
+                 <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
+                 ';
+              })
+            ->make(true);
+        }
+
 }

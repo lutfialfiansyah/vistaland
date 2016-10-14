@@ -42,7 +42,9 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{url('/customer')}}"><i class="fa fa-group"></i> Customer</a></li>
-            <li><a href=""><i class="fa fa-file-o"></i>NUP</a></li>
+            <li><a href="{{url('/nup')}}"><i class="fa fa-file-o"></i>NUP</a></li>
+            <li><a href="{{url('/booking-fee')}}"><i class="fa fa-money"></i>Booking Fee</a></li>
+            <li><a href="{{url('/spr')}}"><i class="fa fa-file"></i>SPR</a></li>
           </ul>
         </li>
         <li class="treeview">

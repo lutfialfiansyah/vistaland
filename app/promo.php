@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class promo extends Model
 {
+
     protected $table = "promo";
     protected $fillable = [
     	'name','date_start','date_end','discount','agent_bonus','team_bonus'
@@ -16,4 +17,5 @@ class promo extends Model
     }
 
     public $timestamps = false; 
+
 }

@@ -14,10 +14,10 @@ class moving_kavling extends Model
     public function payment(){
     	
     }
-
-    public function spr(){
-    	return $this->belongTo();	
+ 
+    public function spr()
+    {
+      return $this->belongsTo('App\spr','spr_id');
     }
 
-    public $timestamps = false; 
 }

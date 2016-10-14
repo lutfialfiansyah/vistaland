@@ -24,6 +24,7 @@ class ProjectController extends Controller
     	$project = project::all();
     	return Datatables::of($project)
     		->addColumn('image',function($project){
+    			return '<a class="btn thumbnail"><i class="fa fa-picture-o" aria-hidden="true" style="font-size:50px;color:black;"></i></a>';
     			return '<a href="project/siteplan/'.$project->id.'" class="btn thumbnail"><i class="fa fa-picture-o" aria-hidden="true" style="font-size:50px;color:black;"></i></a>'; 		
     		})
             ->addColumn('action',function($project){
@@ -46,17 +47,17 @@ class ProjectController extends Controller
 
     public function postAddProject(Request $request){
     	$this->validate($request,[
-		  	'name'=>'required|min:3|unique:project,name',    	
+		  	'name'=>'required|min:3|unique:project,name',
 			'company'=>'required|min:3',
 			'area'=>'required|numeric|min:0',
 			'unit_total'=>'required|numeric|min:0',
 			'location'=>'required',
-	
+
     	]);
 
-    	$project = new project();
-    	$project->name = $request->input('name');
-    	$project->company = $request->input('company');
+     	$project = new project();
+	    $project->name = $request->input('name');
+	    $project->company = $request->input('company');
 		$project->area = $request->input('area');
 		$project->unit_total = $request->input('unit_total');
 		$project->location = $request->input('location');
@@ -117,7 +118,7 @@ class ProjectController extends Controller
 		$project->booking_free = $request->input('booking_free');
 		$project->booking_comission = $request->input('booking_comission');
 		$project->nup_free = $request->input('nup_free');
-  		$project->nup_comission = $request->input('nup_comission');  	
+  		$project->nup_comission = $request->input('nup_comission');
   		$project->akad_comission = $request->input('akad_comission');
   		$project->update();
   		alert()->success('Data berhasil diupdate !');
@@ -167,7 +168,7 @@ class ProjectController extends Controller
     public function postAddKavling(Request $request,$id){
     	$this->validate($request,[
     		'number'=>'required|numeric|unique:kavling,number',
-    	
+
     		'strategic_type_id'=>'required',
     		'field_size'=>'required|numeric',
     		'bpn_size'=>'required|numeric',
@@ -235,7 +236,7 @@ class ProjectController extends Controller
     	$kavling->update();
     	alert()->success('Data telah diperbaharui !');
 		return redirect()->route('kavling.view',$id);
-	}	
+	}
 
     public function getHapusKavling($id,$kav_id){
     	$kavling = kavling::where('id','=',$kav_id,'and','project_id','=',$id)->first();
@@ -329,7 +330,7 @@ class ProjectController extends Controller
     	$price->delete();
     	alert()->success('Data berhasil dihapus !');
     	return redirect()->route('pricelist.view',$id);
-    }	
+    }
 
     // Siteplan
     public function getSiteplan($id){

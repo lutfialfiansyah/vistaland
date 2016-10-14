@@ -13,6 +13,11 @@ class bf extends Model
     	return $this->belongsTo('App\nup','nup_id');
     }
 
+    public function spr()
+    {
+      return $this->hasOne('App\spr','bf_id');
+    }
+
     public function kavling(){
     	return $this->belongsTo('App\kavling','kavling_id');
     }
@@ -25,8 +30,5 @@ class bf extends Model
 
     }
 
-    public function spr(){
-    	
-    }
 
 }

@@ -28,4 +28,5 @@ class payment extends Model
     }
 
 	public $timestamps = false;
+
 }
