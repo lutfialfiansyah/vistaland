@@ -246,6 +246,27 @@
                       </span>
                     @endif
                 </div>
+              
+                <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+                  <label for="status">Status </label>
+                  <input type="text" name="status" class="form-control" value="{{ old('status') }}">
+                    @if($errors->has('status'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('status') }}</strong>
+                      </span>
+                    @endif
+                </div>
+
+              <div class="form-group{{ $errors->has('priority_status') ? ' has-error' : '' }}">
+                  <label for="priority_status">Priority Status</label>
+               <input type="text" name="priority_status" class="form-control" value="{{ old('priority_status') }}">
+                    @if($errors->has('priority_status'))
+                      <span class="help-block">
+                        <strong>{{ $errors->first('priority_status') }}</strong>
+                      </span>
+                    @endif
+                </div>
+              <!--
                 <div class="form-group">
                   <label>Status</label>
                   <select name="status" id="status" class="form-control" required>
@@ -262,16 +283,8 @@
                   </select>
                   <span class="help-block"></span>
                 </div>
-                  <div class="form-group">
-                <label>Marketer</label>
-                <select name="marketer" class="marketer form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true">
-                <option value="" selected disabled>Choose One</option>
-                <option value="1">Oswaldo Predovic</option>
-                <option value="2">Luisa Dickens</option>
-                <option value="3">Mr. Stephan Boyer IV </option>
-                </select>
-                <span class="help-block"></span>
-              </div>
+              -->
+
                 <div class="form-group">
                   <button type="reset" class="btn btn-default">RESET</button>
                   <input type="submit" class="btn btn-primary pull-right" value="SIMPAN">
@@ -290,7 +303,6 @@
 <script>
 $( function() {
   $( "#datepicker" ).datepicker();
-  $( ".marketer" ).select2();
 } );
 </script>
 @endpush

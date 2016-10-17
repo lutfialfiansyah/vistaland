@@ -18,7 +18,7 @@ class BuatTableModulBooking extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('ktp_number');
-            $table->integer('ktp_expire');
+            $table->string('ktp_expire');
             $table->string('house_address');
             $table->string('office_address');
             $table->string('email');
