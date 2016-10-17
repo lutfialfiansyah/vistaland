@@ -9,6 +9,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use App\project;
 use App\kavling;
 use App\price;
+use App\promo;
 use App\kavling_type;
 use App\strategic_type;
 use App\siteplan;
@@ -24,7 +25,6 @@ class ProjectController extends Controller
     	$project = project::all();
     	return Datatables::of($project)
     		->addColumn('image',function($project){
-    			return '<a class="btn thumbnail"><i class="fa fa-picture-o" aria-hidden="true" style="font-size:50px;color:black;"></i></a>';
     			return '<a href="project/siteplan/'.$project->id.'" class="btn thumbnail"><i class="fa fa-picture-o" aria-hidden="true" style="font-size:50px;color:black;"></i></a>'; 		
     		})
             ->addColumn('action',function($project){
@@ -400,12 +400,93 @@ class ProjectController extends Controller
     	alert()->success('Data berhasil dihapus !');
     	return redirect()->route('siteplan.view',$id);
     }
+
     public function getDropSiteplan($id){
     	$siteplan = siteplan::where('project_id','=',$id);
     	$siteplan->delete();
     	alert()->success('Data berhasil dihapus !');
     	return redirect()->route('siteplan.view',$id);
-    }	
+    }
+
+    // Promo
+    public function getPromo(){
+    	return view('page.project.promo');
+    }
+
+    public function getPromodata(){
+    	$promo = promo::all();
+    	return Datatables::of($promo)
+    			->addColumn('action',function($promo){
+    				return
+    				'<a href="promo/edit/'.$promo->id.'" class="btn btn-xs btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+    				 <a href="promo/hapus/'.$promo->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus '.$promo->name.' ? \')">
+    				 	<i class="fa fa-trash-o" aria-hidden="true"></i> Hapus
+    				 </a>';
+    			})
+    			->editColumn('discount',function( $promo){
+    				return $promo->discount."%";
+    			})
+    			->make(true);
+
+    }
+
+    public function getAddPromo(){
+    	return view('page.project.addpromo');
+    }
+    
+    public function postAddPromo(Request $request){
+    	$this->validate($request,[
+    		'name'=>'required|unique:promo,name',
+    		'date_start'=>'required|date',
+    		'date_end'=>'required|date',
+    		'discount'=>'required|numeric|min:0',
+    		'agent_bonus'=>'required|numeric|min:0',
+    		'team_bonus'=>'required|numeric|min:0'
+    	]);
+    	$promo = new promo();
+    	$promo->name = $request->input('name');
+		$promo->date_start = $request->input('date_start');
+		$promo->date_end = $request->input('date_end');
+		$promo->discount = $request->input('discount');
+		$promo->agent_bonus = $request->input('agent_bonus');
+		$promo->team_bonus = $request->input('team_bonus');
+		$promo->save();
+		return redirect()->route('promo.add')->with('success','Data berhasil disimpan !');    	
+    }
+
+    public function getEditPromo($id){
+    	$edit = promo::where('id',$id)->first();
+    	return view('page.project.editpromo',['edit' => $edit]);
+    }
+
+    public function postUpdatePromo(Request $request,$id){
+    	$this->validate($request,[
+    		'name' => 'required',
+			'date_start' => 'required|date',
+			'date_end' => 'required|date',
+			'discount' => 'required|numeric|min:0',
+			'agent_bonus' => 'required|numeric|min:0',
+ 			'team_bonus' => 'required|numeric|min:0',  		
+    	]);
+
+    	$promo = promo::where('id',$id)->first();
+		$promo->name = $request->input('name');
+		$promo->date_start = $request->input('date_start');
+		$promo->date_end = $request->input('date_end');
+		$promo->discount = $request->input('discount');
+		$promo->agent_bonus = $request->input('agent_bonus');
+		$promo->team_bonus = $request->input('team_bonus');
+		$promo->update();
+		alert()->success('Data berhasil diperbaharui !');
+		return redirect()->route('promo.view');
+    }
+
+    public function getHapusPromo($id){
+    	$promo = promo::where('id',$id)->first();
+    	$promo->delete();
+    	alert()->success('Data berhasil dihapus !');
+    	return redirect()->route('promo.view');
+    }
 	
 
 }

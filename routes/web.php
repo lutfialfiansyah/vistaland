@@ -135,10 +135,69 @@ Route::group(['middleware' => ['auth']],function(){
 		]);
 
 		/*
+		 *****Promo*****
+		 */
+		
+		Route::get('promo',[
+			'uses' => 'ProjectController@getPromo',
+			'as' => 'promo.view'
+		]);
+		Route::get('promo/add',[
+			'uses' => 'ProjectController@getAddPromo',
+			'as' => 'promo.add'
+		]);
+		Route::post('promo/add',[
+			'uses' => 'ProjectController@postAddPromo',
+			'as' => 'promo.add'
+		]);
+		Route::get('promo/edit/{id}',[
+			'uses' => 'ProjectController@getEditPromo',
+			'as' => 'promo.edit'
+		]);
+		Route::post('promo/update/{id}',[
+			'uses' => 'ProjectController@postUpdatePromo',
+			'as' => 'promo.update'
+		]);
+		Route::get('promo/hapus/{id}',[
+			'uses' => 'ProjectController@getHapusPromo',
+			'as' => 'promo.hapus'
+		]);
+		Route::get('promo/get-promo','ProjectController@getPromodata');
+
+		/*
 		 ***************************Pembayaran**************************
 		 */
 		
 			/*
+				******form Payment******
+			*/
+		Route::get('formpayment',[
+			'uses' => 'PaymentController@getFormpayment',
+			'as' => 'formpayment.view'
+		]);
+		Route::get('formpayment/add',[
+			'uses' => 'PaymentController@getAddFormpayment',
+			'as' => 'formpayment.add'
+		]);
+		Route::post('formpayment/add',[
+			'uses' => 'PaymentController@postAddFormpayment',
+			'as' => 'formpayment.add'
+		]);
+		Route::get('formpayment/edit/{id}',[
+			'uses' => 'PaymentController@getEditFormpayment',
+			'as' => 'formpayment.edit'
+		]);
+		Route::post('formpayment/update/{id}',[
+			'uses' => 'PaymentController@postUpdateFormpayment',
+			'as' => 'formpayment.update'
+		]);
+		Route::get('formpayment/hapus/{id}',[
+			'uses' => 'PaymentController@getHapusFormpayment',
+			'as' => 'taxpayment.hapus'
+		]);
+		Route::get('formpayment/get-formpayment','PaymentController@getFormpaymentdata');
+
+		/*
 				******Tax Payment******
 			*/
 		Route::get('taxpayment',[

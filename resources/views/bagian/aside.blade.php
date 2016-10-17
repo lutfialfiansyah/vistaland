@@ -15,7 +15,7 @@
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
-          <a href="{{ url('/') }}">
+          <a href="{{ route('user.home') }}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
            </a>
         </li>
@@ -28,8 +28,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ url('/project') }}"><i class="fa fa-circle-o"></i> Proyek Umum</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Promo</a></li>
+            <li><a href="{{ route('project.view') }}"><i class="fa fa-circle-o"></i> Proyek Umum</a></li>
+            <li><a href="{{ route('promo.view') }}"><i class="fa fa-circle-o"></i> Promo</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -56,10 +56,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> </a></li>
+            <li><a href="{{ route('formpayment.view') }}"><i class="fa fa-circle-o"></i> Form Payment</a></li>
             <li><a href=""><i class="fa fa-circle-o"></i> KPR Payment</a></li>
             <li><a href=""><i class="fa fa-circle-o"></i> PBB Payment</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Tax Payment</a></li>
+            <li><a href="{{ route('taxpayment.view') }}"><i class="fa fa-circle-o"></i> Tax Payment</a></li>
           </ul>
         </li>
         <li class="treeview">

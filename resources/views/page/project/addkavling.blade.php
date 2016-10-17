@@ -110,7 +110,7 @@
                   <label for="">Imb Parent Date</label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-                    <input type="date" class="form-control" name="Imb_parent_date" value="">
+                    <input type="text" id="datepicker" placeholder="mm/dd/yyyy" class="form-control" name="Imb_parent_date" value="">
                   </div>
                    @if($errors->has('Imb_parent_date'))
                       <span class="help-block">
@@ -131,7 +131,7 @@
                   <label for="">Imb Fraction Date</label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-                    <input type="date" class="form-control" name="Imb_fraction_date" value="">
+                    <input type="text" id="datepicker1" placeholder="mm/dd/yyyy" class="form-control" name="Imb_fraction_date" value="">
                   </div>
                    @if($errors->has('Imb_fraction_date'))
                       <span class="help-block">
@@ -216,6 +216,23 @@
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
+        </div>
+      </div>
     </section>
   
 @endsection
+@push('script')
+<script>
+$( function() {
+  $( "#datepicker").datepicker({
+      autoclose: true,
+      format : 'yyyy-mm-dd'
+    });
+  $( "#datepicker1").datepicker({
+      autoclose: true,
+      format : 'yyyy-mm-dd'
+    });
+  $( ".marketer" ).select2();
+} );
+</script>
+@endpush
