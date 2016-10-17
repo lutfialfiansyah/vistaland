@@ -36,11 +36,11 @@ class BookingController extends Controller
     }
 		public function postAddcustomer(Request $request){
 			$this->validate($request,[
-			'first_name'=>'required|min:3|unique:customer,name',
-			'last_name'=>'required|min:3|unique:customer,name',
+			'first_name'=>'required|min:3|unique:customer,first_name',
+			'last_name'=>'required|min:3|unique:customer,first_name',
 			'house_address'=>'required|min:3',
 			'ktp_number'=>'required|numeric|min:0',
-			'ktp_expire'=>'required|numeric|min:0',
+			'ktp_expire'=>'required|min:0',
 			'email'=>'required',
 
 			]);

@@ -57,7 +57,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href=""><i class="fa fa-circle-o"></i> </a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> KPR Payment</a></li>
+            <li><a href="{{url('/kpr-payment')}}"><i class="fa fa-building"></i> KPR Payment</a></li>
             <li><a href=""><i class="fa fa-circle-o"></i> PBB Payment</a></li>
             <li><a href=""><i class="fa fa-circle-o"></i> Tax Payment</a></li>
           </ul>
@@ -71,7 +71,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Ganti Nama</a></li>
+            <li><a href="{{url('/change-name')}}"><i class="fa fa-tag"></i> Ganti Nama</a></li>
             <li><a href=""><i class="fa fa-circle-o"></i> Pindah Kavling</a></li>
             <li><a href=""><i class="fa fa-circle-o"></i> Pembatalan</a></li>
           </ul>
