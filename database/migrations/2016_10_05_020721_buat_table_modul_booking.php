@@ -38,6 +38,7 @@ class BuatTableModulBooking extends Migration
             $table->string('deposit_loan_akad');
             $table->string('status');
             $table->string('priority_status');
+            
         });
 
         Schema::create('customer_phone', function (Blueprint $table) {
