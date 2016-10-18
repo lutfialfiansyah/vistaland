@@ -60,7 +60,7 @@
       "serverSide" : true,
       "ajax" : "{{ url('customer/get-customer') }}",
       "columns" : [
-        { data : 'first_name', name: 'first_name' },
+        { data : 'first_name' ,name: 'first_name'},
         { data : 'email', name: 'email' },
         { data : 'house_phone', name: 'house_phone' },
         { data : 'image', name: 'image', orderable: false, searchable: false },

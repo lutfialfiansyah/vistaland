@@ -137,7 +137,7 @@ Route::group(['middleware' => ['auth']],function(){
 		/*
 		 ***************************Pembayaran**************************
 		 */
-		
+
 			/*
 				******Tax Payment******
 			*/
@@ -166,7 +166,7 @@ Route::group(['middleware' => ['auth']],function(){
 			'as' => 'taxpayment.hapus'
 		]);
 		Route::get('taxpayment/get-taxpayment','PaymentController@getTaxpaymentdata');
-		
+
 
     	/*
 		 *****Profile*****
@@ -211,7 +211,14 @@ Route::post('customer/add',[
 	'as' => 'customer.add'
 ]);
 Route::get('customer/get-customer','BookingController@getCustomerdata');
-/*end customer*/
+Route::get('customer/hapus/{id}',[
+	'uses' => 'BookingController@getHapusCustomer',
+	'as' => 'customer.hapus'
+Route::get('customer/detail/{id}',[
+	'uses' => 'BookingController@getDetailCustomer',
+	'as' => 'customer.detail'
+	])
+]);/*end customer*/
 
 /*
 *****nup*****

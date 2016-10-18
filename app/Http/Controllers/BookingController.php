@@ -26,11 +26,17 @@ class BookingController extends Controller
     		})
             ->addColumn('action',function($customer){
                 return
-                '<a href="customer/edit/'.$customer->id.'" class="btn btn-xs btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                 <a href="customer/hapus/'.$customer->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus customer '. $customer->name.' ?\')">
-                 <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
+                '<a href="customer/detail/'.$customer->id.'" class="btn btn-xs btn-primary"><i class="fa fa-eye" aria-hidden="true"></i>Detail</a>
+								<a href="customer/edit/'.$customer->id.'" class="btn btn-xs btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                <a href="customer/hapus/'.$customer->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus data customer '. $customer->first_name.' ?\')">
+                <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
                  ';
               })
+							->addColumn('email',function($customer)
+							{
+								return
+								'<a href="https://accounts.google.com/Login#identifier" target="output">'.$customer->email.'</a>';
+							})
             ->make(true);
 
     }
@@ -78,7 +84,20 @@ class BookingController extends Controller
     public function getAddcustomer(){
         return view('page.booking.addcustomer');
     }
-
+		public function getEditCustomer($id){
+     	$edit = customer::where('id',$id)->first();
+    	return view('page.booking.editcustomer',compact('edit'));
+    }
+    public function getDetailCustomer($id){
+      $edit = customer::where('id',$id)->first();
+      return view('page.booking.detail.detailcustomer',compact('detailcustomer'));
+    }
+    public function getHapusCustomer($id){
+    	$customer = customer::find($id);
+    	$customer->delete();
+    	alert()->success('Data berhasil dihapus !');
+    	return redirect()->route('customer.view');
+    }
 
 
 
