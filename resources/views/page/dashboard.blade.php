@@ -4,7 +4,7 @@
       <h1>
         Dashboard
         <a class="btn btn-success btn-xs" href="{{url('/project/add')}}">
-        <i class="fa fa-plus-circle"></i>Add Project
+        <i class="fa fa-plus-circle"></i> Add Project
         </a>
       </h1>
       <ol class="breadcrumb">
