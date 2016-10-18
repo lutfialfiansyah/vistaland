@@ -25,12 +25,13 @@ class ProjectController extends Controller
     	$project = project::all();
     	return Datatables::of($project)
     		->addColumn('image',function($project){
-    			return '<a href="project/siteplan/'.$project->id.'" class="btn thumbnail"><i class="fa fa-picture-o" aria-hidden="true" style="font-size:50px;color:black;"></i></a>'; 		
+    			return '<a href="project/siteplan/'.$project->id.'" class="btn thumbnail"><i class="fa fa-picture-o" aria-hidden="true" style="font-size:50px;color:black;"></i></a>';
     		})
             ->addColumn('action',function($project){
                 return
                 '<a href="project/edit/'.$project->id.'" class="btn btn-xs btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                 <a href="#" class="btn btn-xs btn-success"><i class="fa fa-users" aria-hidden="true"></i> Authorized user</a>
+                 <a href="#" class="btn btn-xs btn-success"><i class="fa fa-users" aria-hidden="true"></i> Authorized user
+                 </a>
                  <a href="project/'.$project->id.'/kavling" class="btn btn-xs btn-info"><i class="fa fa-home" aria-hidden="true"></i> Kavling</a>
                  <a href="project/'.$project->id.'/pricelist" class="btn btn-xs btn-warning"><i class="fa fa-money" aria-hidden="true"></i> Price List</a>
                  <a href="project/hapus/'.$project->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus project '. $project->name.' ?\')">
@@ -55,9 +56,9 @@ class ProjectController extends Controller
 
     	]);
 
-     	$project = new project();
-	    $project->name = $request->input('name');
-	    $project->company = $request->input('company');
+   	$project = new project();
+    $project->name = $request->input('name');
+    $project->company = $request->input('company');
 		$project->area = $request->input('area');
 		$project->unit_total = $request->input('unit_total');
 		$project->location = $request->input('location');
@@ -102,9 +103,9 @@ class ProjectController extends Controller
 			'akad_comission'=> 'required|numeric|min:0',
     	]);
 
-    	$project = project::where('id',$id)->first();
-    	$project->name = $request->input('name');
-    	$project->company = $request->input('company');
+  	$project = project::where('id',$id)->first();
+  	$project->name = $request->input('name');
+  	$project->company = $request->input('company');
 		$project->area = $request->input('area');
 		$project->unit_total = $request->input('unit_total');
 		$project->location = $request->input('location');
@@ -118,11 +119,11 @@ class ProjectController extends Controller
 		$project->booking_free = $request->input('booking_free');
 		$project->booking_comission = $request->input('booking_comission');
 		$project->nup_free = $request->input('nup_free');
-  		$project->nup_comission = $request->input('nup_comission');
-  		$project->akad_comission = $request->input('akad_comission');
-  		$project->update();
-  		alert()->success('Data berhasil diupdate !');
-  		return redirect()->route('project.view');
+		$project->nup_comission = $request->input('nup_comission');
+		$project->akad_comission = $request->input('akad_comission');
+		$project->update();
+		alert()->success('Data berhasil diupdate !');
+		return redirect()->route('project.view');
 
     }
 
@@ -351,7 +352,7 @@ class ProjectController extends Controller
     	$files = Input::file('image');
     	$jumlah = 0;
     	foreach($files as $file) {
-    	
+
 			$filename = time().'.'.$file->getClientOriginalName();
 			$path = public_path('image/'.$filename);
 	        $upload = Image::make($file->getRealPath())->resize(500,500)->save($path);
@@ -364,7 +365,7 @@ class ProjectController extends Controller
 	        }
 	    }
 	     return redirect()->route('siteplan.add',$id)->with('success','Upload '. $jumlah .' foto berhasil !');
-    	
+
     }
 
      public function getEditSiteplan($id,$siteplan_id){
@@ -433,7 +434,7 @@ class ProjectController extends Controller
     public function getAddPromo(){
     	return view('page.project.addpromo');
     }
-    
+
     public function postAddPromo(Request $request){
     	$this->validate($request,[
     		'name'=>'required|unique:promo,name',
@@ -443,15 +444,15 @@ class ProjectController extends Controller
     		'agent_bonus'=>'required|numeric|min:0',
     		'team_bonus'=>'required|numeric|min:0'
     	]);
-    	$promo = new promo();
-    	$promo->name = $request->input('name');
+  	$promo = new promo();
+  	$promo->name = $request->input('name');
 		$promo->date_start = $request->input('date_start');
 		$promo->date_end = $request->input('date_end');
 		$promo->discount = $request->input('discount');
 		$promo->agent_bonus = $request->input('agent_bonus');
 		$promo->team_bonus = $request->input('team_bonus');
 		$promo->save();
-		return redirect()->route('promo.add')->with('success','Data berhasil disimpan !');    	
+		return redirect()->route('promo.add')->with('success','Data berhasil disimpan !');
     }
 
     public function getEditPromo($id){
@@ -466,10 +467,10 @@ class ProjectController extends Controller
 			'date_end' => 'required|date',
 			'discount' => 'required|numeric|min:0',
 			'agent_bonus' => 'required|numeric|min:0',
- 			'team_bonus' => 'required|numeric|min:0',  		
+ 			'team_bonus' => 'required|numeric|min:0',
     	]);
 
-    	$promo = promo::where('id',$id)->first();
+    $promo = promo::where('id',$id)->first();
 		$promo->name = $request->input('name');
 		$promo->date_start = $request->input('date_start');
 		$promo->date_end = $request->input('date_end');
@@ -487,6 +488,6 @@ class ProjectController extends Controller
     	alert()->success('Data berhasil dihapus !');
     	return redirect()->route('promo.view');
     }
-	
+
 
 }

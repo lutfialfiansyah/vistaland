@@ -22,16 +22,16 @@
             </div>
             <!-- /.box-header -->
 
-            <div class="box-body"> 
+            <div class="box-body">
               <form action="{{ route('taxpayment.add') }}" method="post" >
               {!! csrf_field() !!}
-              
+
               <div class="form-group{{ $errors->has('kavling_id') ? ' has-error' : '' }}">
                 <label for="kavling">Kavling</label>
                 <select name="kavling_id" class="form-control" autofocus>
                   <option value=""></option>
                   @foreach($kavling as $data)
-                    <option value="{{ $data->id }}">{{ $data->project->name }} - {{ $data->number }}</option>  
+                    <option value="{{ $data->id }}">{{ $data->project->name }} - {{ $data->number }}</option>
                   @endforeach
                 </select>
                   @if($errors->has('kavling_id'))
@@ -82,7 +82,7 @@
               </div>
 
               </form>
-          
+
             </div>
             <!-- /.box-body -->
           </div>

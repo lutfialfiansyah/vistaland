@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Validator;
 use App\Http\Requests;
 use Datatables;
 use App\tax_payment;
 use App\kavling;
+use App\customer;
 use App\payment;
 
 class PaymentController extends Controller
@@ -20,31 +23,80 @@ class PaymentController extends Controller
  		$payment = payment::all();
  		return Datatables::of($payment)
  			->addColumn('action',function(){
- 				return 
+ 				return
  				'<a href="" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
- 				 <a href="" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>';
+ 				 <a href="" class="btn btn-danger" onclick="return confirm(\'Hapus ? \')"><i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>';
  			})
  			->make(true);
  	}
 
  	public function getAddFormpayment(){
- 		return view('page.payment.addformpayment');
- 	}   
+ 		$customer = customer::all();
+ 		return view('page.payment.addformpayment',['customer' => $customer]);
+ 	}
 
  	public function postAddFormpayment(Request $request){
- 	
+ 		$payment = new payment();
+ 		$input = Input::all();
+ 		$d_payment = payment::where('id',$payment->id)->get();
+ 		$syarat = [
+ 			'type'=>'required',
+ 			'method'=>'required',
+ 			'bank_reference'=>'required',
+ 			'customer_id'=>'required'
+ 		];
+							 		$message = [
+							 			'type.required' => 'Anda harus memilih Type Pembayaran',
+							 			'method.required' => 'Method Pembayaran harus diisi',
+							 			'bank_reference.required' => 'Reference Bank harus diisi',
+							 			'customer_id.required' => 'Anda belum memilih customer'
+							 		];
+		 		$validator = Validator::make($input,$syarat,$message);
+		if($validator->fails()){
+		 		return redirect()->route('formpayment.add')->withErrors($validator)->withInput();
+		}else{
+							if(count($d_payment) < 0){
+										 		$payment->customer_id = Input::get('cutomer_id');
+										 		$payment->method = Input::get('method');
+										 		$payment->bank_reference = Input::get('bank_reference');
+										 		$payment->description = Input::get('description');
+										 		$payment->save();
+										 		return redirect()->route('formpayment.add')->with('Pesan','Data behasil disimpan !');
+								}else{
+											return redirect()->route('formpayment.add')->with('Error','Data sudah tersedia');
+								}
+	 	}
+
  	}
 
  	public function getEditFormpayment($id){
-
- 	} 
-
- 	public function postUpdateFormpayment(Request $request,$id){
-
+ 		$payment = payment::where('id',$id)->first();
+ 		return view('page.payment.editformpayment',['payment' => $payment]);
  	}
 
- 	public function getHapusFormpayment(){
+ 	public function postUpdateFormpayment(Request $request,$id){
+ 		$this->validate($request,[
+ 			'customer_id' => '',
+ 			'method'=>'required',
+ 			'bank_reference'=>'required',
+ 			'customer_id'=>'required'
+ 		]);
 
+ 		$payment = payment::where('id',$id)->first();
+ 		$payment->customer_id = $request->input('customer_id');
+ 		$payment->method = $request->input('method');
+ 		$payment->bank_reference = $request->input('bank_reference');
+ 		$payment->description = $request->input('description');
+ 		$payment->update();
+ 		alert()->success('Data berhasil diperbaharui !');
+ 		return redirect()->route('formpayment.view');
+ 	}
+
+ 	public function getHapusFormpayment($id){
+ 		$payment = payment::find($id)->first();
+ 		$payment->delete();
+ 		alert()->success('Data terhapus !');
+ 		return redirect()->route('formpayment.view');
  	}
 
 
@@ -62,7 +114,7 @@ class PaymentController extends Controller
  	public function getAddTaxpayment(){
  		$kavling = kavling::all();
  		return view('page.payment.addtaxpayment',['kavling' => $kavling]);
- 	}   
+ 	}
 
  	public function postAddTaxpayment(Request $request){
  		$this->validate($request,[
@@ -70,11 +122,18 @@ class PaymentController extends Controller
 			'ssp_total'=>'required|',
 			'bphtb_total'=>'required|',
 		]);
+
+		$taxpayment = new tax_payment();
+		$taxpayment->kavling_id = $request->input('kavling_id');
+		$taxpayment->ssp_total = $request->input('ssp_total');
+		$taxpayment->bphtb_total = $request->input('bphtb_total');
+		$taxpayment->save();
+		return redirect()->route('taxpayment.view')->with('Data berhasil disimpan !');
  	}
 
  	public function getEditTaxpayment($id){
 
- 	} 
+ 	}
 
  	public function postUpdateTaxpayment(Request $request,$id){
 

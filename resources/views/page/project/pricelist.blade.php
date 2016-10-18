@@ -23,11 +23,9 @@
                 <a href='{{ url("project/$project->id/pricelist") }}' class="btn btn-xs btn-success">
                   <i class="fa fa-refresh" aria-hidden="true"></i>
                 </a>
-                @if(count($project->price) == 0)
-                  <a href='{{ url("project/$project->id/pricelist/add") }}' class="btn btn-xs btn-success">
-                    <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Pricelist
-                  </a>
-                @endif
+                <a href='{{ url("project/$project->id/pricelist/add") }}' class="btn btn-xs btn-success">
+                  <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Pricelist
+                </a>
               </div>
             </div>
             <!-- /.box-header -->
@@ -79,5 +77,5 @@
           <!-- /.box -->
     </section>
 <script src="{{ asset('dist/sweetalert.min.js')}}"></script>
-@include('sweet::alert')  
+@include('sweet::alert')
 @endsection

@@ -79,10 +79,6 @@ class BookingController extends Controller
         return view('page.booking.addcustomer');
     }
 
-
-
-
-
     public function getNup(){
         $nup = nup::all();
             return view('page.booking.nup',compact('nup'));

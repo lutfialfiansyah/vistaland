@@ -132,15 +132,12 @@
         </li>
         <li class="treeview">
           <a href="#">
-              
+
             <i class="fa fa-file-text-o"></i> <span>Report</span>
            </a>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-users"></i> <span>User</span>
-           </a>
-
             <i class="fa fa-users" aria-hidden="true"></i>
             <span>Users</span>
           </a>
