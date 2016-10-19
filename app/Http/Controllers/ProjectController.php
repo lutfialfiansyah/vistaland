@@ -25,7 +25,7 @@ class ProjectController extends Controller
     	$project = project::all();
     	return Datatables::of($project)
     		->addColumn('image',function($project){
-    			return '<a href="project/siteplan/'.$project->id.'" class="btn thumbnail"><i class="fa fa-picture-o" aria-hidden="true" style="font-size:50px;color:black;"></i></a>'; 		
+    			return '<a href="project/siteplan/'.$project->id.'" class="btn thumbnail"><i class="fa fa-picture-o" aria-hidden="true" style="font-size:50px;color:black;"></i></a>';
     		})
             ->addColumn('action',function($project){
                 return
@@ -47,7 +47,7 @@ class ProjectController extends Controller
 
     public function postAddProject(Request $request){
     	$this->validate($request,[
-		  	'name'=>'required|min:3|unique:project,name',
+		  'name'=>'required|min:3|unique:project,name',
 			'company'=>'required|min:3',
 			'area'=>'required|numeric|min:0',
 			'unit_total'=>'required|numeric|min:0',
@@ -351,7 +351,7 @@ class ProjectController extends Controller
     	$files = Input::file('image');
     	$jumlah = 0;
     	foreach($files as $file) {
-    	
+
 			$filename = time().'.'.$file->getClientOriginalName();
 			$path = public_path('image/'.$filename);
 	        $upload = Image::make($file->getRealPath())->resize(500,500)->save($path);
@@ -364,7 +364,7 @@ class ProjectController extends Controller
 	        }
 	    }
 	     return redirect()->route('siteplan.add',$id)->with('success','Upload '. $jumlah .' foto berhasil !');
-    	
+
     }
 
      public function getEditSiteplan($id,$siteplan_id){
@@ -433,7 +433,7 @@ class ProjectController extends Controller
     public function getAddPromo(){
     	return view('page.project.addpromo');
     }
-    
+
     public function postAddPromo(Request $request){
     	$this->validate($request,[
     		'name'=>'required|unique:promo,name',
@@ -451,7 +451,7 @@ class ProjectController extends Controller
 		$promo->agent_bonus = $request->input('agent_bonus');
 		$promo->team_bonus = $request->input('team_bonus');
 		$promo->save();
-		return redirect()->route('promo.add')->with('success','Data berhasil disimpan !');    	
+		return redirect()->route('promo.add')->with('success','Data berhasil disimpan !');
     }
 
     public function getEditPromo($id){
@@ -466,7 +466,7 @@ class ProjectController extends Controller
 			'date_end' => 'required|date',
 			'discount' => 'required|numeric|min:0',
 			'agent_bonus' => 'required|numeric|min:0',
- 			'team_bonus' => 'required|numeric|min:0',  		
+ 			'team_bonus' => 'required|numeric|min:0',
     	]);
 
     	$promo = promo::where('id',$id)->first();
@@ -487,6 +487,6 @@ class ProjectController extends Controller
     	alert()->success('Data berhasil dihapus !');
     	return redirect()->route('promo.view');
     }
-	
+
 
 }

@@ -32,11 +32,23 @@ class BookingController extends Controller
                 <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
                  ';
               })
-							->addColumn('email',function($customer)
+              ->editColumn('name',function($customer){
+                return 
+                $customer->first_name.' '.$customer->last_name;
+              })
+							->editColumn('email',function($customer)
 							{
 								return
 								'<a href="https://accounts.google.com/Login#identifier" target="output">'.$customer->email.'</a>';
 							})
+              ->editColumn('status',function($customer){
+                return 
+                '<small class="label bg-green">'.$customer->status.'</small>';
+              })
+              ->editColumn('priority_status',function($customer){
+                return 
+                '<small class="label bg-black">'.$customer->priority_status.'</small>';
+              })
             ->make(true);
 
     }
@@ -48,6 +60,22 @@ class BookingController extends Controller
 			'ktp_number'=>'required|numeric|min:0',
 			'ktp_expire'=>'required|min:0',
 			'email'=>'required',
+      'house_phone'=> 'required|numeric|min:0',
+      'office_phone'=> 'required|numeric|min:0',
+      'relative_name'=> 'required',
+      'relative_phone'=> 'required|numeric|min:0',
+      'relative_ktp'=> 'required',
+      'spouse_name'=> 'required',
+      'spouse_ktp'=> 'required',
+      'image'=> 'required',
+      'bank_account_number'=> 'required|numeric|min:0',
+      'btn_id'=> 'required',
+      'btn_account_number'=> 'required|numeric|min:0',
+      'btn_branch'=> 'required',
+      'mk_application'=> 'required',
+      'deposit_loan_akad'=> 'required',
+      'status'=> 'required',
+      'priority_status'=> 'required',
 
 			]);
 
@@ -81,6 +109,61 @@ class BookingController extends Controller
 
 		}
 
+    public function postUpdateCustomer(Request $request,$id){
+      $this->validate($request,[
+      'first_name'=>'required|min:3',
+      'last_name'=>'required|min:3',
+      'house_address'=>'required|min:3',
+      'ktp_number'=>'required|numeric|min:0',
+      'ktp_expire'=>'required|min:0',
+      'house_address'=> 'required',
+      'office_address'=> 'required',
+      'email'=> 'required',
+      'house_phone'=> 'required|numeric|min:0',
+      'office_phone'=> 'required|numeric|min:0',
+      'relative_name'=> 'required',
+      'relative_phone'=> 'required|min:0',
+      'relative_ktp'=> 'required',
+      'spouse_name'=> 'required',
+      'spouse_ktp'=> 'required',
+      'bank_account_number'=> 'required|numeric|min:0',
+      'btn_id'=> 'required',
+      'btn_account_number'=> 'required|numeric|min:0',
+      'btn_branch'=> 'required',
+      'mk_application'=> 'required',
+      'deposit_loan_akad'=> 'required',
+      'status'=> 'required',
+      'priority_status'=> 'required',
+      ]);
+
+			$customer = customer::where('id',$id)->first();
+		$customer->first_name = $request->input('first_name');
+		$customer->last_name = $request->input('last_name');
+		$customer->ktp_number = $request->input('ktp_number');
+		$customer->ktp_expire = $request->input('ktp_expire');
+		$customer->house_address = $request->input('house_address');
+		$customer->office_address = $request->input('office_address');
+		$customer->email = $request->input('email');
+		$customer->house_phone = $request->input('house_phone');
+		$customer->office_phone = $request->input('office_phone');
+		$customer->relative_name = $request->input('relative_name');
+		$customer->relative_phone = $request->input('relative_phone');
+		$customer->relative_ktp = $request->input('relative_ktp');
+		$customer->spouse_name = $request->input('spouse_name');
+		$customer->spouse_ktp = $request->input('spouse_ktp');
+		$customer->image = $request->input('image');
+		$customer->bank_account_number = $request->input('bank_account_number');
+		$customer->btn_id = $request->input('btn_id');
+		$customer->btn_account_number = $request->input('btn_account_number');
+		$customer->btn_branch = $request->input('btn_branch');
+		$customer->mk_application = $request->input('mk_application');
+		$customer->deposit_loan_akad = $request->input('deposit_loan_akad');
+		$customer->status = $request->input('status');
+		$customer->priority_status = $request->input('priority_status');
+      $customer->update();
+      alert()->success('Data berhasil diupdate !');
+      return redirect()->route('customer.view');
+    }
     public function getAddcustomer(){
         return view('page.booking.addcustomer');
     }
@@ -89,8 +172,8 @@ class BookingController extends Controller
     	return view('page.booking.editcustomer',compact('edit'));
     }
     public function getDetailCustomer($id){
-      $edit = customer::where('id',$id)->first();
-      return view('page.booking.detail.detailcustomer',compact('detailcustomer'));
+      $detailcustomer = customer::where('id',$id)->first();
+      return view('page.booking.detailcustomer',compact('detailcustomer'));
     }
     public function getHapusCustomer($id){
     	$customer = customer::find($id);
