@@ -34,7 +34,7 @@ class ProjectController extends Controller
                  </a>
                  <a href="project/'.$project->id.'/kavling" class="btn btn-xs btn-info"><i class="fa fa-home" aria-hidden="true"></i> Kavling</a>
                  <a href="project/'.$project->id.'/pricelist" class="btn btn-xs btn-warning"><i class="fa fa-money" aria-hidden="true"></i> Price List</a>
-                 <a href="project/hapus/'.$project->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus project '. $project->name.' ?\')">
+                 <a href="project/hapus/'.$project->id.'" class="btn btn-xs btn-danger" id="confirm">
                  <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
                  ';
               })

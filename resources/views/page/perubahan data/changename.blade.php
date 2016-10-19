@@ -6,8 +6,9 @@
         <small>Control Panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Project</li>
+        <li><a href="{{ route('user.home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="{{ route('change-name.view') }}">Change Name</li></a>
+
       </ol>
     </section>
 
@@ -17,29 +18,24 @@
         <div class="col-xs-12">
           <div class="box box-primary">
             <div class="box-header">
-              <h3 class="box-title">Data Project</h3>
-              <div class="box-tools pull-right">
-                <a href="{{ url('project') }}" class="btn btn-xs btn-success">
-                  <i class="fa fa-refresh" aria-hidden="true"></i>
-                </a>
-
-                <a href="{{ url('project/add') }}" class="btn btn-xs btn-success">
-                  <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Project
-                </a>
+              <h3 class="box-title">Data Change Name</h3>
+              <div class="box-tools pull-right"><a href='{{ URL::to('change-name/add') }}' class="btn btn-xs btn-success">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add change name</a>
               </div>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-            <table id="data" class="table table-bordered table-hover table-striped table-condesed">
+
+              <table id="data" class="table table-condensed table-bordered table-hover dataTable no-footer" role="grid" style="width: 1082px;">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Company</th>
-                  <th>Area</th>
-                  <th>Unit Total</th>
-                  <th>Location</th>
-                  <th>Siteplan</th>
-                  <th>Action</th>
+                  <th>Null</th>
+                  <th>Null</th>
+                  <th>Null</th>
+                  <th>Null</th>
+                  <th>Null</th>
+                  <th>Null</th>
+                  <th>Null</th>
                 </tr>
               </thead>
               </table>
@@ -48,6 +44,8 @@
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
+        </div>
+      </div>
     </section>
 <script src="{{ asset('dist/sweetalert.min.js')}}"></script>
 @include('sweet::alert')
@@ -59,24 +57,24 @@
     $('#data').DataTable({
       "processing" : true,
       "serverSide" : true,
-      "ajax" : "{{ url('project/get-project') }}",
+      "ajax" : '{{ url("change-name/get-change-name") }}',
       "columns" : [
-        { data : 'name', name: 'name' },
-        { data : 'company', name: 'company' },
-        { data : 'area', name: 'area' },
-        { data : 'unit_total', name: 'unit_total' },
-        { data : 'location', name: 'location' },
-        { data : 'image', name: 'image', orderable: false, searchable: false },
+        { data : '', name: '' },
+        { data : '', name: '' },
+        { data : '', name: '' },
+        { data : '', name: '' },
+        { data : '', name: '' },
+        { data : '', name: '' },
         { data : 'action', name:'action', orderable: false, searchable: false },
       ]
     });
   });
 
-	$(document).on('click', '#confirm', function(e) {
+  $(document).on('click', '#confirm', function(e) {
         e.preventDefault();
         var link = $(this);
         swal({
-            title: "Delete Record!",
+            title: "Delete !",
             text: "Are you sure?",
             type: "warning",
             showCancelButton: true,
@@ -92,7 +90,6 @@
                 swal("cancelled","Category deletion Cancelled", "error");
              }
          });
-  });
-
+   });
 </script>
 @endpush

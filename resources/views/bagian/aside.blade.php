@@ -71,7 +71,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('/change-name')}}"><i class="fa fa-tag"></i> Ganti Nama</a></li>
+            <li><a href="{{ route('change-name.view') }}"><i class="fa fa-tag"></i> Ganti Nama</a></li>
             <li><a href=""><i class="fa fa-circle-o"></i> Pindah Kavling</a></li>
             <li><a href=""><i class="fa fa-circle-o"></i> Pembatalan</a></li>
           </ul>

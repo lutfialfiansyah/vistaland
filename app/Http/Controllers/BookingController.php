@@ -99,10 +99,6 @@ class BookingController extends Controller
     	return redirect()->route('customer.view');
     }
 
-
-
->>>>>>> ab128dba67b4926d6f24a4082b5b2d3cc12c40a0
-
     public function getNup(){
         $nup = nup::all();
             return view('page.booking.nup',compact('nup'));

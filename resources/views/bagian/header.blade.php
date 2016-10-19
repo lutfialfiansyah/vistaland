@@ -231,7 +231,7 @@
                   <a href="{{ url('/editprofile') }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a id="logout-btn" href="{{url('/logout')}}" class="btn btn-default btn-flat" onclick="return confirm('Are you sure want sign out ?')">Sign out</a>             
+                  <a id="logout-btn" href="#" class="btn btn-default btn-flat" data-toggle="modal" data-target="#log">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -242,6 +242,26 @@
     </nav>
 
 </header>
+
+<!-- modal -->
+<div class="modal fade" tabindex="-1" id="log" role="dialog" aria-labelledby="gridSystemModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="gridSystemModalLabel">Confirm to logout</h4>
+      </div>
+      <div class="modal-body">
+				<p><h4>Are you sure want logout ?</h4></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <a href="{{ route('admin.logout') }}" class="btn btn-danger">Yes</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <!--
 <script>
     $(document).on('click', '#logout-btn', function(e) {
