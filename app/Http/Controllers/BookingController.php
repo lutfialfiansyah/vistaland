@@ -50,7 +50,7 @@ class BookingController extends Controller
               })
               ->editColumn('priority_status',function($customer){
                 return
-                '<h4><small class="label bg-black">'.$customer->priority_status.'</small></h4>';
+                '<h4><small class="label bg-red">'.$customer->priority_status.'</small></h4>';
               })
             ->make(true);
 
@@ -128,7 +128,7 @@ class BookingController extends Controller
       'ktp_expire'=>'required|min:0',
       'house_address'=> 'required',
       'office_address'=> 'required',
-      'email'=> 'required',
+      'email'=> 'required|unique|min:0',
       'house_phone'=> 'required|numeric|min:0',
       'office_phone'=> 'required|numeric|min:0',
       'relative_name'=> 'required',
@@ -171,12 +171,14 @@ class BookingController extends Controller
 		$customer->status = $request->input('status');
 		$customer->priority_status = $request->input('priority_status');
 
-       $image = Input::file('image');
-       $namafile = time().'.'.$image->getClientOriginalExtension();
-       $path = public_path('image/'.$namafile);
-      Image::make($image->getRealPath())->resize(200,200)->save($path);
 
-    $customer->image = $namafile;
+      $image = Input::file('image');
+       $namafile = time().'.'.$image->getClientOriginalName();
+       $path = public_path('image/'.$namafile);
+       Image::make($image->getRealPath())->resize(200,200)->save($path);
+
+      $customer->image = $namafile;
+
 
       $customer->update();
       alert()->success('Data berhasil diupdate !');
@@ -207,8 +209,22 @@ class BookingController extends Controller
             return view('page.booking.nup',compact('nup'));
     }
 
-    public function getAddnup(){
+    public function getAddNup(){
         return view('page.booking.addnup');
+    }
+    public function postAddNup(Request $request){
+      $this->validate($request,[
+      'first_name'=>'required|min:3|unique:customer,first_name',
+      'last_name'=>'required|min:3|unique:customer,first_name',
+      ]);
+
+      $customer = new nup();
+    $customer->last_name = $request->input('last_name');
+    $customer->ktp_number = $request->input('ktp_number');
+      $customer->save();
+      alert()->success('Data berhasil disimpan !');
+      return redirect()->route('nup.view');
+
     }
     public function getNupdata(){
         $nup = nup::all();

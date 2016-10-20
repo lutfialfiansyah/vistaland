@@ -298,7 +298,7 @@ Route::get('nup',[
 	]);
 Route::get('nup/add','BookingController@getAddNup');
 Route::post('nup/add',[
-	'uses' => 'BookingController@postAddnup',
+	'uses' => 'BookingController@postAddNup',
 	'as' => 'nup.add'
 ]);
 Route::get('nup/get-nup','BookingController@getNupdata');

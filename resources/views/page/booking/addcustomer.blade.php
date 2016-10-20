@@ -19,7 +19,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Add Customer</h3>
-              <a href="{{ url('/customer') }}" class="btn btn-xs btn-success">
+     <a href="{{ url('/customer') }}" class="btn btn-xs btn-success">
                 <i class="fa fa-eye" aria-hidden="true"></i> Lihat data
               </a>
             </div>
@@ -271,7 +271,7 @@
                 <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
                   <label for="status">Status</label>
                   <select name="status" id="status" class="form-control" value="{{old('status')}}">
-                    <option value="{{old('status')}}"></option>
+                    <option value="Inactive">Inactive</option>
                     <option value="Active">Active</option>
                     <option value="Nonactive">Nonactive </option>
                   </select>
@@ -286,7 +286,10 @@
                   <label for="priority_status">Priority Status</label>
                   <select name="priority_status" id="priority_statusi" class="form-control" value="{{old('priority_status')}}">
                     <option value="Not Priority">Not Priority</option>
-                    <option value="Down Payment">Down Payment</option>
+                    <option value="Data Priority">Data Priority</option>
+                    <option value="KPR Priority">KPR Priority</option>
+                    <option value="Down Payment">Down Payment Priority</option>
+                    <option value="Building Priority">Building Priority</option>
                   </select>
                    @if($errors->has('priority_status'))
                   <span class="help-block">

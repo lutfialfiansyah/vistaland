@@ -250,9 +250,9 @@
                 <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
                   <label for="status">Status</label>
                   <select name="status" id="status" class="form-control" value="{{$edit->status}}">
-                    <option value=""></option>
+                    <option value="Inactive">Inactive</option>
                     <option value="Active">Active</option>
-                    <option value="Nonactive">Nonactive </option>
+                    <option value="Move Kavling">Move Kavling</option>
                   </select>
                    @if($errors->has('status'))
                   <span class="help-block">
@@ -265,7 +265,10 @@
                   <label for="priority_status">Priority Status</label>
                   <select name="priority_status" id="priority_statusi" class="form-control" value="{{$edit->priority_status}}">
                     <option value="Not Priority">Not Priority</option>
-                    <option value="Down Payment">Down Payment</option>
+                    <option value="Data Priority">Data Priority</option>
+                    <option value="KPR Priority">KPR Priority</option>
+                    <option value="Down Payment">Down Payment Priority</option>
+                    <option value="Building Priority">Building Priority</option>
                   </select>
                    @if($errors->has('priority_status'))
                   <span class="help-block">

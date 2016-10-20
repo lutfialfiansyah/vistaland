@@ -110,7 +110,7 @@
                 <tr>
                   <th>Photo</th>
                   <td>
-                    <img src='{{ asset("image/$detailcustomer->image")}}' height="70" width="70" class="img-rounded" align="center">
+                    <img src='{{ asset("image/$detailcustomer->image")}}' height="80" width="80" class="img-rounded" align="center">
                   </td>
                 </tr>
                 <tr>
@@ -149,28 +149,36 @@
                     {{$detailcustomer->deposit_loan_akad}}
                   </td>
                 </tr>
-                                <tr>
+                <tr>
                   <th>Status</th>
                   <td>
+                  @if($detailcustomer->status=="Active")
                   <small class="label bg-green">{{$detailcustomer->status}}</small>
+                  @else
+                  <small class="label bg-red">{{$detailcustomer->status}}</small>
+                  @endif
                   </td>
                 </tr>
                 <tr>
                   <th>Priority Status</th>
                   <td>
+                  @if($detailcustomer->priority_status=="Not Priority")
+                   <small class="label bg-red">{{$detailcustomer->priority_status}}</small>
+                   @else
                    <small class="label bg-black">{{$detailcustomer->priority_status}}</small>
+                  @endif
                   </td>
                 </tr>
                 <tr>
                   <th>Join Since</th>
                   <td>
-                      <strong>{{$detailcustomer->created_at}}</strong>
+                      <strong>{{$detailcustomer->created_at->format('d/M/Y')}}</strong>
                   </td>
                 </tr>
                 <tr>
                   <th>Last Update</th>
                   <td>
-                    <b>{{$detailcustomer->updated_at}}</b>
+                    <b>{{  date('d/M/Y - H:m:s', strtotime($detailcustomer->updated_at)) }}</b>
                   </td>
                 </tr>
 
