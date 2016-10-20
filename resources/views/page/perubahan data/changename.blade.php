@@ -26,7 +26,7 @@
             <!-- /.box-header -->
             <div class="box-body">
 
-              <table id="data" class="table table-condensed table-bordered table-hover dataTable no-footer" role="grid" style="width: 1082px;">
+              <table id="data" class="table table-condensed table-bordered table-hover">
               <thead>
                 <tr>
                   <th>Null</th>

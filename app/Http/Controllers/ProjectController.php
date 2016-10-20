@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\ImageManagerStatic as Image;
+use Validator;
 use App\project;
 use App\kavling;
 use App\price;
@@ -15,8 +16,11 @@ use App\strategic_type;
 use App\siteplan;
 use Datatables;
 
+
+
 class ProjectController extends Controller
 {
+
     public function getProject(){
     	$project= project::all();
         return view('page.project.project',compact('project'));
@@ -346,26 +350,15 @@ class ProjectController extends Controller
     }
 
     public function postAddSiteplan(Request $request,$id){
-    	$this->validate($request,[
-    		'image' =>'required'
-    	]);
-    	$files = Input::file('image');
-    	$jumlah = 0;
-    	foreach($files as $file) {
+    			$siteplan = new siteplan();
+					    	$file = $request->file('file');
+					    	$filename = time().'.'.$file->getClientOriginalName();
+					    	$path = public_path('image/'.$filename);
+					    	Image::make($file->getRealPath())->resize(600,600)->save($path);
 
-			$filename = time().'.'.$file->getClientOriginalName();
-			$path = public_path('image/'.$filename);
-	        $upload = Image::make($file->getRealPath())->resize(500,500)->save($path);
-	        $siteplan = new siteplan();
-	        $siteplan->image = $filename;
-	        $siteplan->project_id = $id;
-	        $siteplan->save();
-	        if($upload){
-	        	$jumlah++;
-	        }
-	    }
-	     return redirect()->route('siteplan.add',$id)->with('success','Upload '. $jumlah .' foto berhasil !');
-
+					  $siteplan->image = $filename;
+					  $siteplan->project_id = $id;
+					  $siteplan->save();
     }
 
      public function getEditSiteplan($id,$siteplan_id){

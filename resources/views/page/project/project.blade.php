@@ -30,7 +30,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-            <table id="data" class="table table-bordered table-hover table-striped table-condesed">
+            <table id="data" class="table table-condesed table-bordered table-hover table-striped">
               <thead>
                 <tr>
                   <th>Name</th>
@@ -43,8 +43,7 @@
                 </tr>
               </thead>
               </table>
-
-            </div>
+						</div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
@@ -59,6 +58,7 @@
     $('#data').DataTable({
       "processing" : true,
       "serverSide" : true,
+    	"sScrollX": false,
       "ajax" : "{{ url('project/get-project') }}",
       "columns" : [
         { data : 'name', name: 'name' },

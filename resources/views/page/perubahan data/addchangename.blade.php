@@ -28,7 +28,61 @@
             	@endif
               <form action="" method="post" >
               {!! csrf_field() !!}
-
+								<div class="form-group{{ $errors->has('customer_id_old') ? ' has-error' : '' }}">
+									<label for="customer_id_old">Customer Old</label>
+									<select name="customer_id_old"  class="form-control">
+												<option value=""></option>
+									</select>
+									@if($errors->has('customer_id_old'))
+										<span class="help-block">
+											<strong>{{ $errors->first('customer_id_old') }}</strong>
+										</span>
+									@endif
+								</div>
+								<div class="form-group{{ $errors->has('customer_id_new') ? ' has-error' : '' }}">
+									<label for="customer_id_new">Customer New</label>
+									<select name="customer_id_new"  class="form-control">
+												<option value=""></option>
+									</select>
+									@if($errors->has('customer_id_new'))
+										<span class="help-block">
+											<strong>{{ $errors->first('customer_id_new') }}</strong>
+										</span>
+									@endif
+								</div>
+								<div class="form-group{{ $errors->has('reason') ? ' has-error' : '' }}">
+									<label for="reason">Reason</label>
+									<input type="text" name="reason" value="{{ old('reason') }}" class="form-control">
+									@if($errors->has('reason'))
+										<span class="help-block">
+											<strong>{{ $errors->first('reason') }}</strong>
+										</span>
+									@endif
+								</div>
+								<div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+									<label for="status">Status</label>
+									<select name="status"  class="form-control">
+												<option value=""></option>
+									</select>
+									@if($errors->has('status'))
+										<span class="help-block">
+											<strong>{{ $errors->first('status') }}</strong>
+										</span>
+									@endif
+								</div>
+								<div class="form-group{{ $errors->has('spr_id') ? ' has-error' : '' }}">
+									<label for="spr_id">SPR ID</label>
+									<input type="text" name="spr_id" value="{{ old('spr_id') }}" class="form-control">
+									@if($errors->has('spr_id'))
+										<span class="help-block">
+											<strong>{{ $errors->first('spr_id') }}</strong>
+										</span>
+									@endif
+								</div>
+								<div class="form-group">
+									<button type="reset" class="btn btn-default">RESET</button>
+									<button type="submit" class="btn btn-primary">SIMPAN</button>
+								</div>
               </form>
             </div>
             <!-- /.box-body -->

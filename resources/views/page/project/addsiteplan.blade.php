@@ -20,10 +20,10 @@
           <div class="box box-primary">
             <div class="box-header">
               <h3 class="box-title">Siteplan</h3>
-            
+
             </div>
             <!-- /.box-header -->
-            <div class="box-body">  
+            <div class="box-body">
             @if(Session::has('success'))
               <div class="alert alert-success">{{ Session::get('success') }} Click<a href="{{ route('siteplan.view',$project->id) }}"> disini</a> untuk melihat foto !</div>
             @endif
@@ -33,17 +33,16 @@
               </div>
             @endif
 
-              <form action="{{ route('siteplan.add',$project->id) }}" method="post" enctype="multipart/form-data">
+              <form action="{{ route('siteplan.add',$project->id) }}"  class="dropzone" id="addImages">
               {!! csrf_field() !!}
-                <div class="form-group">
-                  <label for="foto">Upload Foto</label>
-                  <input type="file" name="image[]" value="" multiple>
-                </div>
-                <div class="form-group">
-                  <button type="submit" class="btn btn-primary">UPLOAD</button>
-                </div>
               </form>
-          
+              <br>
+							<strong>
+              	<li>File Must type Image</li>
+              	<li>Format Image must : JPG, JPEG, PNG</li>
+              	<li>Max FileSize 2 Mb</li>
+							</strong>
+
             </div>
             <!-- /.box-body -->
           </div>
@@ -52,4 +51,3 @@
      </div>
     </section>
 @endsection
-

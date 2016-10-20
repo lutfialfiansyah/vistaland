@@ -19,14 +19,16 @@
           <div class="box box-primary">
             <div class="box-header">
               <h3 class="box-title">Data Kavling <strong><u>{{ $project->name }}</u></strong></h3>
-              <div class="box-tools pull-right"><a href='{{ url("project/$project->id/kavling/add") }}' class="btn btn-xs btn-success">
-                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Kavling</a>
+               <div class="box-tools pull-right">
+               	<a href='{{ url("project/$project->id/kavling/add") }}' class="btn btn-xs btn-success">
+                	<i class="fa fa-plus-circle" aria-hidden="true"></i> Add Kavling
+                </a>
               </div>
+
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-            <div class="table-responsive">
-              <table id="data" class="table table-condensed table-bordered table-hover dataTable no-footer" role="grid" style="width: 1082px;">
+              <table id="data" class="table table-condensed table-bordered table-hover">
               <thead>
                 <tr>
                   <th>Type</th>
@@ -43,7 +45,6 @@
                 </tr>
               </thead>
               </table>
-             </div> 
             </div>
             <!-- /.box-body -->
           </div>
@@ -52,7 +53,7 @@
       </div>
     </section>
 <script src="{{ asset('dist/sweetalert.min.js')}}"></script>
-@include('sweet::alert')  
+@include('sweet::alert')
 @endsection
 
 @push('script')
@@ -61,6 +62,7 @@
     $('#data').DataTable({
       "processing" : true,
       "serverSide" : true,
+      "sScrollX": false,
       "ajax" : '{{ url("project/$project->id/get-kavling") }}',
       "columns" : [
         { data : 'type', name: 'type' },
@@ -77,6 +79,6 @@
       ]
     });
   });
-  
+
 </script>
 @endpush
