@@ -25,7 +25,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form action="{{ route('customer.add') }}" method="post">
+              <form action="{{ route('customer.add') }}" method="post" enctype="multipart/form-data">
               {!! csrf_field() !!}
                 <div class="form-group{{ $errors->has('first_name') ? ' has-error' : ''}}">
                   <label for="first_name">First Name</label>
@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                  <label for="email">Email</label>
+                  <label for="email">E-Mail Address</label>
                   <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}">
                     @if($errors->has('email'))
                       <span class="help-block">
@@ -247,7 +247,7 @@
                     @endif
                 </div>
               
-                <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+              <!--  <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
                   <label for="status">Status </label>
                   <input type="text" name="status" class="form-control" value="{{ old('status') }}">
                     @if($errors->has('status'))
@@ -265,26 +265,37 @@
                         <strong>{{ $errors->first('priority_status') }}</strong>
                       </span>
                     @endif
-                </div>
-              <!--
-                <div class="form-group">
-                  <label>Status</label>
-                  <select name="status" id="status" class="form-control" required>
-                    <option value="0">Active</option>
-                    <option value="1">Nonactive </option>
-                  </select>
-                  <span class="help-block"></span>
-                </div>
-                <div class="form-group">
-                  <label>Priority Status</label>
-                  <select name="priority_status" id="priority_status" class="form-control" required>
-                    <option value="0">Not Priority</option>
-                    <option value="1">Data Priority</option>
-                  </select>
-                  <span class="help-block"></span>
-                </div>
+                </div> 
               -->
+              
+                <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+                  <label for="status">Status</label>
+                  <select name="status" id="status" class="form-control" value="{{old('status')}}">
+                    <option value="{{old('status')}}"></option>
+                    <option value="Active">Active</option>
+                    <option value="Nonactive">Nonactive </option>
+                  </select>
+                   @if($errors->has('status'))
+                  <span class="help-block">
+                    <strong>{{$errors->first('status')}}</strong>
+                  </span>
+                  @endif
+                </div>
 
+                <div class="form-group{{ $errors->has('priority_status') ? ' has-error' : '' }}">
+                  <label for="priority_status">Priority Status</label>
+                  <select name="priority_status" id="priority_statusi" class="form-control" value="{{old('priority_status')}}">
+                    <option value="Not Priority">Not Priority</option>
+                    <option value="Down Payment">Down Payment</option>
+                  </select>
+                   @if($errors->has('priority_status'))
+                  <span class="help-block">
+                    <strong>{{$errors->first('priority_status')}}</strong>
+                  </span>
+                  @endif
+                </div>
+
+              
                 <div class="form-group">
                   <button type="reset" class="btn btn-default">RESET</button>
                   <input type="submit" class="btn btn-primary pull-right" value="SIMPAN">

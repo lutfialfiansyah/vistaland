@@ -7,7 +7,8 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><a href="#">{{ $detailcustomer->first_name}}</a></li>
+        <li><a href="{{url('/customer')}}">Customer</a></li>
+        <li class="active"><a href="#">{{ $detailcustomer->first_name.' '.$detailcustomer->last_name}}</a></li>
       </ol>
     </section>
 
@@ -31,12 +32,13 @@
             <div class="box-body">
            <form action="{{ route('customer.detail',$detailcustomer->id) }}" method="get">
               {!! csrf_field() !!}
+              <div class="table-responsive">
               <table id="data" class="table table-bordered table-hover table-striped table-condesed">
-              <thead>
+              <tbody>
                 <tr>
                   <th>Name</th>
                   <td>
-                    {{$detailcustomer->first_name }}
+                    {{$detailcustomer->first_name.' '.$detailcustomer->last_name}}
                   </td>
                 </tr>
                 <tr>
@@ -60,7 +62,7 @@
                 <tr>
                   <th>Email</th>
                   <td>
-                    {{$detailcustomer->email}}
+                    <a href="https://accounts.google.com/Login#identifier" target="output">{{$detailcustomer->email}}</a>
                   </td>
                 </tr>
                 <tr>
@@ -108,7 +110,7 @@
                 <tr>
                   <th>Photo</th>
                   <td>
-                    {{$detailcustomer->image}}
+                    <img src='{{ asset("image/$detailcustomer->image")}}' height="70" width="70" class="img-rounded" align="center">
                   </td>
                 </tr>
                 <tr>
@@ -141,7 +143,7 @@
                     {{$detailcustomer->mk_application}}
                   </td>
                 </tr>
-                                <tr>
+                <tr>
                   <th>Deposit Akad Kredit</th>
                   <td>
                     {{$detailcustomer->deposit_loan_akad}}
@@ -150,18 +152,32 @@
                                 <tr>
                   <th>Status</th>
                   <td>
-                    {{$detailcustomer->status}}
+                  <small class="label bg-green">{{$detailcustomer->status}}</small>
                   </td>
                 </tr>
                 <tr>
                   <th>Priority Status</th>
                   <td>
-                    {{$detailcustomer->priority_status}}
+                   <small class="label bg-black">{{$detailcustomer->priority_status}}</small>
                   </td>
                 </tr>
-              </thead>
+                <tr>
+                  <th>Join Since</th>
+                  <td>
+                      <strong>{{$detailcustomer->created_at}}</strong>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Last Update</th>
+                  <td>
+                    <b>{{$detailcustomer->updated_at}}</b>
+                  </td>
+                </tr>
+
+              </tbody>
               </table>
               </form>
+              </div>
             </div>
             <!-- /.box-body -->
           </div>

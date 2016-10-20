@@ -11,6 +11,8 @@ use App\spr;
 use App\bf;
 use App\priority;
 use Datatables;
+use Illuminate\Support\Facades\Input;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class BookingController extends Controller
 {
@@ -21,19 +23,20 @@ class BookingController extends Controller
     public function getCustomerdata(){
     	$customer = customer::all();
     	return Datatables::of($customer)
-    		->addColumn('image',function($customer){
-    			return '<a class="btn thumbnail"><i class="fa fa-picture-o" aria-hidden="true" style="font-size:50px;color:black;"></i></a>';
+    		->editColumn('image',function($customer){
+    			return
+          '<img src="'.asset("image/$customer->image").'" height="70" width="70" class="img-rounded" align="center">';
     		})
             ->addColumn('action',function($customer){
                 return
                 '<a href="customer/detail/'.$customer->id.'" class="btn btn-xs btn-primary"><i class="fa fa-eye" aria-hidden="true"></i>Detail</a>
 								<a href="customer/edit/'.$customer->id.'" class="btn btn-xs btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                <a href="customer/hapus/'.$customer->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus data customer '. $customer->first_name.' ?\')">
-                <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
+                <a href="customer/hapus/'.$customer->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus data customer '. $customer->first_name.' '.$customer->last_name.' ?\')">
+                <i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
                  ';
               })
               ->editColumn('name',function($customer){
-                return 
+                return
                 $customer->first_name.' '.$customer->last_name;
               })
 							->editColumn('email',function($customer)
@@ -42,12 +45,12 @@ class BookingController extends Controller
 								'<a href="https://accounts.google.com/Login#identifier" target="output">'.$customer->email.'</a>';
 							})
               ->editColumn('status',function($customer){
-                return 
-                '<small class="label bg-green">'.$customer->status.'</small>';
+                return
+                '<h4><small class="label bg-green">'.$customer->status.'</small></h4>';
               })
               ->editColumn('priority_status',function($customer){
-                return 
-                '<small class="label bg-black">'.$customer->priority_status.'</small>';
+                return
+                '<h4><small class="label bg-black">'.$customer->priority_status.'</small></h4>';
               })
             ->make(true);
 
@@ -67,7 +70,7 @@ class BookingController extends Controller
       'relative_ktp'=> 'required',
       'spouse_name'=> 'required',
       'spouse_ktp'=> 'required',
-      'image'=> 'required',
+      'image' => 'required',
       'bank_account_number'=> 'required|numeric|min:0',
       'btn_id'=> 'required',
       'btn_account_number'=> 'required|numeric|min:0',
@@ -103,9 +106,16 @@ class BookingController extends Controller
 		$customer->deposit_loan_akad = $request->input('deposit_loan_akad');
 		$customer->status = $request->input('status');
 		$customer->priority_status = $request->input('priority_status');
-			$customer->save();
-		alert()->success('Data berhasil disimpan !');
-		return redirect()->route('customer.view');
+
+       $image = Input::file('image');
+       $namafile = time().'.'.$image->getClientOriginalExtension();
+       $path = public_path('image/'.$namafile);
+       Image::make($image->getRealPath())->resize(200,200)->save($path);
+
+      $customer->image = $namafile;
+      $customer->save();
+      alert()->success('Data berhasil disimpan !');
+      return redirect()->route('customer.view');
 
 		}
 
@@ -160,6 +170,14 @@ class BookingController extends Controller
 		$customer->deposit_loan_akad = $request->input('deposit_loan_akad');
 		$customer->status = $request->input('status');
 		$customer->priority_status = $request->input('priority_status');
+
+       $image = Input::file('image');
+       $namafile = time().'.'.$image->getClientOriginalExtension();
+       $path = public_path('image/'.$namafile);
+      Image::make($image->getRealPath())->resize(200,200)->save($path);
+
+    $customer->image = $namafile;
+
       $customer->update();
       alert()->success('Data berhasil diupdate !');
       return redirect()->route('customer.view');
@@ -183,8 +201,6 @@ class BookingController extends Controller
     }
 
 
-
->>>>>>> ab128dba67b4926d6f24a4082b5b2d3cc12c40a0
 
     public function getNup(){
         $nup = nup::all();

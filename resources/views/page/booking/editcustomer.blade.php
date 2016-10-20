@@ -248,25 +248,31 @@
                 </div>
               
                 <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-                  <label for="status">Status </label>
-                  <input type="text" name="status" class="form-control" value="{{ $edit->status }}">
-                    @if($errors->has('status'))
-                      <span class="help-block">
-                        <strong>{{ $errors->first('status') }}</strong>
-                      </span>
-                    @endif
+                  <label for="status">Status</label>
+                  <select name="status" id="status" class="form-control" value="{{$edit->status}}">
+                    <option value=""></option>
+                    <option value="Active">Active</option>
+                    <option value="Nonactive">Nonactive </option>
+                  </select>
+                   @if($errors->has('status'))
+                  <span class="help-block">
+                    <strong>{{$errors->first('status')}}</strong>
+                  </span>
+                  @endif
                 </div>
 
-              <div class="form-group{{ $errors->has('priority_status') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('priority_status') ? ' has-error' : '' }}">
                   <label for="priority_status">Priority Status</label>
-               <input type="text" name="priority_status" class="form-control" value="{{ $edit->priority_status }}">
-                    @if($errors->has('priority_status'))
-                      <span class="help-block">
-                        <strong>{{ $errors->first('priority_status') }}</strong>
-                      </span>
-                    @endif
-                </div>
-              <!--
+                  <select name="priority_status" id="priority_statusi" class="form-control" value="{{$edit->priority_status}}">
+                    <option value="Not Priority">Not Priority</option>
+                    <option value="Down Payment">Down Payment</option>
+                  </select>
+                   @if($errors->has('priority_status'))
+                  <span class="help-block">
+                    <strong>{{$errors->first('priority_status')}}</strong>
+                  </span>
+                  @endif
+                </div>              <!--
                 <div class="form-group">
                   <label>Status</label>
                   <select name="status" id="status" class="form-control" required>

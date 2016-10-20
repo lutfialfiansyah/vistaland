@@ -56,9 +56,9 @@ class ProjectController extends Controller
 
     	]);
 
-   	$project = new project();
-    $project->name = $request->input('name');
-    $project->company = $request->input('company');
+       	$project = new project();
+        $project->name = $request->input('name');
+        $project->company = $request->input('company');
 		$project->area = $request->input('area');
 		$project->unit_total = $request->input('unit_total');
 		$project->location = $request->input('location');
@@ -103,9 +103,9 @@ class ProjectController extends Controller
 			'akad_comission'=> 'required|numeric|min:0',
     	]);
 
-  	$project = project::where('id',$id)->first();
-  	$project->name = $request->input('name');
-  	$project->company = $request->input('company');
+      	$project = project::where('id',$id)->first();
+      	$project->name = $request->input('name');
+      	$project->company = $request->input('company');
 		$project->area = $request->input('area');
 		$project->unit_total = $request->input('unit_total');
 		$project->location = $request->input('location');
