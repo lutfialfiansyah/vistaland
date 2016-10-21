@@ -74,7 +74,7 @@
   });
 
 </script>
-<script> 
+<script>
     $(document).on('click', '#delete-btn', function(e) {
         e.preventDefault();
         var link = $(this);

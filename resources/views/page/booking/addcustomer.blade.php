@@ -19,7 +19,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Add Customer</h3>
-     <a href="{{ url('/customer') }}" class="btn btn-xs btn-success">
+                <a href="{{ url('/customer') }}" class="btn btn-xs btn-success">
                 <i class="fa fa-eye" aria-hidden="true"></i> Lihat data
               </a>
             </div>
@@ -179,7 +179,7 @@
 
                 <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
                   <label for="image">Photo</label>
-                  <input type="file" name="image" class="form-control" value="{{ old('image') }}">
+                  <input type="file" name="image" class="form-control" value="{{ old('image') }}" enctype="multipart/form-data" placeholder="Maz 1048 KB">
                     @if($errors->has('image'))
                       <span class="help-block">
                         <strong>{{ $errors->first('image') }}</strong>
@@ -246,7 +246,7 @@
                       </span>
                     @endif
                 </div>
-              
+
               <!--  <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
                   <label for="status">Status </label>
                   <input type="text" name="status" class="form-control" value="{{ old('status') }}">
@@ -265,9 +265,9 @@
                         <strong>{{ $errors->first('priority_status') }}</strong>
                       </span>
                     @endif
-                </div> 
+                </div>
               -->
-              
+
                 <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
                   <label for="status">Status</label>
                   <select name="status" id="status" class="form-control" value="{{old('status')}}">
@@ -298,7 +298,7 @@
                   @endif
                 </div>
 
-              
+
                 <div class="form-group">
                   <button type="reset" class="btn btn-default">RESET</button>
                   <input type="submit" class="btn btn-primary pull-right" value="SIMPAN">

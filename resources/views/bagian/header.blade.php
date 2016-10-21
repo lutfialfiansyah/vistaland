@@ -231,11 +231,7 @@
                   <a href="{{ url('/editprofile') }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-<<<<<<< HEAD
-                  <a id="logout-btn" href="{{url('/logout')}}" class="btn btn-default btn-flat">Sign out</a>             
-=======
-                  <a id="logout-btn" href="#" class="btn btn-default btn-flat" data-toggle="modal" data-target="#log">Sign out</a>
->>>>>>> 34cef396f1451857d785f12b9a15d315bcda77d2
+                  <a id="logout-btn" href="{{url('/logout')}}" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -247,9 +243,7 @@
 
 </header>
 
-<<<<<<< HEAD
 @push('script')
-=======
 <!-- modal -->
 <div class="modal fade" tabindex="-1" id="log" role="dialog" aria-labelledby="gridSystemModalLabel">
   <div class="modal-dialog" role="document">
@@ -269,8 +263,7 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<!--
->>>>>>> 34cef396f1451857d785f12b9a15d315bcda77d2
+@push('script')
 <script>
     $(document).on('click', '#logout-btn', function(e) {
         e.preventDefault();
