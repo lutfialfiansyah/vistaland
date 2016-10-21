@@ -230,7 +230,9 @@
                 <div class="pull-left">
                   <a href="{{ url('/editprofile') }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
-                  <a id="logout-btn" href="{{url('/logout')}}" class="btn btn-default btn-flat">Sign out</a>
+                <div class="pull-right">
+                  <a href="#" class="btn btn-default btn-flat" data-toggle="modal" data-target="#log">Sign out</a>
+
                 </div>
               </li>
             </ul>
@@ -241,6 +243,7 @@
     </nav>
 
 </header>
+
 
 <!-- modal -->
 <div class="modal fade" tabindex="-1" id="log" role="dialog" aria-labelledby="gridSystemModalLabel">
@@ -260,3 +263,27 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<script>
+    $(document).on('click', '#logout-btn', function(e) {
+        e.preventDefault();
+        var link = $(this);
+        swal({
+            title: "Confirm Sign out!",
+            text: "Are you sure?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes",
+            closeOnConfirm: true
+         },
+         function(isConfirm){
+             if(isConfirm){
+                window.location = link.attr('href');
+             }
+             else{
+                swal("cancelled","Category deletion Cancelled", "error");
+             }
+         });
+    });
+</script>

@@ -37,6 +37,7 @@
 	<div class="wrapper">
 		@include('bagian.header')
 		@include('bagian.aside')
+			@include('sweet::alert')
 		<div class="content-wrapper">
 			@yield('konten')
 		</div>

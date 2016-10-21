@@ -30,7 +30,7 @@
               {!! csrf_field() !!}
 								<div class="form-group{{ $errors->has('customer_id_old') ? ' has-error' : '' }}">
 									<label for="customer_id_old">Customer Old</label>
-									<select name="customer_id_old" id="customer" class="form-control">
+									<select name="customer_id_old" class="form-control">
 											<option></option>
 											@if(count($customer) <= 0)
 												<option disabled="disabled">No data customer</option>
@@ -107,13 +107,5 @@
      </div>
     </section>
 @endsection
-@push('script')
-<script>
-      $(document).ready(function () {
-        $("#customer").select2({
-          placeholder: "Chose One"
-          });
-      });
-</script>
-@endpush
+
 
