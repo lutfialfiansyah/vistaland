@@ -16,7 +16,7 @@ class BuatTableModulPerubahandata extends Migration
         Schema::create('change_name', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('customer_id_old');
-            $table->integer('customer_id_name');
+            $table->integer('customer_id_new');
             $table->string('reason');
             $table->string('status');
             $table->unsignedInteger('spr_id');

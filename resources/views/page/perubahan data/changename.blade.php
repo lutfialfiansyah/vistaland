@@ -7,7 +7,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ route('user.home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><a href="{{ route('change-name.view') }}">Change Name</li></a>
+        <li class="active"><a href="{{ route('change-name.view') }}">Ganti Nama</li></a>
 
       </ol>
     </section>
@@ -18,9 +18,14 @@
         <div class="col-xs-12">
           <div class="box box-primary">
             <div class="box-header">
-              <h3 class="box-title">Data Change Name</h3>
-              <div class="box-tools pull-right"><a href='{{ URL::to('change-name/add') }}' class="btn btn-xs btn-success">
-                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add change name</a>
+              <h3 class="box-title">Data Ganti Nama</h3>
+              <div class="box-tools pull-right">
+              	<a href="{{ URL::to('change-name') }}" class="btn btn-xs btn-success">
+              		<i class="fa fa-refresh" aria-hidden="true"></i>
+              	</a>
+	              <a href='{{ URL::to('change-name/add') }}' class="btn btn-xs btn-success">
+	                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Ganti nama
+	              </a>
               </div>
             </div>
             <!-- /.box-header -->
@@ -29,13 +34,12 @@
               <table id="data" class="table table-condensed table-bordered table-hover">
               <thead>
                 <tr>
-                  <th>Null</th>
-                  <th>Null</th>
-                  <th>Null</th>
-                  <th>Null</th>
-                  <th>Null</th>
-                  <th>Null</th>
-                  <th>Null</th>
+                  <th>Old Customer</th>
+                  <th>New Customer</th>
+                  <th>Reason</th>
+                  <th>SRP</th>
+                  <th>Status</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               </table>
@@ -59,12 +63,11 @@
       "serverSide" : true,
       "ajax" : '{{ url("change-name/get-change-name") }}',
       "columns" : [
-        { data : '', name: '' },
-        { data : '', name: '' },
-        { data : '', name: '' },
-        { data : '', name: '' },
-        { data : '', name: '' },
-        { data : '', name: '' },
+        { data : 'customer_id_old', name: 'customer_id_old' },
+        { data : 'customer_id_new', name: 'customer_id_new' },
+        { data : 'reason', name: 'reason' },
+        { data : 'spr_id', name: 'spr_id' },
+        { data : 'status', name: 'status' },
         { data : 'action', name:'action', orderable: false, searchable: false },
       ]
     });
@@ -74,7 +77,7 @@
         e.preventDefault();
         var link = $(this);
         swal({
-            title: "Delete !",
+            title: "Delete Record !",
             text: "Are you sure?",
             type: "warning",
             showCancelButton: true,

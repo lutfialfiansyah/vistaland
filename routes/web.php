@@ -265,6 +265,35 @@ Route::group(['middleware' => ['auth']],function(){
 		]);
 		Route::get('change-name/get-change-name','PerubahanController@getChangenamedata');
 
+			/*
+			 ******* Move Kavling
+			 */
+		Route::get('movekavling',[
+			'uses' => 'PerubahanController@getMovekavling',
+			'as' => 'movekavling.view'
+		]);
+		Route::get('movekavling/add',[
+			'uses' => 'PerubahanController@getAddMovekavling',
+			'as' => 'movekavling.add'
+		]);
+		Route::post('movekavling/add',[
+			'uses' => 'PerubahanController@postAddMovekavling',
+			'as' => 'movekavling.add'
+		]);
+		Route::get('movekavling/edit/{id}',[
+			'uses' => 'PerubahanController@getEditMovekavling',
+			'as' => 'movekavling.edit'
+		]);
+		Route::post('movekavling/update/{id}',[
+			'uses' => 'PerubahanController@postUpdateMovekavling',
+			'as' => 'movekavling.update'
+		]);
+		Route::get('movekavling/hapus/{id}',[
+			'uses' => 'PerubahanController@getHapusMovekavling',
+			'as' => 'movekavling.hapus'
+		]);
+		Route::get('movekavling/get-movekavling','PerubahanController@getMovekavlingdata');
+
 
 
 
