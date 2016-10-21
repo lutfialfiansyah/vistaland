@@ -13,7 +13,6 @@
 	<link rel="stylesheet" href="{{ asset('AdminLTE/css/AdminLTE.css') }}">
 	<link rel="stylesheet" href="{{ asset('AdminLTE/css/skins/_all-skins.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('font-awesome-4.6.3/css/font-awesome.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('AdminLTE/css/skins/_all-skins.min.css') }}">
 	<!-- iCheck -->
 	<link rel="stylesheet" href="{{ asset('plugins/iCheck/flat/blue.css') }}">
 	<!-- Morris chart -->
@@ -21,9 +20,11 @@
 	<!-- jvectormap -->
 	<link rel="stylesheet" href="{{ asset('plugins/jvectormap/jquery-jvectormap-1.2.2.css') }}">
 	<!-- DataTables -->
-  	<link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap.css') }}">
 	<!-- Date Picker -->
 	<link rel="stylesheet" href="{{ asset('plugins/datepicker/datepicker3.css') }}">
+	<!-- dropzone -->
+	<link rel="stylesheet" href="{{ asset('plugins/dropzone/dropzone.min.css') }}">
 	<!-- Daterange picker -->
 	<link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
 	<!-- bootstrap wysihtml5 - text editor -->
@@ -84,6 +85,8 @@
 	<script src="{{ asset('plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
 	<!-- FastClick -->
 	<script src="{{ asset('plugins/fastclick/fastclick.js')}}"></script>
+	<!-- Drop Zone -->
+	<script src="{{ asset('plugins/dropzone/dropzone.min.js')}}"></script>
 	<!-- AdminLTE App -->
 	<script src="{{ asset('AdminLTE/js/app.min.js') }}"></script>
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -91,6 +94,6 @@
 	<!-- AdminLTE for demo purposes -->
 	<script src="{{ asset('AdminLTE/js/demo.js') }}"></script>
 	<!-- page script -->
-	
+
 </body>
 </html>

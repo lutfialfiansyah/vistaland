@@ -31,7 +31,7 @@
 
               <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
                 <label for="type">Type</label>
-                <select name="type" class="form-control">
+                <select name="type" class="form-control" id="type">
                   <option disabled="disabled" selected>Choose Type</option>
                   <option disabled="disabled"></option>
                   <option value="booking_free">Booking Free</option>
@@ -46,14 +46,14 @@
 								@endif
               </div>
               <div class="form-group{{ $errors->has('customer_id') ? ' has-error' : '' }}">
-                <label for="customer_id">Customer</label>
+                <label for="customer_id" id="customer">Customer</label>
                 <select name="customer_id" class="form-control">
 									<option value=""></option>
 									@if(count($customer) == 0)
 										<option disabled="disabled">No data customer</option>
 									@else
 										@foreach($customer as $data)
-											<option value="{{ $data->id }}">{{ $customer->name }}</option>
+											<option value="{{ $data->id }}">{{ $data->ktp_number." - ".$data->first_name." ".$data->last_name}} </option>
 										@endforeach
 									@endif
                 </select>
@@ -78,7 +78,7 @@
               </div>
               <div class="form-group{{ $errors->has('bank_reference') ? ' has-error' : '' }}">
 	                <label for="bank_reference">Bank reference</label>
-	                <input type="text" name="bank_reference" class="form-control">
+	                <input type="text" name="bank_reference" class="form-control" value="{{ old('bank_reference') }}">
 								@if($errors->has('bank_reference'))
 									<span class="help-block">
 										<strong>{{ $errors->first('bank_reference') }}</strong>
@@ -87,7 +87,7 @@
               </div>
               <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                 <label for="description">Description</label>
-                <input type="text" name="description" class="form-control">
+                <input type="text" name="description" class="form-control" value="{{ old('description') }}">
 								@if($errors->has('description'))
 									<span class="help-block">
 										<strong>{{ $errors->first('description') }}</strong>
@@ -107,5 +107,22 @@
      </div>
     </section>
 @endsection
+<!--
+<script type="text/javascript">
+		$('#type').on('change',function(e){
+			var type = e.target.value;
+
+			/* Ajax */
+
+			$.get('/ajax-customer?type=' + type, function(data){
+				$('#customer').empty();
+				$.each(data,function(index, subCatOjb){
+					$('#customer').append('<option value="'+customer.id+'">'+customer.first_name+'</option>');
+
+				});
+			});
+		)};
+</script>
+-->
 
 

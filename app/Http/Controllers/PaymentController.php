@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use Validator;
 use App\Http\Requests;
 use Datatables;
+use App\price;
 use App\tax_payment;
 use App\kavling;
 use App\customer;
@@ -22,23 +23,36 @@ class PaymentController extends Controller
  	public function getFormpaymentdata(){
  		$payment = payment::all();
  		return Datatables::of($payment)
- 			->addColumn('action',function(){
+ 			->addColumn('action',function($payment){
  				return
- 				'<a href="" class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
- 				 <a href="" class="btn btn-danger" onclick="return confirm(\'Hapus ? \')"><i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>';
+ 				'<a href="formpayment/edit/'.$payment->id.'" class="btn btn-xs btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+ 				 <a href="formpayment/hapus/'.$payment->id.'" class="btn btn-xs btn-danger" id="confirm"><i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>';
+ 			})
+ 			->editColumn('method',function($payment){
+ 				return "<span class='label label-primary'>$payment->method</span>";
+ 			})
+ 			->editColumn('customer',function($payment){
+
+ 				 return $payment->customer->first_name;
  			})
  			->make(true);
  	}
 
  	public function getAddFormpayment(){
+ 		$key = Input::get('customer_id');
+ 					if($key == "booking_free"){
+ 						$booking	= bf::all();
+ 					}elseif($key == "change_name"){
+ 						$change = change::all();
+ 					}
  		$customer = customer::all();
- 		return view('page.payment.addformpayment',['customer' => $customer]);
+ 		return view('page.payment.addformpayment',compact('customer','booking','change'));
  	}
 
  	public function postAddFormpayment(Request $request){
  		$payment = new payment();
  		$input = Input::all();
- 		$d_payment = payment::where('id',$payment->id)->get();
+ 		$d_payment = payment::where('id',$payment->id)->first();
  		$syarat = [
  			'type'=>'required',
  			'method'=>'required',
@@ -55,11 +69,14 @@ class PaymentController extends Controller
 		if($validator->fails()){
 		 		return redirect()->route('formpayment.add')->withErrors($validator)->withInput();
 		}else{
-							if(count($d_payment) < 0){
-										 		$payment->customer_id = Input::get('cutomer_id');
+							if(count($d_payment) <= 0){
+												$payment->type = Input::get('type');
+										 		$payment->customer_id = Input::get('customer_id');
 										 		$payment->method = Input::get('method');
 										 		$payment->bank_reference = Input::get('bank_reference');
 										 		$payment->description = Input::get('description');
+										 		$payment->total = 0;
+										 		$payment->transaction_id = 1;
 										 		$payment->save();
 										 		return redirect()->route('formpayment.add')->with('Pesan','Data behasil disimpan !');
 								}else{
@@ -82,12 +99,15 @@ class PaymentController extends Controller
  			'customer_id'=>'required'
  		]);
 
- 		$payment = payment::where('id',$id)->first();
- 		$payment->customer_id = $request->input('customer_id');
- 		$payment->method = $request->input('method');
- 		$payment->bank_reference = $request->input('bank_reference');
- 		$payment->description = $request->input('description');
- 		$payment->update();
+			 		$payment = payment::where('id',$id)->first();
+			 		$payment->type = Input::get('type');
+			 		$payment->customer_id = $request->input('customer_id');
+			 		$payment->method = $request->input('method');
+			 		$payment->bank_reference = $request->input('bank_reference');
+			 		$payment->description = $request->input('description');
+			 		$payment->total = 0;
+					$payment->transaction_id = 1;
+			 		$payment->update();
  		alert()->success('Data berhasil diperbaharui !');
  		return redirect()->route('formpayment.view');
  	}

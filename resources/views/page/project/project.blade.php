@@ -30,7 +30,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-            <table id="data" class="table table-bordered table-hover table-striped table-condesed">
+            <table id="data" class="table table-condesed table-bordered table-hover table-striped">
               <thead>
                 <tr>
                   <th>Name</th>
@@ -43,14 +43,13 @@
                 </tr>
               </thead>
               </table>
-
-            </div>
+						</div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
     </section>
 <script src="{{ asset('dist/sweetalert.min.js')}}"></script>
-@include('sweet::alert')  
+@include('sweet::alert')
 @endsection
 
 @push('script')
@@ -59,6 +58,7 @@
     $('#data').DataTable({
       "processing" : true,
       "serverSide" : true,
+    	"sScrollX": false,
       "ajax" : "{{ url('project/get-project') }}",
       "columns" : [
         { data : 'name', name: 'name' },
@@ -71,7 +71,29 @@
       ]
     });
   });
-  
+
+	$(document).on('click', '#confirm', function(e) {
+        e.preventDefault();
+        var link = $(this);
+        swal({
+            title: "Delete Record!",
+            text: "Are you sure?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes",
+            closeOnConfirm: true
+         },
+         function(isConfirm){
+             if(isConfirm){
+                window.location = link.attr('href');
+             }
+             else{
+                swal("cancelled","Category deletion Cancelled", "error");
+             }
+         });
+  });
+
 </script>
 <script>
     $(document).on('click', '#delete-btn', function(e) {

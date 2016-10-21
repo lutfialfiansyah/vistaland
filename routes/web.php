@@ -137,7 +137,7 @@ Route::group(['middleware' => ['auth']],function(){
 		/*
 		 *****Promo*****
 		 */
-		
+
 		Route::get('promo',[
 			'uses' => 'ProjectController@getPromo',
 			'as' => 'promo.view'
@@ -193,9 +193,16 @@ Route::group(['middleware' => ['auth']],function(){
 		]);
 		Route::get('formpayment/hapus/{id}',[
 			'uses' => 'PaymentController@getHapusFormpayment',
-			'as' => 'taxpayment.hapus'
+			'as' => 'formpayment.hapus'
 		]);
 		Route::get('formpayment/get-formpayment','PaymentController@getFormpaymentdata');
+
+		// Route::get('/ajax-customer',function(){
+		// 	$customer = Input::get('type');
+		// 	if($customer == "booking_free"){
+		// 		$customer = booking_free::all();
+		// 	}
+		// });
 
 		/*
 				******Tax Payment******
@@ -226,8 +233,42 @@ Route::group(['middleware' => ['auth']],function(){
 		]);
 		Route::get('taxpayment/get-taxpayment','PaymentController@getTaxpaymentdata');
 
+		/*
+		 ***************************Perubah Data**************************
+		 */
+			/*
+			 ******* Change name
+			 */
+		Route::get('change-name',[
+			'uses' => 'PerubahanController@getChangename',
+			'as' => 'change-name.view'
+		]);
+		Route::get('change-name/add',[
+			'uses' => 'PerubahanController@getAddChangename',
+			'as' => 'change-name.add'
+		]);
+		Route::post('change-name/add',[
+			'uses' => 'PerubahanController@postAddChangename',
+			'as' => 'change-name.add'
+		]);
+		Route::get('change-name/edit/{id}',[
+			'uses' => 'PerubahanController@getEditChangename',
+			'as' => 'change-name.edit'
+		]);
+		Route::post('change-name/update/{id}',[
+			'uses' => 'PerubahanController@postUpdateChangename',
+			'as' => 'change-name.update'
+		]);
+		Route::get('change-name/hapus/{id}',[
+			'uses' => 'PerubahanController@getHapusChangename',
+			'as' => 'change-name.hapus'
+		]);
+		Route::get('change-name/get-change-name','PerubahanController@getChangenamedata');
 
-    	/*
+
+
+
+    /*
 		 *****Profile*****
 		 */
     	Route::get('editprofile','userController@getEdit');
@@ -273,7 +314,8 @@ Route::get('customer/get-customer','BookingController@getCustomerdata');
 Route::get('customer/hapus/{id}',[
 	'uses' => 'BookingController@getHapusCustomer',
 	'as' => 'customer.hapus'
-	]);
+]);
+
 Route::get('customer/detail/{id}',[
 	'uses' => 'BookingController@getDetailCustomer',
 	'as' => 'customer.detail'
@@ -287,6 +329,7 @@ Route::post('customer/update/{id}',[
 			'as' => 'customer.update'
 		]);
 /*end customer*/
+
 
 /*
 *****nup*****

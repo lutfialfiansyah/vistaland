@@ -29,24 +29,23 @@
               </div>
             </div>
             <!-- /.box-header -->
-            <div class="box-body">  
+            <div class="box-body">
             <div class="row">
                 <div class="col-md-12">
           @if(count($project->siteplan) == 0)
-            <p>No picture</p>
+          	<script type="text/javascript">
+          		document.location.href="{{ URL::to("project/siteplan/$project->id/add") }}"
+          	</script>
+
           @else
             @foreach($project->siteplan as $data)
             <div class="col-xs-6 col-md-3">
                 <a href="#" class="thumbnail">
                   <img src='{{ asset("image/$data->image") }}' class="img-responsive" alt="Responsive image">
                 </a>
-                  <div class="btn-group btn-group-xs">
-                  <a href='{{ url("project/siteplan/$project->id/hapus/$data->id") }}' class="btn btn-xs btn-danger">hapus</a>
-                  <a href='{{ url("project/siteplan/$project->id/edit/$data->id") }}' class="btn btn-xs btn-warning">Edit</a>
-                </div>
-             </div>
+            </div>
             @endforeach
-             
+
           @endif
             </div>
             </div>
@@ -55,6 +54,6 @@
           <!-- /.box -->
     </section>
 <script src="{{ asset('dist/sweetalert.min.js')}}"></script>
-@include('sweet::alert') 
+@include('sweet::alert')
 @endsection
 

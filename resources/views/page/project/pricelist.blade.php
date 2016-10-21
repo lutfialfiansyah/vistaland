@@ -32,7 +32,7 @@
             <div class="box-body">
             <div class="table-responsive">
               <table class="table table-condensed table-bordered table-hover table-striped">
-              <tbody>
+              <thead>
                 <tr>
                   <th>Kavling Type</th>
                   <th>Price</th>
@@ -43,8 +43,10 @@
                   <th>Change Name Price</th>
                   <th>Memo</th>
                   <th>Status</th>
-                  <th>Action</th>
+                  <th style="width: 15%">Action</th>
                 </tr>
+              </thead>
+              <tbody>
               @if(count($project->price) == 0)
                 <tr>
                   <td colspan="10">No data available in table</td>
@@ -53,12 +55,12 @@
                 @foreach($project->price as $data)
                   <tr>
                     <td>{{ $data->kavling_type->type }}</td>
-                    <td>{{ "Rp. ".number_format($data->price,2,',','.') }}</td>
-                    <td>{{ "Rp. ".number_format($data->administration_price,2,',','.') }}</td>
-                    <td>{{ "Rp. ".number_format($data->renovation_price,2,',','.') }}</td>
-                    <td>{{ "Rp. ".number_format($data->left_over_price,2,',','.') }}</td>
-                    <td>{{ "Rp. ".number_format($data->move_kavling_price,2,',','.') }}</td>
-                    <td>{{ "Rp. ".number_format($data->change_name_price,2,',','.') }}</td>
+                    <td>{{ "Rp.".number_format($data->price,0,',','.') }}</td>
+                    <td>{{ "Rp.".number_format($data->administration_price,0,'','.') }}</td>
+                    <td>{{ "Rp.".number_format($data->renovation_price,0,',','.') }}</td>
+                    <td>{{ "Rp.".number_format($data->left_over_price,0,'','.') }}</td>
+                    <td>{{ "Rp.".number_format($data->move_kavling_price,0,'','.') }}</td>
+                    <td>{{ "Rp.".number_format($data->change_name_price,0,'','.') }}</td>
                     <td>{{ $data->memo }}</td>
                     <td><span class="label label-primary">{{ $data->management_confirm_status }}</span></td>
                     <td>
@@ -75,6 +77,8 @@
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
+        </div>
+      </div>
     </section>
 <script src="{{ asset('dist/sweetalert.min.js')}}"></script>
 @include('sweet::alert')
