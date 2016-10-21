@@ -49,14 +49,17 @@
                 </div>
                 <div class="form-group {{ $errors->has('customer') ? ' has-error' : ''}}">
                   <label>Customer</label>
-                  <select name="customer" id="customer" class="form-control">
+                  <select name="customer" id="customer" class="form-control" required>
                     <option value=""></option>
+                    @foreach ($nupcus as $nups)
+                    <option value="{{$nups->id}}">{{$nups->first_name}}</option>
+                  @endforeach
                   </select>
                   @if($errors->has('customer'))
                   <span class="help-block">
                     <strong>{{ $errors->first('customer')}}</strong>
-                  </span>
-                  @endif                
+                  </span><span id="select2-customer-5o-container" class="select2-selection__rendered" title="Choose One">Choose Oneeeeeeeeee</span>
+                  @endif
                   </div>
                 <div class="form-group">
                   <button type="reset" class="btn btn-default">RESET</button>

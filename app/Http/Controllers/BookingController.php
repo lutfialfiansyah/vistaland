@@ -55,11 +55,11 @@ class BookingController extends Controller
               })
               ->editColumn('priority_status',function($customer){
                 if($customer->priority_status == "Not Priority"){
-               return 
-                "<span class='label label-danger'>$customer->priority_status</small>";
+               return
+                "<small class='label label-danger'>$customer->priority_status</small>";
               }else{
-                return 
-                "<span class='label label-primary'>$customer->priority_status</small>";
+                return
+                "<small class='label label-primary'>$customer->priority_status</small>";
               }
               })
             ->make(true);
@@ -141,7 +141,7 @@ class BookingController extends Controller
       'email'=> 'required|min:0',
       'house_phone'=> 'required|numeric|min:0',
       'office_phone'=> 'required|numeric|min:0',
-      'image' => 'image|mimes:jpg,jpeg,png|max:1048',
+      'image' => 'required|image|mimes:jpg,jpeg,png|max:1048',
       'relative_name'=> 'required',
       'relative_phone'=> 'required|min:0',
       'relative_ktp'=> 'required',
@@ -215,13 +215,18 @@ class BookingController extends Controller
     }
 
     public function getNup(){
-        $nup = nup::all();
-            return view('page.booking.nup',compact('nup'));
+    $nup = nup::all();
+    return view('page.booking.nup',compact('nup'));
+    }
+    public function getAddNup(){
+    $nupcus = customer::all();
+        return view('page.booking.addnup',compact('nupcus'));
+    }
+    public function getEditNup($id){
+      $edit = customer::where('id',$id)->first();
+      return view('page.booking.editnup',compact('edit'));
     }
 
-    public function getAddNup(){
-        return view('page.booking.addnup');
-    }
     public function postAddNup(Request $request){
       $this->validate($request,[
       'first_name'=>'required|min:3|unique:customer,first_name',

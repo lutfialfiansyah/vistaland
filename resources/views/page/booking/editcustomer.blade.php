@@ -179,7 +179,7 @@
 
                 <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
                   <label for="image">Photo</label>
-                  <input type="file" name="image" class="form-control">
+                  <input type="file" name="image" class="form-control" enctype="multipart/form-data">
                     @if($errors->has('image'))
                       <span class="help-block">
                         <strong>{{ $errors->first('image') }}</strong>
@@ -246,10 +246,11 @@
                       </span>
                     @endif
                 </div>
-              
+
                 <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
                   <label for="status">Status</label>
-                  <select name="status" id="status" class="form-control" value="{{$edit->status}}">
+                  <select name="status" id="status" class="form-control" >
+                    <option>{{$edit->status}}</option>
                     <option value="Inactive">Inactive</option>
                     <option value="Active">Active</option>
                     <option value="Move Kavling">Move Kavling</option>
@@ -263,7 +264,8 @@
 
                 <div class="form-group{{ $errors->has('priority_status') ? ' has-error' : '' }}">
                   <label for="priority_status">Priority Status</label>
-                  <select name="priority_status" id="priority_statusi" class="form-control" value="{{$edit->priority_status}}">
+                  <select name="priority_status" id="priority_status" class="form-control" >
+                    <option>{{$edit->priority_status}}</option>
                     <option value="Not Priority">Not Priority</option>
                     <option value="Data Priority">Data Priority</option>
                     <option value="KPR Priority">KPR Priority</option>
