@@ -49,8 +49,8 @@
                 </div>
                 <div class="form-group {{ $errors->has('customer') ? ' has-error' : ''}}">
                   <label>Customer</label>
-                  <select name="customer" id="customer" class="form-control" required>
-                    <option value="">customerssss</option>
+                  <select name="customer" id="customer" class="form-control">
+                    <option value=""></option>
                   </select>
                   @if($errors->has('customer'))
                   <span class="help-block">

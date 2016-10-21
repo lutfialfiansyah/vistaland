@@ -31,7 +31,7 @@ class BookingController extends Controller
                 return
                 '<a href="customer/detail/'.$customer->id.'" class="btn btn-xs btn-primary"><i class="fa fa-eye" aria-hidden="true"></i>Detail</a>
 								<a href="customer/edit/'.$customer->id.'" class="btn btn-xs btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                <a href="customer/hapus/'.$customer->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus data customer '. $customer->first_name.' '.$customer->last_name.' ?\')">
+                <a id="delete-btn" href="customer/hapus/'.$customer->id.'" class="btn btn-xs btn-danger" >
                 <i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
                  ';
               })
@@ -45,12 +45,22 @@ class BookingController extends Controller
 								'<a href="https://accounts.google.com/Login#identifier" target="output">'.$customer->email.'</a>';
 							})
               ->editColumn('status',function($customer){
-                return
-                '<h4><small class="label bg-green">'.$customer->status.'</small></h4>';
+                if($customer->status == "Active"){
+                  return "<span class='label bg-green'>$customer->status</span>";
+                }elseif ($customer->status == "Move Kavling"){
+                  return "<span class='label label-warning'>$customer->status</span>";
+                }else {
+                  return "<span class='label bg-red'>$customer->status</span>";
+                }
               })
               ->editColumn('priority_status',function($customer){
-                return
-                '<h4><small class="label bg-red">'.$customer->priority_status.'</small></h4>';
+                if($customer->priority_status == "Not Priority"){
+               return 
+                "<span class='label label-danger'>$customer->priority_status</small>";
+              }else{
+                return 
+                "<span class='label label-primary'>$customer->priority_status</small>";
+              }
               })
             ->make(true);
 
@@ -70,7 +80,7 @@ class BookingController extends Controller
       'relative_ktp'=> 'required',
       'spouse_name'=> 'required',
       'spouse_ktp'=> 'required',
-      'image' => 'required',
+      'image' => 'required|image|mimes:jpg,jpeg,png|max:1048',
       'bank_account_number'=> 'required|numeric|min:0',
       'btn_id'=> 'required',
       'btn_account_number'=> 'required|numeric|min:0',
@@ -114,7 +124,7 @@ class BookingController extends Controller
 
       $customer->image = $namafile;
       $customer->save();
-      alert()->success('Data berhasil disimpan !');
+      alert()->success('Data berhasil disimpan !')->autoclose(3000);
       return redirect()->route('customer.view');
 
 		}
@@ -128,9 +138,10 @@ class BookingController extends Controller
       'ktp_expire'=>'required|min:0',
       'house_address'=> 'required',
       'office_address'=> 'required',
-      'email'=> 'required|unique|min:0',
+      'email'=> 'required|min:0',
       'house_phone'=> 'required|numeric|min:0',
       'office_phone'=> 'required|numeric|min:0',
+      'image' => 'image|mimes:jpg,jpeg,png|max:1048',
       'relative_name'=> 'required',
       'relative_phone'=> 'required|min:0',
       'relative_ktp'=> 'required',
@@ -171,17 +182,18 @@ class BookingController extends Controller
 		$customer->status = $request->input('status');
 		$customer->priority_status = $request->input('priority_status');
 
-
+    if(!!empty(Input::file('image'))){
+      $customer->image = $customer->image;
+    }else{
       $image = Input::file('image');
-       $namafile = time().'.'.$image->getClientOriginalName();
-       $path = public_path('image/'.$namafile);
-       Image::make($image->getRealPath())->resize(200,200)->save($path);
-
+      $namafile = time().'.'.$image->getClientOriginalExtension();
+      $path = public_path('image/'.$namafile);
+      Image::make($image->getRealPath())->resize(200,200)->save($path);
       $customer->image = $namafile;
-
+    }
 
       $customer->update();
-      alert()->success('Data berhasil diupdate !');
+      alert()->success('Data berhasil diupdate !')->autoclose(3000);
       return redirect()->route('customer.view');
     }
     public function getAddcustomer(){
@@ -198,7 +210,7 @@ class BookingController extends Controller
     public function getHapusCustomer($id){
     	$customer = customer::find($id);
     	$customer->delete();
-    	alert()->success('Data berhasil dihapus !');
+    	alert()->success('Data berhasil dihapus !')->autoclose(3000);
     	return redirect()->route('customer.view');
     }
 
@@ -222,7 +234,7 @@ class BookingController extends Controller
     $customer->last_name = $request->input('last_name');
     $customer->ktp_number = $request->input('ktp_number');
       $customer->save();
-      alert()->success('Data berhasil disimpan !');
+      alert()->success('Data berhasil disimpan !')->autoclose(3000);
       return redirect()->route('nup.view');
 
     }
@@ -266,5 +278,4 @@ class BookingController extends Controller
               })
             ->make(true);
         }
-
 }

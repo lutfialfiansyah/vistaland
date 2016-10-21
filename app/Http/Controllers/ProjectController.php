@@ -34,8 +34,8 @@ class ProjectController extends Controller
                  </a>
                  <a href="project/'.$project->id.'/kavling" class="btn btn-xs btn-info"><i class="fa fa-home" aria-hidden="true"></i> Kavling</a>
                  <a href="project/'.$project->id.'/pricelist" class="btn btn-xs btn-warning"><i class="fa fa-money" aria-hidden="true"></i> Price List</a>
-                 <a href="project/hapus/'.$project->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus project '. $project->name.' ?\')">
-                 <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
+                 <a id="delete-btn" href="project/hapus/'.$project->id.'" class="btn btn-xs btn-danger">
+                 <i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
                  ';
               })
             ->make(true);
@@ -68,7 +68,7 @@ class ProjectController extends Controller
 		$project->nup_comission = $request->input('nup_comission');
 		$project->akad_comission = $request->input('akad_comission');
 		$project->save();
-		alert()->success('Data berhasil disimpan !');
+		alert()->success('Data berhasil disimpan !')->autoclose(3000);
 		return redirect()->route('project.view');
 
     }
@@ -85,7 +85,7 @@ class ProjectController extends Controller
     	$kavling->delete();
     	$price->delete();
     	$project->delete();
-    	alert()->success('Data berhasil dihapus !');
+    	alert()->success('Data berhasil dihapus !')->autoclose(3000);
     	return redirect()->route('project.view');
     }
 
@@ -122,7 +122,7 @@ class ProjectController extends Controller
 		$project->nup_comission = $request->input('nup_comission');
 		$project->akad_comission = $request->input('akad_comission');
 		$project->update();
-		alert()->success('Data berhasil diupdate !');
+		alert()->success('Data berhasil diupdate !')->autoclose(3000);
 		return redirect()->route('project.view');
 
     }
@@ -195,7 +195,7 @@ class ProjectController extends Controller
     	$kavling->kavling_type_id = $request->input('kavling_type_id');
     	$kavling->project_id = $id;
     	$kavling->save();
-		return back()->with('success','Data berhasil disimpan !');
+		return back()->with('success','Data berhasil disimpan !')->autoclose(3000);
 
     }
 
@@ -235,14 +235,14 @@ class ProjectController extends Controller
     	$kavling->kavling_type_id = $request->input('kavling_type_id');
     	$kavling->project_id = $id;
     	$kavling->update();
-    	alert()->success('Data telah diperbaharui !');
+    	alert()->success('Data telah diperbaharui !')->autoclose(3000);
 		return redirect()->route('kavling.view',$id);
 	}
 
     public function getHapusKavling($id,$kav_id){
     	$kavling = kavling::where('id','=',$kav_id,'and','project_id','=',$id)->first();
     	$kavling->delete();
-    	alert()->success('Data berhasil dihapus !');
+    	alert()->success('Data berhasil dihapus !')->autoclose(3000);
     	return redirect()->route('kavling.view',$id);
     }
 
@@ -285,7 +285,7 @@ class ProjectController extends Controller
     	$price->memo = $request->input('memo');
     	$price->project_id = $id;
     	$price->save();
-    	alert()->success('Data berhasil disimpan !');
+    	alert()->success('Data berhasil disimpan !')->autoclose(3000);
 		return redirect()->route('pricelist.view',$id);
 
     }
@@ -322,14 +322,14 @@ class ProjectController extends Controller
     	$price->memo = $request->input('memo');
     	$price->project_id = $id;
     	$price->update();
-    	alert()->success('Data berhasil diperbaharui !');
+    	alert()->success('Data berhasil diperbaharui !')->autoclose(3000);
 		return redirect()->route('pricelist.view',$id);
 	}
 
 	public function getHapusPricelist($id,$price_id){
     	$price = price::where('id','=',$price_id,'and','project_id','=',$id)->first();
     	$price->delete();
-    	alert()->success('Data berhasil dihapus !');
+    	alert()->success('Data berhasil dihapus !')->autoclose(3000);
     	return redirect()->route('pricelist.view',$id);
     }
 
@@ -388,7 +388,7 @@ class ProjectController extends Controller
 	        Image::make($image->getRealPath())->resize(500,500)->save($path);
 
 	        $update->image = $namafile;
-	        alert()->success('Update foto berhasil !');
+	        alert()->success('Update foto berhasil !')->autoclose(3000);
     	}
     	$update->update();
     	return redirect()->route('siteplan.view',$id);
@@ -398,14 +398,14 @@ class ProjectController extends Controller
     public function getHapusSiteplan($id,$siteplan_id){
     	$siteplan = siteplan::where('id','=',$siteplan_id,'and','project_id','=',$id)->first();
     	$siteplan->delete();
-    	alert()->success('Data berhasil dihapus !');
+    	alert()->success('Data berhasil dihapus !')->autoclose(3000);
     	return redirect()->route('siteplan.view',$id);
     }
 
     public function getDropSiteplan($id){
     	$siteplan = siteplan::where('project_id','=',$id);
     	$siteplan->delete();
-    	alert()->success('Data berhasil dihapus !');
+    	alert()->success('Data berhasil dihapus !')->autoclose(3000);
     	return redirect()->route('siteplan.view',$id);
     }
 
@@ -478,14 +478,14 @@ class ProjectController extends Controller
 		$promo->agent_bonus = $request->input('agent_bonus');
 		$promo->team_bonus = $request->input('team_bonus');
 		$promo->update();
-		alert()->success('Data berhasil diperbaharui !');
+		alert()->success('Data berhasil diperbaharui !')->autoclose(3000);
 		return redirect()->route('promo.view');
     }
 
     public function getHapusPromo($id){
     	$promo = promo::where('id',$id)->first();
     	$promo->delete();
-    	alert()->success('Data berhasil dihapus !');
+    	alert()->success('Data berhasil dihapus !')->autoclose(3000);
     	return redirect()->route('promo.view');
     }
 

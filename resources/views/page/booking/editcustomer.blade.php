@@ -25,7 +25,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form action="{{ route('customer.update',$edit->id) }}" method="post">
+              <form action="{{ route('customer.update',$edit->id) }}" method="post" enctype="multipart/form-data">
               {!! csrf_field() !!}
                 <div class="form-group{{ $errors->has('first_name') ? ' has-error' : ''}}">
                   <label for="first_name">First Name</label>
@@ -179,7 +179,7 @@
 
                 <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
                   <label for="image">Photo</label>
-                  <input type="file" name="image" class="form-control" value="{{ $edit->image }}">
+                  <input type="file" name="image" class="form-control">
                     @if($errors->has('image'))
                       <span class="help-block">
                         <strong>{{ $errors->first('image') }}</strong>

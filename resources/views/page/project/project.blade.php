@@ -73,4 +73,27 @@
   });
   
 </script>
+<script>
+    $(document).on('click', '#delete-btn', function(e) {
+        e.preventDefault();
+        var link = $(this);
+        swal({
+            title: "Confirm Delete",
+            text: "Delete Data Project?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#D5180A",
+            confirmButtonText: "Yes",
+            closeOnConfirm: true
+         },
+         function(isConfirm){
+             if(isConfirm){
+                window.location = link.attr('href');
+             }
+             else{
+                swal("cancelled","Category deletion Cancelled", "error");
+             }
+         });
+    });
+</script>
 @endpush
