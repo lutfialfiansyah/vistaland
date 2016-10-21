@@ -25,5 +25,5 @@ class customer extends Model
         return $this->hasOne('App\payment','customer_id');
     }
 
-    public $timestamps = false;
+    public $timestamps = true;
 }

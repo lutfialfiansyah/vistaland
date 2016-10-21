@@ -315,10 +315,21 @@ Route::get('customer/hapus/{id}',[
 	'uses' => 'BookingController@getHapusCustomer',
 	'as' => 'customer.hapus'
 ]);
+
 Route::get('customer/detail/{id}',[
 	'uses' => 'BookingController@getDetailCustomer',
 	'as' => 'customer.detail'
-]);/*end customer*/
+	]);
+Route::get('customer/edit/{id}',[
+			'uses' => 'BookingController@getEditCustomer',
+			'as' => 'customer.edit'
+		]);
+Route::post('customer/update/{id}',[
+			'uses' => 'BookingController@postUpdateCustomer',
+			'as' => 'customer.update'
+		]);
+/*end customer*/
+
 
 /*
 *****nup*****
@@ -330,7 +341,7 @@ Route::get('nup',[
 	]);
 Route::get('nup/add','BookingController@getAddNup');
 Route::post('nup/add',[
-	'uses' => 'BookingController@postAddnup',
+	'uses' => 'BookingController@postAddNup',
 	'as' => 'nup.add'
 ]);
 Route::get('nup/get-nup','BookingController@getNupdata');

@@ -41,19 +41,26 @@
                   <select name="project" id="project" class="form-control" required>
                     <option value="">projectsss</option>
                   </select>
-                  <span class="help-block"></span>
+                  @if($errors->has('customer'))
+                  <span class="help-block">
+                    <strong>{{ $errors->first('customer')}}</strong>
+                  </span>
+                  @endif
                 </div>
                 <div class="form-group {{ $errors->has('customer') ? ' has-error' : ''}}">
                   <label>Customer</label>
                   <select name="customer" id="customer" class="form-control" required>
                     <option value="">customerssss</option>
                   </select>
-                  <span class="help-block"></span>
-                </div>
+                  @if($errors->has('customer'))
+                  <span class="help-block">
+                    <strong>{{ $errors->first('customer')}}</strong>
+                  </span>
+                  @endif                
+                  </div>
                 <div class="form-group">
                   <button type="reset" class="btn btn-default">RESET</button>
                   <input type="submit" class="btn btn-primary pull-right" value="Submit">
-
                 </div>
 
               </form>
@@ -64,3 +71,12 @@
     </section>
 
 @endsection
+@push('script')
+<script>
+      $(document).ready(function () {
+        $("#customer").select2({
+          placeholder: "Chose One"
+          });
+      });
+</script>
+@endpush

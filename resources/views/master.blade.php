@@ -29,6 +29,8 @@
 	<link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
 	<!-- bootstrap wysihtml5 - text editor -->
 	<link rel="stylesheet" href="{{ asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
+	<!-- select2 -->
+	<link rel="stylesheet" href="{{ asset('plugins/select2/select2.css') }}">
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -58,8 +60,11 @@
 	<script>
 	  $.widget.bridge('uibutton', $.ui.button);
 	</script>
-	<!-- Morris.js charts -->
+	<!-- sweetalert-->
 	<script type="text/javascript" src="{{ asset('dist/sweetalert.min.js') }}"></script>
+	<!-- sweetalert-->
+	<script type="text/javascript" src="{{ asset('plugins/select2/select2.min.js') }}"></script>
+	<!-- Morris.js charts -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 	<script src="{{ asset('plugins/morris/morris.min.js') }}"></script>
 	<!-- Sparkline -->
