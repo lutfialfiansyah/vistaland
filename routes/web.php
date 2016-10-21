@@ -379,9 +379,9 @@ Route::get('nup/get-nup','BookingController@getNupdata');
 /*
 *****booking fee*****
 */
-Route::get('booking-fee','BookingController@getBooking');
+Route::get('booking-fee','BookingController@getBookingfee');
 Route::get('booking-fee',[
-	'uses' => 'BookingController@getBooking',
+	'uses' => 'BookingController@getBookingfee',
 	'as' => 'booking.view'
 	]);
 Route::get('booking/add','BookingController@getAddBooking');
