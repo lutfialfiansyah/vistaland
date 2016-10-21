@@ -285,5 +285,8 @@ class BookingController extends Controller
         $booking = customer::all();
             return view('page.booking.booking-fee',compact('booking'));
     }
+      public function getAddBooking(){
+      return view('page.booking.addbooking');
+    }
 
 }
