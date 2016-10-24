@@ -22,6 +22,7 @@ class ProjectController extends Controller
     	$project= project::all();
         return view('page.project.project',compact('project'));
     }
+
     public function getProjectdata(){
     	$project = project::all();
     	return Datatables::of($project)
