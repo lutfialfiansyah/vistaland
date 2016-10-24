@@ -7,8 +7,8 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ route('user.home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class=""><a href="{{ route('change-name.view') }}">Ganti Nama</li></a>
-        <li class="active"><a href="">Add Ganti Nama</li></a>
+        <li class=""><a href="{{ route('movekavling.view') }}">Move Kavling</li></a>
+        <li class="active"><a href="">Add Move Kavling</li></a>
       </ol>
     </section>
 
@@ -18,7 +18,7 @@
         <div class="col-xs-12">
           <div class="box box-primary">
             <div class="box-header">
-              <h3 class="box-title">Add Ganti Nama</h3>
+              <h3 class="box-title">Add Move Kavling</h3>
             </div>
             <!-- /.box-header -->
 
@@ -28,31 +28,31 @@
             	@endif
               <form action="" method="post" >
               {!! csrf_field() !!}
-				<div class="form-group {{ $errors->has('customer_id_old') ? ' has-error' : ''}}">
-                  <label for="customer_id_old">Customer Old</label>
-                  <select name="customer_id_old" id="customerold" class="form-control">
+				<div class="form-group {{ $errors->has('kavling_from') ? ' has-error' : ''}}">
+                  <label for="kavling_from">Kavling From</label>
+                  <select name="kavling_from" id="kavlingfrom" class="form-control">
                     <option value=""></option>
-                @foreach($customer as $key => $value)
+                @foreach($kavling as $key => $value)
 				<option value="{{ $key }}">{{ $key." - ".$value }}</option>
 				@endforeach
                   </select>
-                  @if($errors->has('customer_id_old'))
+                  @if($errors->has('k avling_from'))
                   <span class="help-block">
-                    <strong>{{ $errors->first('customer_id_old')}}</strong>
+                    <strong>{{ $errors->first('kavling_from')}}</strong>
                   </span><span id="select2-customer-5o-container" class="select2-selection__rendered" title="Choose One">Choose One</span>
                   @endif
                   </div>
-				<div class="form-group {{ $errors->has('customer_id_new') ? ' has-error' : ''}}">
-                  <label for="customer_id_new">Customer New</label>
-                  <select name="customer_id_new" id="customernew" class="form-control">
+				<div class="form-group {{ $errors->has('kavling_to') ? ' has-error' : ''}}">
+                  <label for="kavling_to">Kavling To</label>
+                  <select name="kavling_to" id="kavlingto" class="form-control">
                     <option value=""></option>
-                @foreach($customer as $key => $value)
+                @foreach($kavling as $key => $value)
 				<option value="{{ $key }}">{{ $key." - ".$value }}</option>
 				@endforeach
                   </select>
-                  @if($errors->has('customer_id_new'))
+                  @if($errors->has('kavling_to'))
                   <span class="help-block">
-                    <strong>{{ $errors->first('customer_id_new')}}</strong>
+                    <strong>{{ $errors->first('kavling_to')}}</strong>
                   </span><span id="select2-customer-5o-container" class="select2-selection__rendered" title="Choose One">Choose One</span>
                   @endif
                   </div>
@@ -80,15 +80,7 @@
 										</span>
 									@endif
 								</div>
-								<div class="form-group{{ $errors->has('spr_id') ? ' has-error' : '' }}">
-									<label for="spr_id">SPR ID</label>
-									<input type="text" name="spr_id" value="{{ old('spr_id') }}" class="form-control">
-									@if($errors->has('spr_id'))
-										<span class="help-block">
-											<strong>{{ $errors->first('spr_id') }}</strong>
-										</span>
-									@endif
-								</div>
+							
 								<div class="form-group">
 									<button type="reset" class="btn btn-default">RESET</button>
 									<button type="submit" class="btn btn-primary pull-right">SIMPAN</button>
@@ -105,10 +97,10 @@
 @push('script')
 <script>
       $(document).ready(function () {
-        $("#customerold").select2({
+        $("#kavlingfrom").select2({
           placeholder: "Chose One"
           });
-        $("#customernew").select2({
+        $("#kavlingto").select2({
           placeholder: "Chose One"
           });
       });

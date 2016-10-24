@@ -294,25 +294,45 @@ Route::group(['middleware' => ['auth']],function(){
 		]);
 		Route::get('movekavling/get-movekavling','PerubahanController@getMovekavlingdata');
 
+		/*
+		 *****customervoid*****
+		 */
+		Route::get('customervoid',[
+			'uses' => 'PerubahanController@getCustomervoid',
+			'as' => 'customervoid.view'
+		]);
+		Route::get('customervoid/add',[
+			'uses' => 'PerubahanController@getAddCustomervoid',
+			'as' => 'customervoid.add'
+		]);
+		Route::get('customervoid/edit/{id}',[
+			'uses' => 'PerubahanController@getEditCustomervoid',
+			'as' => 'customervoid.edit'
+		]);
+		Route::post('customervoid/update/{id}',[
+			'uses' => 'PerubahanController@postUpdateCustomervoid',
+			'as' => 'customervoid.update'
+		]);
+		Route::get('customervoid/hapus/{id}',[
+			'uses' => 'PerubahanController@getHapusCustomervoid',
+			'as' => 'customervoid.hapus'
+		]);
+		Route::get('customervoid/get-customervoid','PerubahanController@getMoveCustomervoid');
 
 
-
-    /*
+    	/*
 		 *****Profile*****
 		 */
     	Route::get('editprofile','userController@getEdit');
     	Route::get('editprofile/get-profile','userController@getEditdata');
-
-	});
-
-	Route::get('editprofile/{id}','userController@edit');
-
-	Route::get('/lockscreen',[
+		});
+		Route::get('editprofile/{id}','userController@edit');
+		Route::get('/lockscreen',[
 		'uses' => 'userController@getlocked',
 		'as' => 'user.locked',
-	]);
+		]);
 
-});
+		});
 
 Route::get('/login',[
 	'uses' => 'userController@getLogin',
@@ -409,3 +429,28 @@ Route::post('spr/add',[
 ]);
 Route::get('spr/get-spr','BookingController@getSprdata');
 /*end SPR*/
+
+		/*
+		 *****customervoid*****
+		 */
+		Route::get('interview',[
+			'uses' => 'PerubahanController@getInterview',
+			'as' => 'interview.view'
+		]);
+		Route::get('interview/add',[
+			'uses' => 'PerubahanController@getAddInterview',
+			'as' => 'interview.add'
+		]);
+		Route::get('interview/edit/{id}',[
+			'uses' => 'PerubahanController@getEditInterview',
+			'as' => 'interview.edit'
+		]);
+		Route::post('interview/update/{id}',[
+			'uses' => 'PerubahanController@postUpdateInterview',
+			'as' => 'interview.update'
+		]);
+		Route::get('interview/hapus/{id}',[
+			'uses' => 'PerubahanController@getHapusInterview',
+			'as' => 'interview.hapus'
+		]);
+		Route::get('interview/get-interview','PerubahanController@getMoveInterview');

@@ -28,8 +28,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route('project.view') }}"><i class="fa fa-circle-o"></i> Proyek Umum</a></li>
-            <li><a href="{{ route('promo.view') }}"><i class="fa fa-circle-o"></i> Promo</a></li>
+            <li><a href="{{ route('project.view') }}"><i class="fa fa-list"></i> Proyek Umum</a></li>
+            <li><a href="{{ route('promo.view') }}"><i class="fa fa-percent"></i> Promo</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -56,10 +56,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route('formpayment.view') }}"><i class="fa fa-circle-o"></i> Form Payment</a></li>
+            <li><a href="{{ route('formpayment.view') }}"><i class="fa fa-bank"></i> Form Payment</a></li>
             <li><a href=""><i class="fa fa-circle-o"></i> KPR Payment</a></li>
             <li><a href=""><i class="fa fa-circle-o"></i> PBB Payment</a></li>
-            <li><a href="{{ route('taxpayment.view') }}"><i class="fa fa-circle-o"></i> Tax Payment</a></li>
+            <li><a href="{{ route('taxpayment.view') }}"><i class="fa fa-industry"></i> Tax Payment</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -70,11 +70,11 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route('change-name.view') }}"><i class="fa fa-tag"></i> Ganti Nama</a></li>
-            <li><a href="{{ route('movekavling.view') }}"><i class="fa fa-circle-o"></i> Pindah Kavling</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Pembatalan</a></li>
-          </ul>
+        <ul class="treeview-menu">
+          <li><a href="{{ route('change-name.view') }}"><i class="fa fa-tag"></i> Ganti Nama</a></li>
+          <li><a href="{{ route('movekavling.view') }}"><i class="fa fa-map-signs"></i> Pindah Kavling</a></li>
+          <li><a href="{{ route('customervoid.view')}}"><i class="fa fa-ban"></i> Pembatalan</a></li>
+         </ul>
         </li>
         <li class="treeview">
           <a href="#">
@@ -99,8 +99,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Status KPR</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Pencairan</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> Interview Schedule </a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> Akad Kredit Schedule </a></li>
           </ul>
         </li>
         <li class="treeview">
