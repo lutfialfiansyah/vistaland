@@ -30,7 +30,7 @@ class BookingController extends Controller
     		})
             ->addColumn('action',function($customer){
                 return
-                '<a href="customer/detail/'.$customer->id.'" class="btn btn-xs btn-primary"><i class="fa fa-eye" aria-hidden="true"></i>Detail</a>
+                '<a href="customer/detail/'.$customer->id.'" class="btn btn-xs btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> Detail</a>
 								<a href="customer/edit/'.$customer->id.'" class="btn btn-xs btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
                 <a id="delete-btn" href="customer/hapus/'.$customer->id.'" class="btn btn-xs btn-danger" >
                 <i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>
@@ -142,7 +142,7 @@ class BookingController extends Controller
       'email'=> 'required|min:0',
       'house_phone'=> 'required|numeric|min:0',
       'office_phone'=> 'required|numeric|min:0',
-      'image' => 'required|image|mimes:jpg,jpeg,png|max:1048',
+      'image' => 'image|mimes:jpg,jpeg,png|max:1048',
       'relative_name'=> 'required',
       'relative_phone'=> 'required|min:0',
       'relative_ktp'=> 'required',
@@ -173,7 +173,6 @@ class BookingController extends Controller
 		$customer->relative_ktp = $request->input('relative_ktp');
 		$customer->spouse_name = $request->input('spouse_name');
 		$customer->spouse_ktp = $request->input('spouse_ktp');
-		$customer->image = $request->input('image');
 		$customer->bank_account_number = $request->input('bank_account_number');
 		$customer->btn_id = $request->input('btn_id');
 		$customer->btn_account_number = $request->input('btn_account_number');
@@ -183,7 +182,7 @@ class BookingController extends Controller
 		$customer->status = $request->input('status');
 		$customer->priority_status = $request->input('priority_status');
 
-    if(!!empty(Input::file('image'))){
+    if(empty(Input::file('image'))){
       $customer->image = $customer->image;
     }else{
       $image = Input::file('image');

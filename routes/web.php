@@ -294,6 +294,7 @@ Route::group(['middleware' => ['auth']],function(){
 		]);
 		Route::get('movekavling/get-movekavling','PerubahanController@getMovekavlingdata');
 
+<<<<<<< HEAD
 		/*
 		 *****customervoid*****
 		 */
@@ -331,6 +332,27 @@ Route::group(['middleware' => ['auth']],function(){
 		'uses' => 'userController@getlocked',
 		'as' => 'user.locked',
 		]);
+=======
+	});
+
+		/*
+		 *****Profile*****
+		 */
+
+	Route::get('editprofile',[
+			'uses' => 'userController@getEditProfile',
+			'as' => 'profile.view'
+	]);
+	Route::post('editprofile/update',[
+			'uses' => 'userController@postUpdateProfile',
+			'as' => 'profile.update'
+	]);
+	Route::post('editprofile/password',[
+			'uses' => 'userController@postChangepasswordProfile',
+			'as' => 'profile.changepassword'
+	]);
+
+>>>>>>> aa15aaa6657029c4652b29e74e4280aac75af42f
 
 		});
 

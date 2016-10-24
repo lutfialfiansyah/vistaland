@@ -16,8 +16,6 @@ use App\strategic_type;
 use App\siteplan;
 use Datatables;
 
-
-
 class ProjectController extends Controller
 {
     public function getProject(){
@@ -51,25 +49,25 @@ class ProjectController extends Controller
 
     public function postAddProject(Request $request){
     	$this->validate($request,[
-		  'name'=>'required|min:3|unique:project,name',
-			'company'=>'required|min:3',
-			'area'=>'required|numeric|min:0',
-			'unit_total'=>'required|numeric|min:0',
-			'location'=>'required',
-
+					  'name'=>'required|min:3|unique:project,name',
+						'company'=>'required|min:3',
+						'area'=>'required|numeric|min:0',
+						'unit_total'=>'required|numeric|min:0',
+						'location'=>'required',
     	]);
-		       	$project = new project();
-		        $project->name = $request->input('name');
-		        $project->company = $request->input('company');
-						$project->area = $request->input('area');
-						$project->unit_total = $request->input('unit_total');
-						$project->location = $request->input('location');
-						$project->booking_free = $request->input('booking_free');
-						$project->booking_comission = $request->input('booking_comission');
-						$project->nup_free = $request->input('nup_free');
-						$project->nup_comission = $request->input('nup_comission');
-						$project->akad_comission = $request->input('akad_comission');
-						$project->save();
+				       	$project = new project();
+				        $project->name = $request->input('name');
+				        $project->company = $request->input('company');
+								$project->area = $request->input('area');
+								$project->unit_total = $request->input('unit_total');
+								$project->location = $request->input('location');
+								$project->booking_free = $request->input('booking_free');
+								$project->booking_comission = $request->input('booking_comission');
+								$project->nup_free = $request->input('nup_free');
+								$project->nup_comission = $request->input('nup_comission');
+								$project->akad_comission = $request->input('akad_comission');
+
+				$project->save();
 				alert()->success('Data berhasil disimpan !');
 				return redirect()->route('project.view');
     }
@@ -83,38 +81,30 @@ class ProjectController extends Controller
     	$kavling = kavling::where('project_id',$id);
     	$price = price::where('project_id',$id);
     	$project = project::find($id);
-    	$kavling->delete();
-    	$price->delete();
-    	$project->delete();
+				    	$kavling->delete();
+				    	$price->delete();
+				    	$project->delete();
     	alert()->success('Data berhasil dihapus !')->autoclose(3000);
     	return redirect()->route('project.view');
     }
 
     public function postUpdateProject(Request $request,$id){
     	$this->validate($request,[
-			'name' => 'required',
-			'company'=> 'required',
-			'area'=> 'required|numeric|min:0',
-			'unit_total'=> 'required|numeric|min:0',
-			'location'=> 'required',
-			'booking_free'=> 'required|numeric|min:0',
-			'booking_comission'=> 'required|numeric|min:0',
-			'nup_free'=> 'required|numeric|min:0',
-			'nup_comission'=> 'required|numeric|min:0',
-			'akad_comission'=> 'required|numeric|min:0',
+						'name' => 'required',
+						'company'=> 'required',
+						'area'=> 'required|numeric|min:0',
+						'unit_total'=> 'required|numeric|min:0',
+						'location'=> 'required',
+						'booking_free'=> 'required|numeric|min:0',
+						'booking_comission'=> 'required|numeric|min:0',
+						'nup_free'=> 'required|numeric|min:0',
+						'nup_comission'=> 'required|numeric|min:0',
+						'akad_comission'=> 'required|numeric|min:0',
     	]);
 
       	$project = project::where('id',$id)->first();
       	$project->name = $request->input('name');
       	$project->company = $request->input('company');
-
-				$project->area = $request->input('area');
-				$project->unit_total = $request->input('unit_total');
-				$project->location = $request->input('location');
-				$project->booking_free = $request->input('booking_free');
-				$project->booking_comission = $request->input('booking_comission');
-				$project->nup_free = $request->input('nup_free');
-				$project->nup_comission = $request->input('nup_comission');
 				$project->area = $request->input('area');
 				$project->unit_total = $request->input('unit_total');
 				$project->location = $request->input('location');
@@ -124,10 +114,9 @@ class ProjectController extends Controller
 				$project->nup_comission = $request->input('nup_comission');
 				$project->akad_comission = $request->input('akad_comission');
 				$project->update();
+
 				alert()->success('Data berhasil diupdate !');
 				return redirect()->route('project.view');
-
-
     }
 
 
@@ -147,10 +136,10 @@ class ProjectController extends Controller
     	$kavling = kavling::all()->where('project_id','=',$id);
     	return Datatables::of($kavling)
     		->addColumn('type',function($kavling){
-    			return $kavling->kavling_type->type;
+    				return $kavling->kavling_type->type;
     			})
     		->addColumn('price',function($kavling){
-    			return "Rp.".number_format($kavling->kavling_type->price->price,2,',','.');
+    				return "Rp.".number_format($kavling->kavling_type->price->price,2,',','.');
     			})
             ->addColumn('action',function($kavling){
                 return
@@ -160,10 +149,10 @@ class ProjectController extends Controller
                  ';
               	})
             ->editColumn('status',function($kavling){
-            	return "<span class='label label-primary'>$kavling->status</span>";
+            		return "<span class='label label-primary'>$kavling->status</span>";
             	})
              ->editColumn('progress',function($kavling){
-            	return "<span class='label label-success'>$kavling->progress</span>";
+            		return "<span class='label label-success'>$kavling->progress</span>";
             	})
             ->make(true);
 
@@ -198,7 +187,7 @@ class ProjectController extends Controller
     	$kavling->kavling_type_id = $request->input('kavling_type_id');
     	$kavling->project_id = $id;
     	$kavling->save();
-		return back()->with('success','Data berhasil disimpan !')->autoclose(3000);
+			return back()->with('success','Data berhasil disimpan !')->autoclose(3000);
 
     }
 
@@ -239,7 +228,7 @@ class ProjectController extends Controller
     	$kavling->project_id = $id;
     	$kavling->update();
     	alert()->success('Data telah diperbaharui !')->autoclose(3000);
-		return redirect()->route('kavling.view',$id);
+			return redirect()->route('kavling.view',$id);
 	}
 
     public function getHapusKavling($id,$kav_id){

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
+use Validator;
 use App\User;
 use Auth;
 use Datatables;
@@ -34,10 +35,9 @@ class UserController extends Controller
     }
     public function postLogin(Request $request){
     	$this->validate($request,[
-            alert()->warning('Enter your Username & Password !', 'Please')->persistent('Okey'),
     		'username' => 'required',
     		'password' => 'required',
-             
+
         ]);
     	if(Auth::attempt(['username' => $request->input('username'), 'password' => $request->input('password')])){
             return redirect()->to('/');
@@ -58,10 +58,68 @@ class UserController extends Controller
         return redirect()->to('/login');
 
     }
-    public function edit($id)
+    public function getEditProfile()
     {
-        $tampiledit = User::where('id',$id)->first();
-            return view('page.edituser')->with('tampiledit',$tampiledit);
+         return view('page.edituser');
+    }
+
+    public function postUpdateProfile(Request $request){
+    	$input = Input::all();
+    	$rules = [
+    							'name' => 'required',
+    							'email' => 'required',
+    	];
+    	$message = [
+    		'name.required' => 'The Field: Name can not be null ',
+    		'email.required' => 'The Field: Email can not be null '
+    	];
+
+    				$validator = Validator::make($input,$rules,$message);
+
+    	if($validator->passes()){
+
+    					$user = User::where('name','=',Auth::user()->name)->first();
+    					$user->name = Input::get('name');
+							$user->email = Input::get('email');
+							$user->update();
+
+							return redirect()->route('profile.view')->with('PesanSucces','Anda berhasil memperbaharui profile Anda !');
+    	}else{
+
+    					return redirect()->route('profile.view')->withErrors($validator)->withInput();
+    	}
+
+    }
+
+    public function postChangepasswordProfile(){
+    	$input = Input::all();
+    	$rules = [
+    				'oldpass' =>'required',
+    				'newpass' =>'required',
+    				'confirm' => 'required|confirmed'
+    	];
+    	$message = [
+    								'oldpass.required'=>'The Field: Current Password is required',
+    								'newpass.required'=>'The Field: New Password is required',
+    								'confirm.required'=>'The Field: Confirm Password is required'
+    	];
+
+    			$validator = Validator::make($input,$rules,$message);
+
+    			if($validator->passes()){
+
+    					if(Input::get('oldpass') == Auth::user()->password){
+
+				  				$user = User::where('name','=',Auth::user()->name)->first();
+				  				$user->password = Input::get('');
+				  				$user->update();
+
+				  				return redirect()->route('profile.view')->with('PesanSucces','Change Password berhasi dilakukan !');
+				  		}
+    			}else{
+
+    							return redirect()->route('profile.view')->withErrors($validator)->withInput();
+    			}
     }
 
     public function getlocked(){
@@ -85,7 +143,7 @@ class UserController extends Controller
         }
 
 
-    } 
+    }
 
 }
 
