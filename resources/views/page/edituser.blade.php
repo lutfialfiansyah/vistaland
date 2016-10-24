@@ -74,7 +74,8 @@
 	        			</div>
 
 	        		<div style="display: none;" class="box-body">
-	        		<form role="form" method="post" action="">
+	        		<form role="form" method="post" action="{{ route('profile.changepassword') }}">
+	        		{!! csrf_field() !!}
 	            <div class="form-group">
 	                  <label for="cpass">Current password</label>
 	                  <input type="password" name="oldpass" autofocus class="form-control" id="cpass" placeholder="enter old password">

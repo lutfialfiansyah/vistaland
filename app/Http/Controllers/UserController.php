@@ -96,23 +96,26 @@ class UserController extends Controller
     	$rules = [
     				'oldpass' =>'required',
     				'newpass' =>'required',
-    				'confirm' => 'required|confirm'
+    				'confirm' => 'required|confirmed'
     	];
     	$message = [
-    								'oldpass.required'=>'The Field: is required',
-    								'newpass.required'=>'The Field: is required',
-    								'confirm.required'=>'The Field: is required'
+    								'oldpass.required'=>'The Field: Current Password is required',
+    								'newpass.required'=>'The Field: New Password is required',
+    								'confirm.required'=>'The Field: Confirm Password is required'
     	];
 
     			$validator = Validator::make($input,$rules,$message);
 
     			if($validator->passes()){
 
+    					if(Input::get('oldpass') == Auth::user()->password){
+
 				  				$user = User::where('name','=',Auth::user()->name)->first();
 				  				$user->password = Input::get('');
 				  				$user->update();
 
 				  				return redirect()->route('profile.view')->with('PesanSucces','Change Password berhasi dilakukan !');
+				  		}
     			}else{
 
     							return redirect()->route('profile.view')->withErrors($validator)->withInput();
