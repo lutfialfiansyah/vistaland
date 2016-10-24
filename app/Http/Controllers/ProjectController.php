@@ -18,7 +18,6 @@ use Datatables;
 
 class ProjectController extends Controller
 {
-
     public function getProject(){
     	$project= project::all();
         return view('page.project.project',compact('project'));

@@ -26,7 +26,9 @@ class project extends Model
 	public function price(){
 		return $this->hasMany('App\price','project_id');
 	}
-
+	public function nup(){
+		return $this->belongsTo('App\nup','project_id');
+	}
 	public $timestamps = false;
 
 }

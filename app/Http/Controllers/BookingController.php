@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\customer;
+use App\project;
 use App\nup;
 use App\booking;
 use App\spr;
@@ -219,7 +220,8 @@ class BookingController extends Controller
     }
     public function getAddNup(){
     $nupcus = customer::all();
-        return view('page.booking.addnup',compact('nupcus'));
+    $nuppro = project::all();
+        return view('page.booking.addnup',compact('nupcus','nuppro'));
     }
     public function getEditNup($id){
       $edit = customer::where('id',$id)->first();
@@ -228,14 +230,14 @@ class BookingController extends Controller
 
     public function postAddNup(Request $request){
       $this->validate($request,[
-      'first_name'=>'required|min:3|unique:customer,first_name',
-      'last_name'=>'required|min:3|unique:customer,first_name',
+      'project'=>'required',
+      'customer'=>'required',
       ]);
 
-      $customer = new nup();
-    $customer->last_name = $request->input('last_name');
-    $customer->ktp_number = $request->input('ktp_number');
-      $customer->save();
+      $nup = new nup();
+      $nup->project_id = $request->input('project');
+      $nup->customer_id = $request->input('customer');
+      $nup->save();
       alert()->success('Data berhasil disimpan !')->autoclose(3000);
       return redirect()->route('nup.view');
 
@@ -243,19 +245,20 @@ class BookingController extends Controller
     public function getNupdata(){
         $nup = nup::all();
         return Datatables::of($nup)
-            ->addColumn('image',function($nup){
-                return '<a class="btn thumbnail"><i class="fa fa-picture-o" aria-hidden="true" style="font-size:50px;color:black;"></i></a>';
-            })
             ->addColumn('action',function($nup){
                 return
                 '<a href="nup/edit/'.$nup->id.'" class="btn btn-xs btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                 <a href="nup/hapus/'.$nup->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus customer '. $nup->name.' ?\')">
+                 <a href="nup/hapus/'.$nup->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus Nup dengan code'. $nup->code.' ?\')">
                  <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
                  ';
               })
             ->make(true);
 		}
-
+  public function getHapusNup($id){
+      $nup = nup::find($id);
+      alert()->success('Data berhasil dihapus !')->autoclose(3000);
+      return redirect()->route('nup.view');
+    }
 
 
 		public function getSpr(){
