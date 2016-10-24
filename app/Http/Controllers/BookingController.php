@@ -265,7 +265,7 @@ class BookingController extends Controller
 		public function getAddspr(){
 			return view('page.booking.addspr');
 		}
-        public function getSprdata(){
+    public function getSprdata(){
         $spr = spr::all();
         return Datatables::of($spr)
             ->addColumn('image',function($spr){
@@ -280,4 +280,12 @@ class BookingController extends Controller
               })
             ->make(true);
         }
+     public function getBookingfee(){
+        $booking = customer::all();
+            return view('page.booking.booking-fee',compact('booking'));
+    }
+      public function getAddBooking(){
+      return view('page.booking.addbooking');
+    }
+
 }
