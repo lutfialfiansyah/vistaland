@@ -15,5 +15,8 @@ class nup extends Model
 	public function bf(){
 		return $this->hasOne('App\nup','nup_id');
 	}
+	public function project(){
+		return $this->hasMany('App\project','project_id');
+	}
 	public $timestamps = false;
 }

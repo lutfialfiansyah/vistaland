@@ -36,20 +36,23 @@
                       </span>
                     @endif
                 </div>
-                <div class="form-group {{ $errors->has('customer') ? ' has-error' : ''}}">
+                <div class="form-group {{ $errors->has('project') ? ' has-error' : ''}}">
                   <label>Project</label>
-                  <select name="project" id="project" class="form-control" required>
-                    <option value="">projectsss</option>
+                  <select name="project" id="project" class="form-control">
+                    <option value=""></option>
+                    @foreach ($nuppro as $nupp)
+                      <option value="{{$nupp->id}}">{{$nupp->name}}</option>
+                    @endforeach
                   </select>
-                  @if($errors->has('customer'))
+                  @if($errors->has('project'))
                   <span class="help-block">
-                    <strong>{{ $errors->first('customer')}}</strong>
+                    <strong>{{ $errors->first('project')}}</strong>
                   </span>
                   @endif
                 </div>
                 <div class="form-group {{ $errors->has('customer') ? ' has-error' : ''}}">
                   <label>Customer</label>
-                  <select name="customer" id="customer" class="form-control" required>
+                  <select name="customer" id="customer" class="form-control">
                     <option value=""></option>
                     @foreach ($nupcus as $nups)
                     <option value="{{$nups->id}}">{{$nups->first_name}}</option>

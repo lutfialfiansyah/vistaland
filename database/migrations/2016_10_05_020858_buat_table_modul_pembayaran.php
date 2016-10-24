@@ -33,6 +33,8 @@ class BuatTableModulPembayaran extends Migration
             $table->integer('code');
             $table->foreign('code')->references('code')->on('payment')->onDelete('CASCADE');
             $table->string('comission_status');
+            $table->unsignedInteger('project_id');
+            $table->foreign('project_id')->references('id')->on('project')->onDelete('CASCADE');
             $table->unsignedInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customer')->onDelete('CASCADE');
             /*

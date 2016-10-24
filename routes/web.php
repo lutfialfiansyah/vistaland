@@ -344,7 +344,6 @@ Route::get('customer/hapus/{id}',[
 	'uses' => 'BookingController@getHapusCustomer',
 	'as' => 'customer.hapus'
 ]);
-
 Route::get('customer/detail/{id}',[
 	'uses' => 'BookingController@getDetailCustomer',
 	'as' => 'customer.detail'
@@ -374,6 +373,10 @@ Route::post('nup/add',[
 	'as' => 'nup.add'
 ]);
 Route::get('nup/get-nup','BookingController@getNupdata');
+Route::get('nup/hapus/{id}',[
+	'uses' => 'BookingController@getHapusNup',
+	'as' => 'nup.hapus'
+]);
 /*end up*/
 
 /*

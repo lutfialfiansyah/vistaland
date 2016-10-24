@@ -14,8 +14,7 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
-    <!-- Info boxes -->
+    <section class="content">    <!-- Info boxes -->
       <div class="row">
 
         <div class="col-md-3 col-sm-6 col-xs-12">
@@ -88,23 +87,25 @@
         <!-- /.col -->
       </div>
       <!-- /.row -->
-      <div class=" row">
-<div class="col-lg-3 col-xs-6">
-<div class="small-box bg-aqua">
-<div class="inner">
-<h3>10</h3>
-<p>New Orders</p>
-</div>
-<div class="icon">
-<i class="fa fa-suitcase"></i>
-</div>
-<a class="small-box-footer" href="#">
-Select This Project 
-<i class="fa fa-arrow-circle-right"></i>
-</a>
-</div>
-</div>
-</div>
+    <div class=" row">
+        <div class="col-lg-3 col-xs-6">
+        <div class="small-box bg-aqua">
+          <div class="inner">
+            <h3>100
+            <sup style="font-size:20px;">Units</sup>
+            </h3>
+            <p>New</p>
+          </div>
+        <div class="icon">
+          <i class="fa fa-suitcase"></i>
+        </div>
+          <a class="small-box-footer" href="#">
+            Select This Project 
+            <i class="fa fa-arrow-circle-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
   <div class="row">
         <div class="col-xs-12">
           <div class="box">
@@ -147,8 +148,9 @@ Select This Project
           </div>
           <!-- /.box -->
 
-
-
+          </div>
+        </div>
+      </form>
     </section>
   
 @endsection

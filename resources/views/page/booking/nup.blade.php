@@ -32,6 +32,7 @@
               <table id="data" class="table table-bordered table-hover table-striped table-condesed">
               <thead>
                 <tr>
+                  <th>Code Payment</th>
                   <th>Project</th>
                   <th>Customer</th>
                   <th>NUP Fee</th>
@@ -58,11 +59,12 @@
       "serverSide" : true,
       "ajax" : "{{ url('nup/get-nup') }}",
       "columns" : [
-        { data : 'project', name: 'project' },
-        { data : 'customer', name: 'customer' },
-        { data : 'nup', name: 'nup' },
+        { data : 'code', name: 'code' },
+        { data : 'project_id', name: 'project' },
+        { data : 'customer_id', name: 'customer' },
+        { data : 'nupfee', name: 'nupfee' },
+        { data : 'payment_status', name: 'payment_status' },
         { data : 'comission_status', name: 'comission_status' },
-        { data : 'payment_status', name: 'payment_statusstatus' },
         { data : 'action', name:'action', orderable: false, searchable: false },
       ]
     });

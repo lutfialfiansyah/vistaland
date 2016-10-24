@@ -36,17 +36,24 @@
                       </span>
                     @endif
                 </div>
-                <div class="form-group {{ $errors->has('booking_free') ? ' has-error' : ''}}">
+              <div class="form-group {{ $errors->has('booking-fee') ? ' has-error' : ''}}">
                   <label>Booking Fee</label>
-                  <select name="booking_free" id="booking_free" class="form-control" required>
-                    <option value="">chose one</option>
+                  <select name="booking-fee" id="customer" class="form-control">
+                    <option value=""></option>
+                    <option value=""></option>
                   </select>
-                  <span class="help-block"></span>
-                </div>
+                  @if($errors->has('booking-fee'))
+                  <span class="help-block">
+                    <strong>{{ $errors->first('booking-fee')}}</strong>
+                  </span><span id="select2-customer-5o-container" class="select2-selection__rendered" title="Choose One">Choose One</span>
+                  @endif
+                  </div>
+
                 <div class="form-group {{ $errors->has('type') ? ' has-error' : ''}}">
                   <label>Type</label>
                   <select name="type" id="type" class="form-control" required>
-                    <option value="">kpr</option>
+                    <option value="kpr">KPR</option>
+                    <option value="cash">Cash</option>
                   </select>
                   <span class="help-block"></span>
                 </div>
@@ -90,3 +97,12 @@
     </section>
 
 @endsection
+@push('script')
+<script type="text/javascript">
+        $(document).ready(function () {
+        $("#customer").select2({
+          placeholder: "Chose One"
+          });
+      });
+</script>
+@endpush
