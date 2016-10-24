@@ -294,23 +294,25 @@ Route::group(['middleware' => ['auth']],function(){
 		]);
 		Route::get('movekavling/get-movekavling','PerubahanController@getMovekavlingdata');
 
-
-
-
-    /*
-		 *****Profile*****
-		 */
-    	Route::get('editprofile','userController@getEdit');
-    	Route::get('editprofile/get-profile','userController@getEditdata');
-
 	});
 
-	Route::get('editprofile/{id}','userController@edit');
+		/*
+		 *****Profile*****
+		 */
 
-	Route::get('/lockscreen',[
-		'uses' => 'userController@getlocked',
-		'as' => 'user.locked',
+	Route::get('editprofile',[
+			'uses' => 'userController@getEditProfile',
+			'as' => 'profile.view'
 	]);
+	Route::post('editprofile/update',[
+			'uses' => 'userController@postUpdateProfile',
+			'as' => 'profile.update'
+	]);
+	Route::post('editprofile/password',[
+			'uses' => 'userController@postChangepasswordProfile',
+			'as' => 'profile.changepassword'
+	]);
+
 
 });
 

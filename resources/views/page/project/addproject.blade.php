@@ -129,7 +129,7 @@
 
                 <div class="form-group">
                   <button type="reset" class="btn btn-default">RESET</button>
-                  <input type="submit" class="btn btn-primary pull-right" value="SIMPAN">
+                  <input type="submit" class="btn btn-primary" value="SIMPAN">
 
                 </div>
 
