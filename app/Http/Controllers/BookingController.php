@@ -248,7 +248,7 @@ class BookingController extends Controller
             ->addColumn('action',function($nup){
                 return
                 '<a href="nup/edit/'.$nup->id.'" class="btn btn-xs btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                 <a href="nup/hapus/'.$nup->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus Nup dengan code'. $nup->code.' ?\')">
+                 <a id="delete-btn" href="nup/hapus/'.$nup->id.'" class="btn btn-xs btn-danger">
                  <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
                  ';
               })
