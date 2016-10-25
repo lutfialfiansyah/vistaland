@@ -85,9 +85,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> </a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> </a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> </a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> KPR</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> Complaint</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> Cash Log</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> Safekeeping</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> LPA</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -99,14 +101,14 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Status KPR</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Pencairan</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> Jadwal Inteview</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> Jadwal Akad Kredit</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-gavel" aria-hidden="true"></i>
-            <span>Legalitas</span>
+            <i class="fa fa-map" aria-hidden="true"></i>
+            <span>Marketing</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -116,20 +118,7 @@
             <li><a href=""><i class="fa fa-circle-o"></i> Legalitas akad</a></li>
           </ul>
         </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-building" aria-hidden="true"></i>
-            <span>Pembangunan</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Proses</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Complain</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Data Kavling</a></li>
-          </ul>
-        </li>
+
         <li class="treeview">
           <a href="#">
 

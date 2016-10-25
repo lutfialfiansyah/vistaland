@@ -139,7 +139,7 @@ class ProjectController extends Controller
     				return $kavling->kavling_type->type;
     			})
     		->addColumn('price',function($kavling){
-    				return "Rp.".number_format($kavling->kavling_type->price->price,2,',','.');
+    				return "Rp.".number_format($kavling->kavling_type->price->price,0,',','.');
     			})
             ->addColumn('action',function($kavling){
                 return
@@ -187,7 +187,7 @@ class ProjectController extends Controller
     	$kavling->kavling_type_id = $request->input('kavling_type_id');
     	$kavling->project_id = $id;
     	$kavling->save();
-			return back()->with('success','Data berhasil disimpan !')->autoclose(3000);
+			return back()->with('success','Data berhasil disimpan !');
 
     }
 

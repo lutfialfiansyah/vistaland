@@ -9,6 +9,7 @@ use Illuminate\Database\DatabaseManager;
 use Illuminate\Support\Facades\DB;
 use App\change_name;
 use App\customer;
+use App\kavling;
 use Datatables;
 use Validator;
 
@@ -155,7 +156,9 @@ class PerubahanController extends Controller
     }
 
     public function getAddMovekavling(){
-			return view('page.perubahan data.addmovekavling');
+    	$kavling_from = kavling::all();
+    	$kavling_to = kavling::where('status','=','Open')->get();
+			return view('page.perubahan data.addmovekavling',compact('kavling_from','kavling_to'));
     }
 
     public function postAddMovekavling(Request $request){

@@ -7,8 +7,8 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ route('user.home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class=""><a href="{{ route('change-name.view') }}">Ganti Nama</li></a>
-        <li class="active"><a href="">Add Ganti Nama</li></a>
+        <li class=""><a href="{{ route('movekavling.view') }}">Move Kavling</li></a>
+        <li class="active"><a href="">Add Move Kavling </li></a>
       </ol>
     </section>
 
@@ -28,39 +28,40 @@
             	@endif
               <form action="" method="post" >
               {!! csrf_field() !!}
-								<div class="form-group{{ $errors->has('customer_id_old') ? ' has-error' : '' }}">
-									<label for="customer_id_old">Customer Old</label>
-									<select name="customer_id_old" class="form-control">
+								<div class="form-group{{ $errors->has('') ? ' has-error' : '' }}">
+									<label for="">Kavling From</label>
+									<select name="" class="form-control">
 											<option></option>
-											@if(count($customer) <= 0)
-												<option disabled="disabled">No data customer</option>
+											 @if(count($kavling_from) <= 0)
+												<option disabled="disabled">No data kavling</option>
 											@else
-												@foreach($customer as $key => $value)
-													<option value="{{ $key }}">{{ $key." - ".$value }}</option>
+												@foreach($kavling_from as $data)
+													<option value="{{ $data->id }}">{{ $data->project->name." - ".$data->number }}</option>
 												@endforeach
 											@endif
 									</select>
-									@if($errors->has('customer_id_old'))
+									@if($errors->has(''))
 										<span class="help-block">
-											<strong>{{ $errors->first('customer_id_old') }}</strong>
+											<strong>{{ $errors->first('') }}</strong>
 										</span>
 									@endif
 								</div>
-								<div class="form-group{{ $errors->has('customer_id_new') ? ' has-error' : '' }}">
-									<label for="customer_id_new">Customer New</label>
-									<select name="customer_id_new"  class="form-control">
+								<div class="form-group{{ $errors->has('') ? ' has-error' : '' }}">
+									<label for="">Kavling To</label>
+									<select name=""  class="form-control">
 											<option></option>
-											@if(count($customer) <= 0)
-												<option disabled="disabled">No data customer</option>
-											@else
-												@foreach($customer as $key => $value)
-													<option value="{{ $key }}">{{ $key." - ".$value }}</option>
-												@endforeach
-											@endif
+
+											 @if(count($kavling_to) <= 0)
+												 <option disabled="disabled">No data kavling open</option>
+											 @else
+												 @foreach($kavling_to as $data)
+													 <option value="{{ $data->id }}">{{ $data->project->name." - ".$data->number }}</option>
+											 @endforeach
+											 @endif
 									</select>
-									@if($errors->has('customer_id_new'))
+									@if($errors->has(''))
 										<span class="help-block">
-											<strong>{{ $errors->first('customer_id_new') }}</strong>
+											<strong>{{ $errors->first('') }}</strong>
 										</span>
 									@endif
 								</div>

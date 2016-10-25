@@ -31,8 +31,8 @@
               <table id="data" class="table table-condensed table-bordered table-hover">
               <thead>
                 <tr>
-                  <th>Type</th>
                   <th>Number</th>
+                  <th>Type</th>
                   <th>Field Size</th>
                   <th>BPN Size</th>
                   <th>Left Over Size</th>
@@ -65,8 +65,8 @@
       "sScrollX": false,
       "ajax" : '{{ url("project/$project->id/get-kavling") }}',
       "columns" : [
-        { data : 'type', name: 'type' },
         { data : 'number', name: 'number' },
+        { data : 'type', name: 'type' },
         { data : 'field_size', name: 'field_size' },
         { data : 'bpn_size', name: 'bpn_size' },
         { data : 'left_over_size', name: 'left_over_size' },
