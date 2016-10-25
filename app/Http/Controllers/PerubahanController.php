@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\change_name;
 use App\customer;
 use App\kavling;
+use App\moving_kavling;
 use Datatables;
 use Validator;
 
@@ -242,6 +243,16 @@ class PerubahanController extends Controller
     	$movekavling->delete();
     	alert()->success('Data berhasil dihapus !');
     	return redirect()->route('movekavling.view',$id);
+    }
+
+
+    public function getCustomervoid(){
+            return view('page.perubahan data.customervoid');
+    }
+
+    public function getAddCustomervoid(){
+        $customervoid = moving_kavling::all();
+            return view('page.perubahan data.addcustomervoid',compact('customervoid'));
     }
 
 }

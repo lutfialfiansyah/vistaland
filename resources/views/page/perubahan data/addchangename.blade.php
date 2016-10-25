@@ -28,50 +28,46 @@
             	@endif
               <form action="" method="post" >
               {!! csrf_field() !!}
-								<div class="form-group{{ $errors->has('customer_id_old') ? ' has-error' : '' }}">
-									<label for="customer_id_old">Customer Old</label>
-									<select name="customer_id_old" class="form-control">
-											<option></option>
-											@if(count($customer) <= 0)
-												<option disabled="disabled">No data customer</option>
-											@else
-												@foreach($customer as $key => $value)
-													<option value="{{ $key }}">{{ $key." - ".$value }}</option>
-												@endforeach
-											@endif
-									</select>
-									@if($errors->has('customer_id_old'))
-										<span class="help-block">
-											<strong>{{ $errors->first('customer_id_old') }}</strong>
-										</span>
-									@endif
-								</div>
-								<div class="form-group{{ $errors->has('customer_id_new') ? ' has-error' : '' }}">
-									<label for="customer_id_new">Customer New</label>
-									<select name="customer_id_new"  class="form-control">
-											<option></option>
-											@if(count($customer) <= 0)
-												<option disabled="disabled">No data customer</option>
-											@else
-												@foreach($customer as $key => $value)
-													<option value="{{ $key }}">{{ $key." - ".$value }}</option>
-												@endforeach
-											@endif
-									</select>
-									@if($errors->has('customer_id_new'))
-										<span class="help-block">
-											<strong>{{ $errors->first('customer_id_new') }}</strong>
-										</span>
-									@endif
-								</div>
+								<div class="form-group {{ $errors->has('customer_id_old') ? ' has-error' : ''}}">
+                  <label for="customer_id_old">Customer Old</label>
+                  <select name="customer_id_old" id="customerold" class="form-control">
+                    <option value=""></option>
+		                @foreach($customer as $key => $value)
+											<option value="{{ $key }}">{{ $key." - ".$value }}</option>
+										@endforeach
+                  </select>
+                  @if($errors->has('customer_id_old'))
+	                  <span class="help-block">
+	                    <strong>{{ $errors->first('customer_id_old')}}</strong>
+	                  </span>
+	                  <span id="select2-customer-5o-container" class="select2-selection__rendered" title="Choose One">Choose One</span>
+                  @endif
+                </div>
+
+								<div class="form-group {{ $errors->has('customer_id_new') ? ' has-error' : ''}}">
+                  <label for="customer_id_new">Customer New</label>
+	                  <select name="customer_id_new" id="customernew" class="form-control">
+	                    <option value=""></option>
+			                @foreach($customer as $key => $value)
+												<option value="{{ $key }}">{{ $key." - ".$value }}</option>
+											@endforeach
+	                  </select>
+	                  @if($errors->has('customer_id_new'))
+		                  <span class="help-block">
+		                    <strong>{{ $errors->first('customer_id_new')}}</strong>
+		                  </span>
+		                  <span id="select2-customer-5o-container" class="select2-selection__rendered" title="Choose One">Choose One</span>
+	                  @endif
+                </div>
+
 								<div class="form-group{{ $errors->has('reason') ? ' has-error' : '' }}">
 									<label for="reason">Reason</label>
-									<input type="text" name="reason" value="{{ old('reason') }}" class="form-control">
-									@if($errors->has('reason'))
-										<span class="help-block">
-											<strong>{{ $errors->first('reason') }}</strong>
-										</span>
-									@endif
+										<input type="text" name="reason" value="{{ old('reason') }}" class="form-control">
+											@if($errors->has('reason'))
+												<span class="help-block">
+													<strong>{{ $errors->first('reason') }}</strong>
+												</span>
+											@endif
 								</div>
 								<div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
 									<label for="status">Status</label>
@@ -97,7 +93,7 @@
 								</div>
 								<div class="form-group">
 									<button type="reset" class="btn btn-default">RESET</button>
-									<button type="submit" class="btn btn-primary">SIMPAN</button>
+									<button type="submit" class="btn btn-primary pull-right">SIMPAN</button>
 								</div>
               </form>
             </div>
@@ -108,5 +104,15 @@
      </div>
     </section>
 @endsection
-
-
+@push('script')
+<script>
+      $(document).ready(function () {
+        $("#customerold").select2({
+          placeholder: "Chose One"
+          });
+        $("#customernew").select2({
+          placeholder: "Chose One"
+          });
+      });
+</script>
+@endpush

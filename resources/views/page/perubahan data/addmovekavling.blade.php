@@ -8,7 +8,7 @@
       <ol class="breadcrumb">
         <li><a href="{{ route('user.home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class=""><a href="{{ route('movekavling.view') }}">Move Kavling</li></a>
-        <li class="active"><a href="">Add Move Kavling </li></a>
+        <li class="active"><a href="">Add Move Kavling</li></a>
       </ol>
     </section>
 
@@ -18,7 +18,7 @@
         <div class="col-xs-12">
           <div class="box box-primary">
             <div class="box-header">
-              <h3 class="box-title">Add Ganti Nama</h3>
+              <h3 class="box-title">Add Move Kavling</h3>
             </div>
             <!-- /.box-header -->
 
@@ -28,9 +28,9 @@
             	@endif
               <form action="" method="post" >
               {!! csrf_field() !!}
-								<div class="form-group{{ $errors->has('') ? ' has-error' : '' }}">
+								<div class="form-group{{ $errors->has('kavling_from') ? ' has-error' : '' }}">
 									<label for="">Kavling From</label>
-									<select name="" class="form-control">
+									<select name="kavling_from" class="form-control">
 											<option></option>
 											 @if(count($kavling_from) <= 0)
 												<option disabled="disabled">No data kavling</option>
@@ -40,15 +40,15 @@
 												@endforeach
 											@endif
 									</select>
-									@if($errors->has(''))
+									@if($errors->has('kavling_from'))
 										<span class="help-block">
-											<strong>{{ $errors->first('') }}</strong>
+											<strong>{{ $errors->first('kavling_from') }}</strong>
 										</span>
 									@endif
 								</div>
-								<div class="form-group{{ $errors->has('') ? ' has-error' : '' }}">
-									<label for="">Kavling To</label>
-									<select name=""  class="form-control">
+								<div class="form-group{{ $errors->has('kavling_to') ? ' has-error' : '' }}">
+									<label for="kavling_to">Kavling To</label>
+									<select name="kavling_to"  class="form-control">
 											<option></option>
 
 											 @if(count($kavling_to) <= 0)
@@ -59,9 +59,9 @@
 											 @endforeach
 											 @endif
 									</select>
-									@if($errors->has(''))
+									@if($errors->has('kavling_to'))
 										<span class="help-block">
-											<strong>{{ $errors->first('') }}</strong>
+											<strong>{{ $errors->first('kavling_to') }}</strong>
 										</span>
 									@endif
 								</div>
@@ -87,6 +87,7 @@
 										</span>
 									@endif
 								</div>
+
 								<div class="form-group{{ $errors->has('spr_id') ? ' has-error' : '' }}">
 									<label for="spr_id">SPR ID</label>
 									<input type="text" name="spr_id" value="{{ old('spr_id') }}" class="form-control">
@@ -109,5 +110,16 @@
      </div>
     </section>
 @endsection
-
+@push('script')
+<script>
+      $(document).ready(function () {
+        $("#kavlingfrom").select2({
+          placeholder: "Chose One"
+          });
+        $("#kavlingto").select2({
+          placeholder: "Chose One"
+          });
+      });
+</script>
+@endpush
 

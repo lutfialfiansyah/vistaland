@@ -6,13 +6,14 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use App\User;
+use App\project;
 use Auth;
 use Datatables;
 use SweetAlert;
 
 class UserController extends Controller
 {
-
+  
     public function getLogin(){
     	return view('page.login');
     }
@@ -48,7 +49,8 @@ class UserController extends Controller
     }
 
     public function getHome(){
-    	return view('page.dashboard');
+      $projects = project::all();
+        return view('page.dashboard',compact('projects'));
     }
 
     public function logout(){

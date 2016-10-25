@@ -294,7 +294,147 @@ Route::group(['middleware' => ['auth']],function(){
 		]);
 		Route::get('movekavling/get-movekavling','PerubahanController@getMovekavlingdata');
 
+		/*
+		 *****customervoid*****
+		 */
+		Route::get('customervoid',[
+			'uses' => 'PerubahanController@getCustomervoid',
+			'as' => 'customervoid.view'
+		]);
+		Route::get('customervoid/add',[
+			'uses' => 'PerubahanController@getAddCustomervoid',
+			'as' => 'customervoid.add'
+		]);
+		Route::get('customervoid/edit/{id}',[
+			'uses' => 'PerubahanController@getEditCustomervoid',
+			'as' => 'customervoid.edit'
+		]);
+		Route::post('customervoid/update/{id}',[
+			'uses' => 'PerubahanController@postUpdateCustomervoid',
+			'as' => 'customervoid.update'
+		]);
+		Route::get('customervoid/hapus/{id}',[
+			'uses' => 'PerubahanController@getHapusCustomervoid',
+			'as' => 'customervoid.hapus'
+		]);
+		Route::get('customervoid/get-customervoid','PerubahanController@getMoveCustomervoid');
+
+		/*
+		 *****customer*****
+		 */
+		Route::get('customer','BookingController@getCustomer');
+		Route::get('customer',[
+					'uses' => 'BookingController@getCustomer',
+					'as' => 'customer.view'
+				]);
+		Route::get('customer/add','BookingController@getAddCustomer');
+		Route::post('customer/add',[
+			'uses' => 'BookingController@postAddcustomer',
+			'as' => 'customer.add'
+		]);
+		Route::get('customer/get-customer','BookingController@getCustomerdata');
+		Route::get('customer/hapus/{id}',[
+			'uses' => 'BookingController@getHapusCustomer',
+			'as' => 'customer.hapus'
+		]);
+		Route::get('customer/detail/{id}',[
+			'uses' => 'BookingController@getDetailCustomer',
+			'as' => 'customer.detail'
+			]);
+		Route::get('customer/edit/{id}',[
+					'uses' => 'BookingController@getEditCustomer',
+					'as' => 'customer.edit'
+				]);
+		Route::post('customer/update/{id}',[
+					'uses' => 'BookingController@postUpdateCustomer',
+					'as' => 'customer.update'
+				]);
+		/*end customer*/
+
+
+		/*
+		*****nup*****
+		*/
+		Route::get('nup','BookingController@getNup');
+		Route::get('nup',[
+			'uses' => 'BookingController@getNup',
+			'as' => 'nup.view'
+			]);
+		Route::get('nup/add','BookingController@getAddNup');
+		Route::post('nup/add',[
+			'uses' => 'BookingController@postAddNup',
+			'as' => 'nup.add'
+		]);
+		Route::get('nup/get-nup','BookingController@getNupdata');
+		Route::get('nup/hapus/{id}',[
+			'uses' => 'BookingController@getHapusNup',
+			'as' => 'nup.hapus'
+		]);
+		/*end up*/
+
+		/*
+		*****booking fee*****
+		*/
+		Route::get('booking-fee','BookingController@getBookingfee');
+		Route::get('booking-fee',[
+			'uses' => 'BookingController@getBookingfee',
+			'as' => 'booking.view'
+			]);
+		Route::get('booking/add','BookingController@getAddBooking');
+		Route::post('booking/add',[
+			'uses' => 'BookingController@postAddBooking',
+			'as' => 'booking.add'
+		]);
+		Route::get('booking/get-booking','BookingController@getBookingdata');
+		/*end customer*/
+
+		/*
+		*****SPR*****
+		*/
+		Route::get('spr','BookingController@getSpr');
+		Route::get('spr',[
+			'uses' => 'BookingController@getSpr',
+			'as' => 'spr.view'
+			]);
+		Route::get('spr/add','BookingController@getAddSpr');
+		Route::post('spr/add',[
+			'uses' => 'BookingController@postAddSpr',
+			'as' => 'spr.add'
+		]);
+		Route::get('spr/get-spr','BookingController@getSprdata');
+		/*end SPR*/
+
+		/*
+		 *****customervoid*****
+		 */
+		Route::get('interview',[
+			'uses' => 'PerubahanController@getInterview',
+			'as' => 'interview.view'
+		]);
+		Route::get('interview/add',[
+			'uses' => 'PerubahanController@getAddInterview',
+			'as' => 'interview.add'
+		]);
+		Route::get('interview/edit/{id}',[
+			'uses' => 'PerubahanController@getEditInterview',
+			'as' => 'interview.edit'
+		]);
+		Route::post('interview/update/{id}',[
+			'uses' => 'PerubahanController@postUpdateInterview',
+			'as' => 'interview.update'
+		]);
+		Route::get('interview/hapus/{id}',[
+			'uses' => 'PerubahanController@getHapusInterview',
+			'as' => 'interview.hapus'
+		]);
+		Route::get('interview/get-interview','PerubahanController@getMoveInterview');
+
 	});
+
+		Route::get('/lockscreen',[
+			'uses' => 'userController@getlocked',
+			'as' => 'user.locked',
+		]);
 
 		/*
 		 *****Profile*****
@@ -313,8 +453,11 @@ Route::group(['middleware' => ['auth']],function(){
 			'as' => 'profile.changepassword'
 	]);
 
-
 });
+
+
+
+
 
 Route::get('/login',[
 	'uses' => 'userController@getLogin',
@@ -331,83 +474,4 @@ Route::get('/logout', [
 /*
 *****customer*****
 */
-Route::get('customer','BookingController@getCustomer');
-Route::get('customer',[
-			'uses' => 'BookingController@getCustomer',
-			'as' => 'customer.view'
-		]);
-Route::get('customer/add','BookingController@getAddCustomer');
-Route::post('customer/add',[
-	'uses' => 'BookingController@postAddcustomer',
-	'as' => 'customer.add'
-]);
-Route::get('customer/get-customer','BookingController@getCustomerdata');
-Route::get('customer/hapus/{id}',[
-	'uses' => 'BookingController@getHapusCustomer',
-	'as' => 'customer.hapus'
-]);
-Route::get('customer/detail/{id}',[
-	'uses' => 'BookingController@getDetailCustomer',
-	'as' => 'customer.detail'
-	]);
-Route::get('customer/edit/{id}',[
-			'uses' => 'BookingController@getEditCustomer',
-			'as' => 'customer.edit'
-		]);
-Route::post('customer/update/{id}',[
-			'uses' => 'BookingController@postUpdateCustomer',
-			'as' => 'customer.update'
-		]);
-/*end customer*/
 
-
-/*
-*****nup*****
-*/
-Route::get('nup','BookingController@getNup');
-Route::get('nup',[
-	'uses' => 'BookingController@getNup',
-	'as' => 'nup.view'
-	]);
-Route::get('nup/add','BookingController@getAddNup');
-Route::post('nup/add',[
-	'uses' => 'BookingController@postAddNup',
-	'as' => 'nup.add'
-]);
-Route::get('nup/get-nup','BookingController@getNupdata');
-Route::get('nup/hapus/{id}',[
-	'uses' => 'BookingController@getHapusNup',
-	'as' => 'nup.hapus'
-]);
-/*end up*/
-
-/*
-*****booking fee*****
-*/
-Route::get('booking-fee','BookingController@getBookingfee');
-Route::get('booking-fee',[
-	'uses' => 'BookingController@getBookingfee',
-	'as' => 'booking.view'
-	]);
-Route::get('booking/add','BookingController@getAddBooking');
-Route::post('booking/add',[
-	'uses' => 'BookingController@postAddBooking',
-	'as' => 'booking.add'
-]);
-Route::get('booking/get-booking','BookingController@getBookingdata');
-/*end customer*/
-/*
-*****SPR*****
-*/
-Route::get('spr','BookingController@getSpr');
-Route::get('spr',[
-	'uses' => 'BookingController@getSpr',
-	'as' => 'spr.view'
-	]);
-Route::get('spr/add','BookingController@getAddSpr');
-Route::post('spr/add',[
-	'uses' => 'BookingController@postAddSpr',
-	'as' => 'spr.add'
-]);
-Route::get('spr/get-spr','BookingController@getSprdata');
-/*end SPR*/

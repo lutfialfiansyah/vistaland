@@ -22,6 +22,7 @@ class ProjectController extends Controller
     	$project= project::all();
         return view('page.project.project',compact('project'));
     }
+
     public function getProjectdata(){
     	$project = project::all();
     	return Datatables::of($project)
@@ -161,7 +162,6 @@ class ProjectController extends Controller
     public function postAddKavling(Request $request,$id){
     	$this->validate($request,[
     		'number'=>'required|numeric|unique:kavling,number',
-
     		'strategic_type_id'=>'required',
     		'field_size'=>'required|numeric',
     		'bpn_size'=>'required|numeric',
@@ -366,7 +366,7 @@ class ProjectController extends Controller
 	    	$image = Input::file('file');
 	        $namafile = time().'.'.$image->getClientOriginalExtension();
 	        $path = public_path('image/'.$namafile);
-	        Image::make($image->getRealPath())->resize(500,500)->save($path);
+	        Image::make($image->getRealPath())->resize(600,600)->save($path);
 
 	        $update->image = $namafile;
 	        alert()->success('Update foto berhasil !')->autoclose(3000);
