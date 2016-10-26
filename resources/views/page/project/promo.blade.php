@@ -8,7 +8,7 @@
       <ol class="breadcrumb">
         <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active"><a href="{{ route('promo.view') }}">Promo</li></a>
-       
+
       </ol>
     </section>
 
@@ -19,13 +19,18 @@
           <div class="box box-primary">
             <div class="box-header">
               <h3 class="box-title">Data Promo</h3>
-              <div class="box-tools pull-right"><a href='{{ url("promo/add") }}' class="btn btn-xs btn-success">
-                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Promo</a>
+              <div class="box-tools pull-right">
+              <a href="{{ URL::to('promo/') }}" class="btn btn-xs btn-success ">
+                <i class="fa fa-refresh" aria-hidden="true"></i>
+              </a>
+              <a href='{{ URL::to("promo/add") }}' class="btn btn-xs btn-success">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Promo
+              </a>
               </div>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-          
+
               <table id="data" class="table table-condensed table-bordered table-hover dataTable no-footer" role="grid" style="width: 1082px;">
               <thead>
                 <tr>
@@ -39,7 +44,7 @@
                 </tr>
               </thead>
               </table>
-    
+
             </div>
             <!-- /.box-body -->
           </div>
@@ -48,7 +53,7 @@
       </div>
     </section>
 <script src="{{ asset('dist/sweetalert.min.js')}}"></script>
-@include('sweet::alert')  
+@include('sweet::alert')
 @endsection
 
 @push('script')
@@ -57,6 +62,7 @@
     $('#data').DataTable({
       "processing" : true,
       "serverSide" : true,
+      "sScrollX" : false,
       "ajax" : '{{ url("promo/get-promo") }}',
       "columns" : [
         { data : 'name', name: 'name' },
@@ -69,6 +75,6 @@
       ]
     });
   });
-  
+
 </script>
 @endpush

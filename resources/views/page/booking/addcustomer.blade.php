@@ -316,7 +316,9 @@
 @push('script')
 <script>
 $( function() {
-  $( "#datepicker" ).datepicker();
+  $( "#datepicker" ).datepicker({
+      autoclose: true,
+    });
 } );
 </script>
 @endpush

@@ -16,7 +16,7 @@ class cash extends Model
     }
 
     public function spr(){
-    	return $this->belongTo();
+    	return $this->belongTo('App\spr','spr_id');
     }
 
 	public $timestamps = false;

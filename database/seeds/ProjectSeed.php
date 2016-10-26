@@ -12,11 +12,11 @@ class ProjectSeed extends Seeder
     public function run()
     {
          DB::table('project')->insert([
-            'name' =>  str_random(10),
-            'company' =>  str_random(10),
+            'name' =>  'Bale Bengong',
+            'company' => 'Sejahtera',
             'area' =>  901212,
             'unit_total' => 12,
-            'location' =>  str_random(10),
+            'location' =>  'Bogor Timur',
             'booking_free' =>  5000,
             'booking_comission' =>  2000,
             'nup_free' =>  48676,
@@ -25,11 +25,11 @@ class ProjectSeed extends Seeder
         ]);
 
         DB::table('project')->insert([
-            'name' =>  str_random(10),
-            'company' =>  str_random(10),
+            'name' =>  'Gading Gerande',
+            'company' =>  'Komplek Jaya',
             'area' =>  234512,
             'unit_total' => 15,
-            'location' =>  str_random(10),
+            'location' =>  'Kelapa Gading',
             'booking_free' =>  60000,
             'booking_comission' =>  20000,
             'nup_free' =>  50000,
@@ -38,11 +38,11 @@ class ProjectSeed extends Seeder
         ]);
 
         DB::table('project')->insert([
-            'name' =>  str_random(10),
-            'company' =>  str_random(10),
+            'name' =>  'Gading Indah',
+            'company' =>  'Komplek Makmur',
             'area' =>  898765,
             'unit_total' => 20,
-            'location' =>  str_random(10),
+            'location' =>  'Kelapa Gading',
             'booking_free' =>  35000,
             'booking_comission' =>  10000,
             'nup_free' =>  50000,
@@ -70,12 +70,12 @@ class ProjectSeed extends Seeder
 
         DB::table('kavling')->insert([
             'number' =>  3452,
-            'field_size' =>  str_random(10),
+            'field_size' =>  200,
             'bpn_size' =>  234512,
             'left_over_size' => 15,
             'Imb_parent' =>  str_random(10),
             'Imb_parent_date' =>  60000,
-            'Imb_fraction' =>  20000, 
+            'Imb_fraction' =>  20000,
             'Imb_fraction_date' =>  50000,
             'pbb' =>  30000,
             'pln_no' =>  2000,
@@ -88,7 +88,7 @@ class ProjectSeed extends Seeder
 
         DB::table('kavling')->insert([
             'number' =>  3451,
-            'field_size' =>  str_random(10),
+            'field_size' =>  200,
             'bpn_size' =>  898765,
             'left_over_size' => 20,
             'Imb_parent' =>  str_random(10),
@@ -101,7 +101,7 @@ class ProjectSeed extends Seeder
             'progress' =>  "Keramik",
             'strategic_type_id' =>  1,
             'project_id' =>  2,
-            'kavling_type_id' =>  1,           
+            'kavling_type_id' =>  1,
         ]);
 
         DB::table('siteplan')->insert([
@@ -142,6 +142,6 @@ class ProjectSeed extends Seeder
             'kavling_type_id'=>2
         ]);
 
-       
+
     }
 }

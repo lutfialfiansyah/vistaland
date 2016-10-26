@@ -2,7 +2,7 @@
 @section('konten')
    <section class="content-header">
       <h1>
-        NUP
+        SPR
         <small>Control Panel</small>
       </h1>
       <ol class="breadcrumb">
@@ -18,14 +18,14 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Data SPR</h3>
-              <a href="{{ url('spr/add') }}" class="btn btn-xs btn-success pull-right">
-                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add SPR
-              </a>
-
-              <a href="{{ url('/spr') }}" class="btn btn-xs btn-success">
-                <i class="fa fa-refresh" aria-hidden="true"></i>
-              </a>
-
+							<div class="box-tools pull-right">
+	              <a href="{{ url('/spr') }}" class="btn btn-xs btn-success">
+	                <i class="fa fa-refresh" aria-hidden="true"></i>
+	              </a>
+	              <a href="{{ url('spr/add') }}" class="btn btn-xs btn-success">
+	                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add SPR
+	              </a>
+							</div>
             </div>
             <!-- /.box-header -->
             <div class="box-body">

@@ -18,14 +18,14 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Data NUP</h3>
-              <a href="{{ url('nup/add') }}" class="btn btn-xs btn-success pull-right">
-                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add NUP 
-              </a>
-
-              <a href="{{ url('/nup') }}" class="btn btn-xs btn-success">
-                <i class="fa fa-refresh" aria-hidden="true"></i>
-              </a>
-
+							<div class="box-tools pull-right">
+	              <a href="{{ url('/nup') }}" class="btn btn-xs btn-success">
+	                <i class="fa fa-refresh" aria-hidden="true"></i>
+	              </a>
+	              <a href="{{ url('nup/add') }}" class="btn btn-xs btn-success">
+	                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add NUP
+	              </a>
+							</div>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -59,12 +59,12 @@
       "serverSide" : true,
       "ajax" : "{{ url('nup/get-nup') }}",
       "columns" : [
-        { data : 'code', name: 'code' },
-        { data : 'project_id', name: 'project' },
-        { data : 'customer_id', name: 'customer' },
-        { data : 'nupfee', name: 'nupfee' },
-        { data : 'payment_status', name: 'payment_status' },
+        { data : 'code', name: 'nup.code' },
+        { data : 'name', name: 'project_id' },
+        { data : 'customer', name: 'customer' },
+        { data : 'nup_free', name: 'project.nup_free' },
         { data : 'comission_status', name: 'comission_status' },
+        { data : 'payment_status', name: 'payment_status' },
         { data : 'action', name:'action', orderable: false, searchable: false },
       ]
     });

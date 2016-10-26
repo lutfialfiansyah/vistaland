@@ -11,7 +11,7 @@ class kavling extends Model
     	'number','field_size','bpn_size','left_over_size','Imb_parent','Imb_parent_date','Imb_fraction','Imb_fraction_date',
     	'pbb','pln_no','status','progress','strategic_type_id','project_id','kavling_type_id'
     ];
-	
+
     public function project(){
     	return $this->belongsTo('App\project','project_id');
     }
@@ -30,6 +30,10 @@ class kavling extends Model
 
      public function tax_payment(){
         return $this->hasOne('App\tax_payment','kavling_id');
+    }
+
+    public function price(){
+    	return $this->belongsTo('App\price','price_id');
     }
 
 	public $timestamps = false;

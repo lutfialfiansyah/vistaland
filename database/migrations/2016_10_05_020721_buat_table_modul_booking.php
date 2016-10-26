@@ -15,6 +15,7 @@ class BuatTableModulBooking extends Migration
     {
         Schema::create('customer', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('code');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('ktp_number');

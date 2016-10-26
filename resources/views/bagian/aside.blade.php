@@ -41,10 +41,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{url('/customer')}}"><i class="fa fa-group"></i> Customer</a></li>
-            <li><a href="{{url('/nup')}}"><i class="fa fa-file-o"></i>NUP</a></li>
-            <li><a href="{{url('/booking-fee')}}"><i class="fa fa-money"></i>Booking Fee</a></li>
-            <li><a href="{{url('/spr')}}"><i class="fa fa-file"></i>SPR</a></li>
+            <li><a href="{{ URL::to('/customer') }}"><i class="fa fa-group"></i> Customer</a></li>
+            <li><a href="{{ URL::to('/nup') }}"><i class="fa fa-file-o"></i>NUP</a></li>
+            <li><a href="{{ URL::to('/booking-free') }}"><i class="fa fa-money"></i>Booking Fee</a></li>
+            <li><a href="{{ URL::to('/spr') }}"><i class="fa fa-file"></i>SPR</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -114,8 +114,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Legalitas kavling</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Legalitas akad</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> Marketer</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> Marketer PIC</a></li>
           </ul>
         </li>
 
@@ -126,7 +126,7 @@
            </a>
         </li>
         <li class="treeview">
-          <a href="#">
+          <a href="{{ route('official.view') }}">
             <i class="fa fa-users" aria-hidden="true"></i>
             <span>Users</span>
           </a>

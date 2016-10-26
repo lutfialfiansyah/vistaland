@@ -20,7 +20,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Add Kavling</h3>
-              <a href='{{ url("project/$project->id/kavling") }}' class="btn btn-xs btn-success">
+              <a href='{{ url("project/$project->id/kavling") }}' class="btn btn-xs btn-success pull-right">
                 <i class="fa fa-eye" aria-hidden="true"></i> Lihat data
               </a>
             </div>
@@ -29,6 +29,11 @@
             @if(Session::has('success'))
               <div class="alert alert-success">
                 {{ Session::get('success') }}
+              </div>
+            @endif
+            @if(Session::has('error'))
+              <div class="alert alert-danger">
+                {{ Session::get('error') }}
               </div>
             @endif
               <form action='{{ url("project/$project->id/kavling/add") }}' method="post">
@@ -46,7 +51,7 @@
                         {{ $errors->first('kavling_type_id') }}
                       </span>
                     @endif
-                </div>               
+                </div>
                 <div class="form-group{{ $errors->has('strategic_type_id') ? ' has-error' : '' }}">
                   <label for="">Strategic Type</label>
                   <select class="form-control" name="strategic_type_id" >
@@ -205,7 +210,7 @@
                       </span>
                     @endif
                 </div>
-      
+
                 <div class="form-group">
                   <button type="reset" class="btn btn-default">RESET</button>
                   <input type="submit" class="btn btn-primary" value="SIMPAN">
@@ -219,7 +224,7 @@
         </div>
       </div>
     </section>
-  
+
 @endsection
 @push('script')
 <script>

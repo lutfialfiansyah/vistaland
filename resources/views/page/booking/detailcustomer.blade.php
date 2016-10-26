@@ -191,6 +191,4 @@
           </div>
           <!-- /.box -->
     </section>
-<script src="{{ asset('dist/sweetalert.min.js')}}"></script>
-@include('sweet::alert')
 @endsection

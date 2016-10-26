@@ -18,20 +18,21 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Data Customer</h3>
-              <a href="{{ url('customer/add') }}" class="btn btn-xs btn-success pull-right">
-                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Data Customer
-              </a>
-
-              <a href="{{ url('/customer') }}" class="btn btn-xs btn-success">
-                <i class="fa fa-refresh" aria-hidden="true"></i>
-              </a>
-
+							<div class="box-tools pull-right">
+								<a href="{{ url('/customer') }}" class="btn btn-xs btn-success">
+	                <i class="fa fa-refresh" aria-hidden="true"></i>
+	              </a>
+	              <a href="{{ url('customer/add') }}" class="btn btn-xs btn-success">
+	                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Data Customer
+	              </a>
+							</div>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="data" class="table table-bordered table-hover table-striped table-condesed">
               <thead>
                 <tr>
+                	<th>Code</th>
                   <th>Name</th>
                   <th>Email</th>
                   <th>Phone</th>
@@ -48,7 +49,7 @@
           </div>
           <!-- /.box -->
     </section>
-<script src="{{ asset('dist/sweetalert.min.js')}}"></script>
+<script src="{{ asset('dist/sweetalert.min.js') }}"></script>
 @include('sweet::alert')
 @endsection
 
@@ -59,8 +60,10 @@
       "responsive" : true,
       "processing" : true,
       "serverSide" : true,
+      "sScrollX" : false,
       "ajax" : "{{ url('customer/get-customer') }}",
       "columns" : [
+      	{ data : 'code' ,name: 'code'},
         { data : 'name' ,name: 'name'},
         { data : 'email', name: 'email' },
         { data : 'house_phone', name: 'house_phone' },
@@ -73,8 +76,6 @@
     });
   });
 
-</script>
-<script>
     $(document).on('click', '#delete-btn', function(e) {
         e.preventDefault();
         var link = $(this);
