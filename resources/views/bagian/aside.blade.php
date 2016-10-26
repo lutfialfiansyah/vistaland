@@ -101,7 +101,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> Jadwal Inteview</a></li>
+            <li><a href="{{route('interview.view')}}"><i class="fa ion-ios-calendar"></i>Inteview Schedule</a></li>
             <li><a href=""><i class="fa fa-circle-o"></i> Jadwal Akad Kredit</a></li>
           </ul>
         </li>

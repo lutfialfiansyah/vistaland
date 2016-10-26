@@ -2,12 +2,12 @@
 @section('konten')
    <section class="content-header">
       <h1>
-        NUP
+        Booking
         <small>Control Panel</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><a href="{{ url('/booking') }}">Booking</a></li>
+        <li class="active"><a href="{{ route('booking.view') }}">Booking</a></li>
         <li class="active"><a href="{{ url('/booking/add') }}">Add Booking</a></li>
       </ol>
     </section>
@@ -19,7 +19,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Add Booking</h3>
-              <a href="{{ url('/Booking') }}" class="btn btn-xs btn-success pull-right">
+              <a href="{{ route('booking.view') }}" class="btn btn-xs btn-success pull-right">
                 <i class="fa fa-eye" aria-hidden="true"></i> Lihat data
               </a>
             </div>
@@ -38,30 +38,48 @@
                 </div>
                 <div class="form-group {{ $errors->has('nup') ? ' has-error' : ''}}">
                   <label>NUP</label>
-                  <select name="nup" id="nup" class="form-control" required>
-                    <option value="">NUP</option>
+                  <select name="nup" id="nup" class="form-control">
+                    <option value=""></option>
+                    <option value=""></option>
                   </select>
-                  <span class="help-block"></span>
-                </div>
+                  @if($errors->has('nup'))
+                  <span class="help-block">
+                    <strong>{{ $errors->first('nup')}}</strong>
+                  </span><span id="select2-customer-5o-container" class="select2-selection__rendered" title="Choose One">Choose One</span>
+                  @endif
+                  </div>
+
                 <div class="form-group {{ $errors->has('kavling') ? ' has-error' : ''}}">
                   <label>Kavling</label>
-                  <select name="kavling" id="kavling" class="form-control" required>
-                    <option value="">KAVLING</option>
+                  <select name="kavling" id="kavling" class="form-control">
+                    <option value=""></option>
+                    <option value=""></option>
                   </select>
-                  <span class="help-block"></span>
-                </div>
+                  @if($errors->has('kavling'))
+                  <span class="help-block">
+                    <strong>{{ $errors->first('kavling')}}</strong>
+                  </span><span id="select2-customer-5o-container" class="select2-selection__rendered" title="Choose One">Choose One</span>
+                  @endif
+                  </div>
+
                 <div class="form-group {{ $errors->has('promo') ? ' has-error' : ''}}">
                   <label>Promo</label>
-                  <select name="promo" id="promo" class="form-control" required>
-                    <option value="">PROMO</option>
+                  <select name="promo" id="promo" class="form-control">
+                    <option value=""></option>
+                    <option value=""></option>
                   </select>
-                  <span class="help-block"></span>
-                </div>
+                  @if($errors->has('promo'))
+                  <span class="help-block">
+                    <strong>{{ $errors->first('promo')}}</strong>
+                  </span><span id="select2-customer-5o-container" class="select2-selection__rendered" title="Choose One">Choose One</span>
+                  @endif
+                  </div>
+
                 <div class="form-group {{ $errors->has('comission_status') ? ' has-error' : ''}}">
                   <label>Comission Status</label>
                   <select name="comission_status" id="comission_status" class="form-control" required>
-                    <option value="">Pending</option>
-                    <option value="">Paid</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Paid">Paid</option>
                   </select>
                   <span class="help-block"></span>
                 </div>
@@ -80,3 +98,18 @@
     </section>
 
 @endsection
+@push('script')
+<script>
+      $(document).ready(function () {
+        $("#nup").select2({
+          placeholder: "Chose One"
+          });
+        $("#kavling").select2({
+          placeholder: "Chose One"
+          });
+        $("#promo").select2({
+          placeholder: "Chose One"
+          });
+        });
+</script>
+@endpush

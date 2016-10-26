@@ -264,26 +264,3 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<script>
-    $(document).on('click', '#logout-btn', function(e) {
-        e.preventDefault();
-        var link = $(this);
-        swal({
-            title: "Confirm Sign out!",
-            text: "Are you sure?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes",
-            closeOnConfirm: true
-         },
-         function(isConfirm){
-             if(isConfirm){
-                window.location = link.attr('href');
-             }
-             else{
-                swal("cancelled","Category deletion Cancelled", "error");
-             }
-         });
-    });
-</script>

@@ -2,7 +2,7 @@
 @section('konten')
    <section class="content-header">
       <h1>
-        NUP
+        Booking
         <small>Control Panel</small>
       </h1>
       <ol class="breadcrumb">

@@ -408,26 +408,26 @@ Route::group(['middleware' => ['auth']],function(){
 		 *****customervoid*****
 		 */
 		Route::get('interview',[
-			'uses' => 'PerubahanController@getInterview',
+			'uses' => 'InterviewController@getInterview',
 			'as' => 'interview.view'
 		]);
 		Route::get('interview/add',[
-			'uses' => 'PerubahanController@getAddInterview',
+			'uses' => 'InterviewController@getAddInterview',
 			'as' => 'interview.add'
 		]);
 		Route::get('interview/edit/{id}',[
-			'uses' => 'PerubahanController@getEditInterview',
+			'uses' => 'InterviewController@getEditInterview',
 			'as' => 'interview.edit'
 		]);
 		Route::post('interview/update/{id}',[
-			'uses' => 'PerubahanController@postUpdateInterview',
+			'uses' => 'InterviewController@postUpdateInterview',
 			'as' => 'interview.update'
 		]);
 		Route::get('interview/hapus/{id}',[
-			'uses' => 'PerubahanController@getHapusInterview',
+			'uses' => 'InterviewController@getHapusInterview',
 			'as' => 'interview.hapus'
 		]);
-		Route::get('interview/get-interview','PerubahanController@getMoveInterview');
+		Route::get('interview/get-interview','InterviewController@getInterviewdata');
 
 	});
 

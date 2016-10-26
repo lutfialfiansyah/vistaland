@@ -59,6 +59,7 @@
       "responsive" : true,
       "processing" : true,
       "serverSide" : true,
+      "sScrollX": true,
       "ajax" : "{{ url('customer/get-customer') }}",
       "columns" : [
         { data : 'name' ,name: 'name'},
@@ -80,7 +81,7 @@
         var link = $(this);
         swal({
             title: "Confirm Delete",
-            text: " Delete record ?",
+            " Delete record ?",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",

@@ -50,7 +50,7 @@ class BuatTableModulKelengkapandata extends Migration
         Schema::create('interview', function (Blueprint $table) {
             $table->increments('id');
             $table->string('place');
-            $table->date('date');
+            $table->datetime('date');
         });
         Schema::create('interview_detail', function (Blueprint $table) {
             $table->increments('id');
