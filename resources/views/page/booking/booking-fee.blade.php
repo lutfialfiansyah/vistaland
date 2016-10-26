@@ -54,6 +54,7 @@
 <script>
   $(function () {
     $('#data').DataTable({
+    	"responsive" : true,
       "processing" : true,
       "serverSide" : true,
       "sScrollX" : false,

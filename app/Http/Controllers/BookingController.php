@@ -56,11 +56,9 @@ class BookingController extends Controller
               })
               ->editColumn('priority_status',function($customer){
                 if($customer->priority_status == "Not Priority"){
-               return
-                "<small class='label label-danger'>$customer->priority_status</small>";
-              }else{
-                return
-                "<small class='label label-primary'>$customer->priority_status</small>";
+               		return "<small class='label label-danger'>$customer->priority_status</small>";
+             	 }else{
+                	return "<small class='label label-primary'>$customer->priority_status</small>";
               }
               })
             ->make(true);
@@ -254,7 +252,6 @@ class BookingController extends Controller
                 return
                 '<a href="nup/edit/'.$nup->id.'" class="btn btn-xs btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
                  <a href="nup/hapus/'.$nup->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus Nup dengan code'. $nup->code.' ?\')">
-                 <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
                  ';
               })
            	->editColumn('customer',function($nup){

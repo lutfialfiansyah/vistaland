@@ -16,7 +16,7 @@
     <!-- Main content -->
     <section class="content"> 
 <div class=" row">
-     @foreach ($projects as $pro)
+     @foreach ($projects->sortBy('name') as $pro)
     
         <div class="col-lg-3 col-xs-6">
         <div class="small-box bg-aqua">
@@ -27,7 +27,7 @@
             <p>{{$pro->name}}</p>
           </div>
         <div class="icon">
-          <i class="fa fa-suitcase"></i>
+          <i class="ion-ios-bookmarks"></i>
         </div>
           <a class="small-box-footer" href="#">
             Select This Project 

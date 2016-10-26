@@ -80,8 +80,7 @@
         e.preventDefault();
         var link = $(this);
         swal({
-            title: "Confirm Delete",
-            text: " Delete data customer ?",
+            title: " Delete record ?",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
