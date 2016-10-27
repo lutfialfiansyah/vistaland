@@ -191,7 +191,6 @@ class BookingController extends Controller
       Image::make($image->getRealPath())->resize(200,200)->save($path);
       $customer->image = $namafile;
     }
-
       $customer->update();
       alert()->success('Data berhasil diupdate !')->autoclose(3000);
       return redirect()->route('customer.view');

@@ -8,7 +8,7 @@
       <ol class="breadcrumb">
         <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active"><a href="{{ route('interview.view') }}">Interview</a></li>
-        <li class="active"><a href="{{ route('interview.add') }}">Add Interview</a></li>
+        <li class="active"><a href="{{ url('interview/edit',$edit->id) }}">Edit Interview</a></li>
       </ol>
     </section>
 
@@ -18,18 +18,18 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Add Interview</h3>
+              <h3 class="box-title">Edit Interview</h3>
               <a href="{{ route('interview.view') }}" class="btn btn-xs btn-success pull-right">
                 <i class="fa fa-eye" aria-hidden="true"></i> Lihat data
               </a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form action="{{ route('interview.add') }}" method="post">
+              <form action="{{ route('interview.update',$edit->id) }}" method="post">
               {!! csrf_field() !!}
                <div class="form-group{{ $errors->has('place') ? ' has-error' : ''}}">
                   <label for="place">Place</label>
-              <input type="text" name="place" autofocus="autofocus" class="form-control" value="{{ old('place') }}">
+              <input type="text" name="place" autofocus="autofocus" class="form-control" value="{{ $edit->place }}">
                     @if($errors->has('place'))
                       <span class="help-block">
                         <strong>{{ $errors->first('place') }}</strong>
@@ -42,7 +42,7 @@
               <div class="input-group-addon">
             <i class="ion-ios-calendar-outline"></i>
               </div>
-  <input id="time" class="form-control pull-left" name="date" value="{{old('date')}}" type="text">
+  <input id="time" class="form-control pull-left" name="date" value="{{$edit->date}}" type="text">
                 @if($errors->has('date'))
                       <span class="help-block">
                         <strong>{{ $errors->first('date') }}</strong>
@@ -53,15 +53,15 @@
               <div class="form-group {{ $errors->has('customer') ? ' has-error' : ''}}">
                   <label>Customer</label>
                   <select name="customer" id="customer" class="form-control">
-                    <option value=""></option>
-                    @foreach ($interview as $interviews)
+             <option value="{{$edit->customer_id}}"></option>
+                    @foreach($interview as $interviews)
                     <option value="{{$interviews->id}}">{{$interviews->first_name.' '.$interviews->last_name}}</option>
                   @endforeach
                   </select>
                   @if($errors->has('customer'))
                   <span class="help-block">
                     <strong>{{ $errors->first('customer')}}</strong>
-                  </span><span id="select2-customer-5o-container" class="select2-selection__rendered" title="Choose One">Choose Oneeeeeeeeee</span>
+                  </span><span id="select2-customer-5o-container" class="select2-selection__rendered" title="Choose One">Choose One</span>
                   @endif
                   </div>
 
@@ -82,11 +82,8 @@
 $( function() {
   $( "#time" ).datetimepicker({
   });
+  $( "#customer" ).select2({
+  });
 });
-  $(document).ready(function () {
-    $("#customer").select2({
-    placeholder: "Chose One"
-      });
-    });
 </script>
 @endpush

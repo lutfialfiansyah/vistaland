@@ -411,14 +411,19 @@ Route::group(['middleware' => ['auth']],function(){
 			'uses' => 'InterviewController@getInterview',
 			'as' => 'interview.view'
 		]);
-		Route::get('interview/add',[
-			'uses' => 'InterviewController@getAddInterview',
+		Route::get('interview/add','InterviewController@getAddInterview');
+		Route::post('interview/add',[
+			'uses' => 'InterviewController@postAddInterview',
 			'as' => 'interview.add'
 		]);
 		Route::get('interview/edit/{id}',[
 			'uses' => 'InterviewController@getEditInterview',
 			'as' => 'interview.edit'
 		]);
+		Route::get('interview/detail/{id}',[
+			'uses' => 'InterviewController@getDetailInterview',
+			'as' => 'interview.detail'
+			]);
 		Route::post('interview/update/{id}',[
 			'uses' => 'InterviewController@postUpdateInterview',
 			'as' => 'interview.update'
@@ -428,8 +433,9 @@ Route::group(['middleware' => ['auth']],function(){
 			'as' => 'interview.hapus'
 		]);
 		Route::get('interview/get-interview','InterviewController@getInterviewdata');
+		});
 
-	});
+
 
 		Route::get('/lockscreen',[
 			'uses' => 'userController@getlocked',

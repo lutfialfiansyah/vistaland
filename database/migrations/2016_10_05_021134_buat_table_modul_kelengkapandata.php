@@ -51,6 +51,8 @@ class BuatTableModulKelengkapandata extends Migration
             $table->increments('id');
             $table->string('place');
             $table->datetime('date');
+            $table->unsignedInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('customer')->onDelete('CASCADE');
         });
         Schema::create('interview_detail', function (Blueprint $table) {
             $table->increments('id');

@@ -55,7 +55,7 @@
                   <select name="customer" id="customer" class="form-control">
                     <option value=""></option>
                     @foreach ($nupcus as $nups)
-                    <option value="{{$nups->id}}">{{$nups->first_name}}</option>
+                    <option value="{{$nups->id}}">{{$nups->first_name.' '.$nups->last_name}}</option>
                   @endforeach
                   </select>
                   @if($errors->has('customer'))
