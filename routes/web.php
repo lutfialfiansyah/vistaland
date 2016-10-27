@@ -135,6 +135,34 @@ Route::group(['middleware' => ['auth']],function(){
 		]);
 
 		/*
+		 *****Authorized user*****
+		 */
+		Route::get('project/authorizeduser/{id}',[
+			'uses' => 'ProjectController@getAuthorizeduser',
+			'as' => 'authorizeduser.view'
+		]);
+		Route::get('project/authorizeduser/{id}/add',[
+			'uses' => 'ProjectController@getAddAuthorizeduser',
+			'as' => 'authorizeduser.add'
+		]);
+		Route::post('project/authorizeduser/{id}/add',[
+			'uses' => 'ProjectController@postAddAuthorizeduser',
+			'as' => 'authorizeduser.add'
+		]);
+		Route::get('project/authorizeduser/{id}/edit/{authorized_id}',[
+			'uses' => 'ProjectController@getEditAuthorizeduser',
+			'as' => 'authorizeduser.edit'
+		]);
+		Route::post('project/authorizeduser/{id}/update/{authorized_id}',[
+			'uses' => 'ProjectController@postUpdateAuthorizeduser',
+			'as' => 'authorizeduser.update'
+		]);
+		Route::get('project/authorizeduser/{id}/hapus/{authorizeduser_id}',[
+			'uses' => 'ProjectController@getHapusAuthorizeduser',
+			'as' => 'authorizeduser.hapus'
+		]);
+
+		/*
 		 *****Promo*****
 		 */
 
@@ -317,12 +345,11 @@ Route::group(['middleware' => ['auth']],function(){
 			'uses' => 'PerubahanController@getHapusCustomervoid',
 			'as' => 'customervoid.hapus'
 		]);
-		Route::get('customervoid/get-customervoid','PerubahanController@getMoveCustomervoid');
+		Route::get('customervoid/get-customervoid','PerubahanController@getCustomervoiddata');
 
 		/*
 		 *****customer*****
 		 */
-		Route::get('customer','BookingController@getCustomer');
 		Route::get('customer',[
 					'uses' => 'BookingController@getCustomer',
 					'as' => 'customer.view'
@@ -355,7 +382,6 @@ Route::group(['middleware' => ['auth']],function(){
 		/*
 		*****nup*****
 		*/
-		Route::get('nup','BookingController@getNup');
 		Route::get('nup',[
 			'uses' => 'BookingController@getNup',
 			'as' => 'nup.view'
@@ -375,15 +401,29 @@ Route::group(['middleware' => ['auth']],function(){
 		/*
 		*****booking fee*****
 		*/
-		Route::get('booking-fee','BookingController@getBookingfee');
-		Route::get('booking-fee',[
-			'uses' => 'BookingController@getBookingfee',
+		Route::get('booking-free',[
+			'uses' => 'BookingController@getBookingfree',
 			'as' => 'booking.view'
-			]);
-		Route::get('booking/add','BookingController@getAddBooking');
+		]);
+		Route::get('booking/add',[
+			'uses' => 'BookingController@getAddBooking',
+			'as' => 'booking.add'
+		]);
 		Route::post('booking/add',[
 			'uses' => 'BookingController@postAddBooking',
 			'as' => 'booking.add'
+		]);
+		Route::get('booking/edit/{id}',[
+			'uses' => 'BookingController@getEditBooking',
+			'as' => 'booking.view'
+		]);
+		Route::post('booking/update/{id}',[
+			'uses' => 'BookingController@postUpdateBooking',
+			'as' => 'booking.update'
+		]);
+		Route::get('booking/hapus/{id}',[
+			'uses' => 'BookingController@getHapusBooking',
+			'as' => 'booking.hapus'
 		]);
 		Route::get('booking/get-booking','BookingController@getBookingdata');
 		/*end customer*/
@@ -436,6 +476,35 @@ Route::group(['middleware' => ['auth']],function(){
 		});
 
 
+		/* User */
+		Route::get('users',[
+			'uses' => 'ProjectController@getOfficial',
+			'as' => 'official.view'
+		]);
+		Route::get('users/add',[
+			'uses' => 'ProjectController@getAddOfficial',
+			'as' => 'official.add'
+		]);
+		Route::post('users/add',[
+			'uses' => 'ProjectController@postAddOfficial',
+			'as' => 'official.add'
+		]);
+		Route::get('users/edit/{id}',[
+			'uses' => 'ProjectController@getEditOfficial',
+			'as' => 'official.edit'
+		]);
+		Route::post('users/update/{id}',[
+			'uses' => 'ProjectController@postUpdateOfficial',
+			'as' => 'official.update'
+		]);
+		Route::get('users/hapus/{id}',[
+			'uses' => 'ProjectController@getHapusOfficial',
+			'as' => 'official.hapus'
+		]);
+		Route::get('users/get-users','ProjectController@getOfficialdata');
+
+	});
+
 
 		Route::get('/lockscreen',[
 			'uses' => 'userController@getlocked',
@@ -459,7 +528,6 @@ Route::group(['middleware' => ['auth']],function(){
 			'as' => 'profile.changepassword'
 	]);
 
-});
 
 
 

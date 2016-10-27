@@ -16,8 +16,8 @@ class change_name extends Model
     }
 
     public function spr(){
-    	
+    	return $this->belongsTo('App\spr','spr_id');
     }
 
-    public $timestamps = false; 
+    public $timestamps = false;
 }

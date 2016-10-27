@@ -34,10 +34,9 @@
               <table id="data" class="table table-condensed table-bordered table-hover">
               <thead>
                 <tr>
-                  <th> Customer </th>
-                  <th> Reason</th>
+                  <th>Customer</th>
+                  <th>Reason</th>
                   <th>Status</th>
-                  <th>Last Update</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -60,12 +59,12 @@
     $('#data').DataTable({
       "processing" : true,
       "serverSide" : true,
-      "ajax" : '{{ url("customervoid/getCustomerVoiddata") }}',
+      "sScrollX" : false,
+      "ajax" : '{{ url("customervoid/get-customervoid") }}',
       "columns" : [
-        { data : 'customer', name: 'customer' },
+        { data : 'customer_id', name: 'customer_id' },
         { data : 'reason', name: 'reason' },
         { data : 'status', name: 'status' },
-        { data : 'last_update', name : 'last_update'},
         { data : 'action', name:'action', orderable: false, searchable: false },
       ]
     });

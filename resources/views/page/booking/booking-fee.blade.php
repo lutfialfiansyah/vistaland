@@ -2,12 +2,12 @@
 @section('konten')
    <section class="content-header">
       <h1>
-        Booking
+        Booking Free
         <small>Control Panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Booking fee</li>
+        <li><a href="{{ URL::to('/') }}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Booking free</li>
       </ol>
     </section>
 
@@ -18,14 +18,14 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Data Booking</h3>
-              <a href="{{ url('booking/add') }}" class="btn btn-xs btn-success pull-right">
-                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Booking
-              </a>
-
-              <a href="{{ url('/booking-fee') }}" class="btn btn-xs btn-success">
-                <i class="fa fa-refresh" aria-hidden="true"></i>
-              </a>
-
+							<div class="box-tools pull-right">
+								<a href="{{ URL::to('/booking-free') }}" class="btn btn-xs btn-success">
+	                <i class="fa fa-refresh" aria-hidden="true"></i>
+	              </a>
+	              <a href="{{ URL::to('booking/add') }}" class="btn btn-xs btn-success ">
+	                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Booking
+	              </a>
+							</div>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -54,9 +54,11 @@
 <script>
   $(function () {
     $('#data').DataTable({
+    	"responsive" : true,
       "processing" : true,
       "serverSide" : true,
-      "ajax" : "{{ url('nup/get-nup') }}",
+      "sScrollX" : false,
+      "ajax" : "{{ url('booking/get-booking') }}",
       "columns" : [
         { data : 'customer', name: 'customer' },
         { data : 'kavling', name: 'kavling' },

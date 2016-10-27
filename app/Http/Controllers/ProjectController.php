@@ -7,10 +7,12 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\ImageManagerStatic as Image;
 use Validator;
+use App\authorized_user;
 use App\project;
 use App\kavling;
 use App\price;
 use App\promo;
+use App\official;
 use App\kavling_type;
 use App\strategic_type;
 use App\siteplan;
@@ -31,13 +33,17 @@ class ProjectController extends Controller
     		})
             ->addColumn('action',function($project){
                 return
-                '<a href="project/edit/'.$project->id.'" class="btn btn-xs btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                 <a href="#" class="btn btn-xs btn-success"><i class="fa fa-users" aria-hidden="true"></i> Authorized user
+                '<a href="project/edit/'.$project->id.'" class="btn btn-xs btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
                  </a>
-                 <a href="project/'.$project->id.'/kavling" class="btn btn-xs btn-info"><i class="fa fa-home" aria-hidden="true"></i> Kavling</a>
-                 <a href="project/'.$project->id.'/pricelist" class="btn btn-xs btn-warning"><i class="fa fa-money" aria-hidden="true"></i> Price List</a>
+                 <a href="project/authorizeduser/'.$project->id.'" class="btn btn-xs btn-success"><i class="fa fa-users" aria-hidden="true"></i> Authorized user
+                 </a>
+                 <a href="project/'.$project->id.'/kavling" class="btn btn-xs btn-info"><i class="fa fa-home" aria-hidden="true"></i> Kavling
+                 </a>
+                 <a href="project/'.$project->id.'/pricelist" class="btn btn-xs btn-warning"><i class="fa fa-money" aria-hidden="true"></i> Price List
+                 </a>
                  <a href="project/hapus/'.$project->id.'" class="btn btn-xs btn-danger" id="confirm">
-                 <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
+                 <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus
+                 </a>
                  ';
               })
             ->make(true);
@@ -51,7 +57,7 @@ class ProjectController extends Controller
     public function postAddProject(Request $request){
     	$this->validate($request,[
 					  'name'=>'required|min:3|unique:project,name',
-						'company'=>'required|min:3',
+						'company'=>'required|min:3|unique:project,company',
 						'area'=>'required|numeric|min:0',
 						'unit_total'=>'required|numeric|min:0',
 						'location'=>'required',
@@ -123,9 +129,10 @@ class ProjectController extends Controller
 
     public function getAddKavling($id){
     	$project = project::where('id',$id)->first();
+    	$kavling = count(kavling::where('project_id',$id)->get());
     	$s_kavling_type = kavling_type::all();
     	$s_strategic_type = strategic_type::all();
-    	return view('page.project.addkavling',compact('s_kavling_type','s_strategic_type','project'));
+    	return view('page.project.addkavling',compact('s_kavling_type','s_strategic_type','project','kavling'));
     }
 
     public function getKavling($id){
@@ -134,13 +141,14 @@ class ProjectController extends Controller
     }
 
     public function getKavlingdata($id){
-    	$kavling = kavling::all()->where('project_id','=',$id);
+    	$kavling = kavling::where('project_id','=',$id)->get();
     	return Datatables::of($kavling)
     		->addColumn('type',function($kavling){
     				return $kavling->kavling_type->type;
     			})
     		->addColumn('price',function($kavling){
-    				return "Rp.".number_format($kavling->kavling_type->price->price,0,',','.');
+	    			return "Rp ".number_format($kavling->kavling_type->price->price,0,',','.').',-';
+
     			})
             ->addColumn('action',function($kavling){
                 return
@@ -148,7 +156,7 @@ class ProjectController extends Controller
                  <a href="kavling/hapus/'.$kavling->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus kavling '. $kavling->number.' ?\')">
                  <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
                  ';
-              	})
+              })
             ->editColumn('status',function($kavling){
             		return "<span class='label label-primary'>$kavling->status</span>";
             	})
@@ -160,6 +168,7 @@ class ProjectController extends Controller
     }
 
     public function postAddKavling(Request $request,$id){
+    	$project = project::where('id',$id)->first();
     	$this->validate($request,[
     		'number'=>'required|numeric|unique:kavling,number',
     		'strategic_type_id'=>'required',
@@ -170,25 +179,31 @@ class ProjectController extends Controller
     		'Imb_fraction_date'=>'date'
     	]);
 
-    	$kavling = new kavling();
-    	$kavling->number = $request->input('number');
-    	$kavling->field_size = $request->input('field_size');
-    	$kavling->bpn_size = $request->input('bpn_size');
-    	$kavling->left_over_size = $request->input('left_over_size');
-    	$kavling->Imb_parent = $request->input('Imb_parent');
-    	$kavling->Imb_parent_date = $request->input('Imb_parent_date');
-    	$kavling->Imb_fraction = $request->input('Imb_fraction');
-    	$kavling->Imb_fraction_date = $request->input('Imb_fraction_date');
-    	$kavling->pbb = $request->input('pbb');
-    	$kavling->pln_no = $request->input('pln_no');
-    	$kavling->status = $request->input('status');
-    	$kavling->progress = $request->input('progress');
-    	$kavling->strategic_type_id = $request->input('strategic_type_id');
-    	$kavling->kavling_type_id = $request->input('kavling_type_id');
-    	$kavling->project_id = $id;
-    	$kavling->save();
-			return back()->with('success','Data berhasil disimpan !');
+    	if(count(kavling::where('project_id',$id)->get()) >= $project->unit_total){
 
+				return back()->with('error','Unit Kavling sudah penuh !');
+			}else{
+
+		    	$kavling = new kavling();
+		    	$kavling->number = $request->input('number');
+		    	$kavling->field_size = $request->input('field_size');
+		    	$kavling->bpn_size = $request->input('bpn_size');
+		    	$kavling->left_over_size = $request->input('left_over_size');
+		    	$kavling->Imb_parent = $request->input('Imb_parent');
+		    	$kavling->Imb_parent_date = $request->input('Imb_parent_date');
+		    	$kavling->Imb_fraction = $request->input('Imb_fraction');
+		    	$kavling->Imb_fraction_date = $request->input('Imb_fraction_date');
+		    	$kavling->pbb = $request->input('pbb');
+		    	$kavling->pln_no = $request->input('pln_no');
+		    	$kavling->status = $request->input('status');
+		    	$kavling->progress = $request->input('progress');
+		    	$kavling->strategic_type_id = $request->input('strategic_type_id');
+		    	$kavling->kavling_type_id = $request->input('kavling_type_id');
+		    	$kavling->project_id = $id;
+		    	$kavling->save();
+
+					return back()->with('success','Data berhasil disimpan !');
+			}
     }
 
     public function getEditKavling($id,$kav_id){
@@ -278,8 +293,8 @@ class ProjectController extends Controller
     	$price->project_id = $id;
     	$price->save();
     	alert()->success('Data berhasil disimpan !')->autoclose(3000);
-		return redirect()->route('pricelist.view',$id);
 
+			return redirect()->route('pricelist.view',$id);
     }
 
     public function getEditPricelist($id,$price_id){
@@ -315,13 +330,15 @@ class ProjectController extends Controller
     	$price->project_id = $id;
     	$price->update();
     	alert()->success('Data berhasil diperbaharui !')->autoclose(3000);
-		return redirect()->route('pricelist.view',$id);
+
+			return redirect()->route('pricelist.view',$id);
 	}
 
 	public function getHapusPricelist($id,$price_id){
     	$price = price::where('id','=',$price_id,'and','project_id','=',$id)->first();
     	$price->delete();
     	alert()->success('Data berhasil dihapus !')->autoclose(3000);
+
     	return redirect()->route('pricelist.view',$id);
     }
 
@@ -390,6 +407,204 @@ class ProjectController extends Controller
     	return redirect()->route('siteplan.view',$id);
     }
 
+    // Authorized Users
+    public function getAuthorizeduser($id){
+    	$data = project::where('id',$id)->first();
+    	return view('page.project.authorizeduser',compact('data'));
+    }
+
+    public function getAddAuthorizeduser($id){
+    	$data = project::where('id',$id)->first();
+    	$project_manager = official::where('role','=','Project Manager','and','status = Active')
+    			->pluck('name');
+    	$project_manager_assistant = official::where('role','=','Project Manager Assistant','and','status = Active')
+    			->pluck('name');
+    	$staff_finance = official::where('role','=','Staff Finance','and','status = Active')
+    			->pluck('name');
+    	$staff_inhouse = official::where('role','=','Staff Inhouse','and','status = Active')
+    			->pluck('name');
+    	$field_executive = official::where('role','=','Field Executive','and','status = Active')
+    			->pluck('name');
+    	$admin = official::where('role','=','Admin','and','status = Active')
+    		->pluck('name');
+    	return view('page.project.addauthorizeduser',compact('data','project_manager','project_manager_assistant','staff_finance','staff_inhouse','field_executive','admin'));
+    }
+
+    public function postAddAuthorizeduser(Request $request,$id){
+    	$input = Input::all();
+    	$rules = [
+    						'project_manager' => 'required',
+    						'project_manager_assistant' => 'required',
+    						'finance_spv' => 'required',
+    						'inhouse_spv' => 'required',
+    						'field_executive' => 'required',
+    						'admin' => 'required',
+    						'legal' => 'required'
+    	];
+    	$message = [
+
+				'project_manager.required'	=> 'The Field: Project Manager is required',
+				'project_manager_assistant.required'	=> 'The Field: Project Manager Assistant is required',
+				'finance_spv.required'	=> 'The Field: Finance SPV is required',
+				'inhouse_spv.required'	=> 'The Field: inhouse SPV is required',
+				'field_executive.required'	=> 'The Field: Field Executive is required',
+				'admin.required'	=> 'The Field: Admin is required',
+				'legal.required'	=> 'The Field: Legal is required'
+
+    	];
+
+    				$validator = validator::make($input,$rules,$message);
+
+    				if($validator->passes()){
+
+    							$authorizeduser = new authorized_user();
+    							$authorizeduser->project_manager 					 = Input::get('project_manager');
+    							$authorizeduser->project_manager_assistant = Input::get('project_manager_assistant');
+    							$authorizeduser->finance_spv 							 = Input::get('finance_spv');
+    							$authorizeduser->inhouse_spv 							 = Input::get('inhouse_spv');
+    							$authorizeduser->field_executive					 = Input::get('field_executive');
+    							$authorizeduser->admin 										 = Input::get('admin');
+    							$authorizeduser->legal 										 = Input::get('legal');
+    							$authorizeduser->project_id 							 = $id;
+    							$authorizeduser->save();
+
+    							alert()->success('Data berhasil disimpan !');
+    							return redirect()->route('authorizeduser.view',$id);
+    				}else{
+    							return redirect()->route('authorizeduser.add',$id)->withErrors($validator)->withInput();
+    				}
+
+    }
+
+    public function getEditAuthorizeduser($id,$authorized_id){
+    	$edit = authorized_user::where('project_id','=',$id,'and');
+    	return view('page.project.editauthorizeduser');
+    }
+
+    public function postUpdateAuthorizeduser(Request $request,$id){
+    	$authorizeduser = authorized_user::where('project_id',$id);
+    }
+
+    public function getHapusAuthorizeduser(){
+
+    }
+
+    // users
+    public function getOfficial(){
+    	return view('page.project.official');
+    }
+
+    public function getOfficialdata(){
+    	$official = official::all();
+    	return Datatables::of($official)
+    			->addColumn('action',function($official){
+    				return
+                '<a href="users/edit/'.$official->id.'" class="btn btn-xs btn-warning">
+                	<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                 </a>
+                 <a href="users/hapus/'.$official->id.'" class="btn btn-xs btn-danger" id="confirm">
+                 	<i class="fa fa-trash-o" aria-hidden="true"></i> Hapus
+                 </a>
+                 ';
+    			})
+    			->editColumn('status',function($official){
+    					if($official->status == "Active"){
+
+    						return "<span class='label label-primary'>$official->status</span>";
+    					}else{
+    						return "<span class='label label-danger'>$official->status</span>";
+
+    					}
+    			})
+    			->make(true);
+    }
+
+    public function getAddOfficial(){
+    	return view('page.project.addofficial');
+    }
+
+    public function postAddOfficial(Request $request){
+    	$input = Input::all();
+    	$rules = [
+    							'name' => 'required|min:5|unique:official,name',
+    							'email' => 'required|email',
+    							'status' => 'required',
+    							'role' => 'required'
+    	];
+    	$message = [
+    		'name.required' 	=> 'The Field: Name is Required',
+    		'email.required' 	=> 'The Field: Email is Required',
+    		'email.email' 		=> 'The Field: Must format Email',
+    		'status.required' => 'The Field: Status is Required',
+    		'role.required' 	=> 'The Field: Role is Required',
+    	];
+
+    			$validator = Validator::make($input,$rules,$message);
+
+    			if($validator->passes()){
+
+    					$official = new official();
+    					$official->name   = Input::get('name');
+    					$official->email  = Input::get('email');
+    					$official->status = Input::get('status');
+    					$official->role   = Input::get('role');
+    					$official->save();
+
+    					return redirect()->route('official.add')->with('success','Data berhasil disimpan !');
+    			}else{
+
+    					return redirect()->route('official.add')->withErrors($validator)->withInput();
+    			}
+    }
+
+    public function getEditOfficial($id){
+    	$edit = official::where('id',$id)->first();
+    	return view('page.project.editofficial',['edit' => $edit]);
+    }
+
+    public function postUpdateOfficial(Request $request,$id){
+    	$input = Input::all();
+    	$rules = [
+    							'name' => 'required|min:5',
+    							'email' => 'required|email',
+    							'status' => 'required',
+    							'role' => 'required'
+    	];
+    	$message = [
+    		'name.required' 	=> 'The Field: Name is Required',
+    		'email.required' 	=> 'The Field: Email is Required',
+    		'email.email' 		=> 'The Field: Must format Email',
+    		'status.required' => 'The Field: Status is Required',
+    		'role.required' 	=> 'The Field: Role is Required',
+    	];
+
+    			$validator = Validator::make($input,$rules,$message);
+
+    			if($validator->passes()){
+
+    					$official = official::where('id',$id)->first();
+    					$official->name   = Input::get('name');
+    					$official->email  = Input::get('email');
+    					$official->status = Input::get('status');
+    					$official->role   = Input::get('role');
+    					$official->update();
+
+    					alert()->success('Data berhasil diupdate !')->autoclose(3000);
+    					return redirect()->route('official.view');
+    			}else{
+
+    					return redirect()->route('official.edit',$id)->withErrors($validator)->withInput();
+    			}
+    }
+
+    public function getHapusOfficial($id){
+    	$official = official::where('id',$id)->first();
+    	$official->delete();
+    	alert()->success('Data berhasil dihapus !')->autoclose(3000);
+    	return redirect()->route('official.view');
+
+    }
+
     // Promo
     public function getPromo(){
     	return view('page.project.promo');
@@ -444,11 +659,11 @@ class ProjectController extends Controller
     public function postUpdatePromo(Request $request,$id){
     	$this->validate($request,[
     		'name' => 'required',
-			'date_start' => 'required|date',
-			'date_end' => 'required|date',
-			'discount' => 'required|numeric|min:0',
-			'agent_bonus' => 'required|numeric|min:0',
- 			'team_bonus' => 'required|numeric|min:0',
+				'date_start' => 'required|date',
+				'date_end' => 'required|date',
+				'discount' => 'required|numeric|min:0',
+				'agent_bonus' => 'required|numeric|min:0',
+	 			'team_bonus' => 'required|numeric|min:0',
     	]);
 
     $promo = promo::where('id',$id)->first();

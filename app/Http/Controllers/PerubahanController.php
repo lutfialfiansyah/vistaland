@@ -9,6 +9,7 @@ use Illuminate\Database\DatabaseManager;
 use Illuminate\Support\Facades\DB;
 use App\change_name;
 use App\customer;
+use App\customer_void;
 use App\kavling;
 use App\moving_kavling;
 use Datatables;
@@ -19,8 +20,6 @@ class PerubahanController extends Controller
 
     public function getChangename()
     {
-
-
     	return view('page.perubahan data.changename');
     }
 
@@ -239,16 +238,35 @@ class PerubahanController extends Controller
     }
 
     public function getHapusMovekavling($id){
-    	$movekavling = moving_kavling::where('id',$id)->first();
-    	$movekavling->delete();
-    	alert()->success('Data berhasil dihapus !');
-    	return redirect()->route('movekavling.view',$id);
+	    	$movekavling = moving_kavling::where('id',$id)->first();
+	    	$movekavling->delete();
+	    	alert()->success('Data berhasil dihapus !');
+	    	return redirect()->route('movekavling.view',$id);
     }
 
 
     public function getCustomervoid(){
-            return view('page.perubahan data.customervoid');
+         return view('page.perubahan data.customervoid');
     }
+
+   public function getCustomervoiddata(){
+   		$customervoid = customer_void::all();
+   		return Datatables::of($customervoid)
+   			->addColumn('action',function($customervoid){
+   					return
+   					'<a href="movekavling/edit/'.$customervoid->id.'" class="btn btn-xs btn-danger"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+						 </a>
+						 <a href="movekavling/hapus/'.$customervoid->id.'" class="btn btn-xs btn-danger"><i class="fa fa-trash-o" aria-
+						 	hidden="true" id="confirm"></i> Hapus
+						 </a>';
+   			})
+   			->editColumn('customer_id',function($customervoid){
+   					$nama = customer::where('id',$customervoid->customer_id)->first();
+   					return $nama->first_name." ".$nama->last_name;
+   			})
+   			->make(true);
+
+   }
 
     public function getAddCustomervoid(){
         $customervoid = moving_kavling::all();

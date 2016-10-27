@@ -56,11 +56,9 @@ class BookingController extends Controller
               })
               ->editColumn('priority_status',function($customer){
                 if($customer->priority_status == "Not Priority"){
-               return
-                "<small class='label label-danger'>$customer->priority_status</small>";
-              }else{
-                return
-                "<small class='label label-primary'>$customer->priority_status</small>";
+               		return "<small class='label label-danger'>$customer->priority_status</small>";
+             	 }else{
+                	return "<small class='label label-primary'>$customer->priority_status</small>";
               }
               })
             ->make(true);
@@ -94,29 +92,30 @@ class BookingController extends Controller
 			]);
 
 			$customer = new customer();
-		$customer->first_name = $request->input('first_name');
-		$customer->last_name = $request->input('last_name');
-		$customer->ktp_number = $request->input('ktp_number');
-		$customer->ktp_expire = $request->input('ktp_expire');
-		$customer->house_address = $request->input('house_address');
-		$customer->office_address = $request->input('office_addres');
-		$customer->email = $request->input('email');
-		$customer->house_phone = $request->input('house_phone');
-		$customer->office_phone = $request->input('office_phone');
-		$customer->relative_name = $request->input('relative_name');
-		$customer->relative_phone = $request->input('relative_phone');
-		$customer->relative_ktp = $request->input('relative_ktp');
-		$customer->spouse_name = $request->input('spouse_name');
-		$customer->spouse_ktp = $request->input('spouse_ktp');
-		$customer->image = $request->input('image');
-		$customer->bank_account_number = $request->input('bank_account_number');
-		$customer->btn_id = $request->input('btn_id');
-		$customer->btn_account_number = $request->input('btn_account_number');
-		$customer->btn_branch = $request->input('btn_branch');
-		$customer->mk_application = $request->input('mk_application');
-		$customer->deposit_loan_akad = $request->input('deposit_loan_akad');
-		$customer->status = $request->input('status');
-		$customer->priority_status = $request->input('priority_status');
+			$customer->code = mt_rand();
+			$customer->first_name = $request->input('first_name');
+			$customer->last_name = $request->input('last_name');
+			$customer->ktp_number = $request->input('ktp_number');
+			$customer->ktp_expire = $request->input('ktp_expire');
+			$customer->house_address = $request->input('house_address');
+			$customer->office_address = $request->input('office_addres');
+			$customer->email = $request->input('email');
+			$customer->house_phone = $request->input('house_phone');
+			$customer->office_phone = $request->input('office_phone');
+			$customer->relative_name = $request->input('relative_name');
+			$customer->relative_phone = $request->input('relative_phone');
+			$customer->relative_ktp = $request->input('relative_ktp');
+			$customer->spouse_name = $request->input('spouse_name');
+			$customer->spouse_ktp = $request->input('spouse_ktp');
+			$customer->image = $request->input('image');
+			$customer->bank_account_number = $request->input('bank_account_number');
+			$customer->btn_id = $request->input('btn_id');
+			$customer->btn_account_number = $request->input('btn_account_number');
+			$customer->btn_branch = $request->input('btn_branch');
+			$customer->mk_application = $request->input('mk_application');
+			$customer->deposit_loan_akad = $request->input('deposit_loan_akad');
+			$customer->status = $request->input('status');
+			$customer->priority_status = $request->input('priority_status');
 
        $image = Input::file('image');
        $namafile = time().'.'.$image->getClientOriginalExtension();
@@ -159,38 +158,39 @@ class BookingController extends Controller
       ]);
 
 			$customer = customer::where('id',$id)->first();
-		$customer->first_name = $request->input('first_name');
-		$customer->last_name = $request->input('last_name');
-		$customer->ktp_number = $request->input('ktp_number');
-		$customer->ktp_expire = $request->input('ktp_expire');
-		$customer->house_address = $request->input('house_address');
-		$customer->office_address = $request->input('office_address');
-		$customer->email = $request->input('email');
-		$customer->house_phone = $request->input('house_phone');
-		$customer->office_phone = $request->input('office_phone');
-		$customer->relative_name = $request->input('relative_name');
-		$customer->relative_phone = $request->input('relative_phone');
-		$customer->relative_ktp = $request->input('relative_ktp');
-		$customer->spouse_name = $request->input('spouse_name');
-		$customer->spouse_ktp = $request->input('spouse_ktp');
-		$customer->bank_account_number = $request->input('bank_account_number');
-		$customer->btn_id = $request->input('btn_id');
-		$customer->btn_account_number = $request->input('btn_account_number');
-		$customer->btn_branch = $request->input('btn_branch');
-		$customer->mk_application = $request->input('mk_application');
-		$customer->deposit_loan_akad = $request->input('deposit_loan_akad');
-		$customer->status = $request->input('status');
-		$customer->priority_status = $request->input('priority_status');
+			$customer->first_name = $request->input('first_name');
+			$customer->last_name = $request->input('last_name');
+			$customer->ktp_number = $request->input('ktp_number');
+			$customer->ktp_expire = $request->input('ktp_expire');
+			$customer->house_address = $request->input('house_address');
+			$customer->office_address = $request->input('office_address');
+			$customer->email = $request->input('email');
+			$customer->house_phone = $request->input('house_phone');
+			$customer->office_phone = $request->input('office_phone');
+			$customer->relative_name = $request->input('relative_name');
+			$customer->relative_phone = $request->input('relative_phone');
+			$customer->relative_ktp = $request->input('relative_ktp');
+			$customer->spouse_name = $request->input('spouse_name');
+			$customer->spouse_ktp = $request->input('spouse_ktp');
+			$customer->bank_account_number = $request->input('bank_account_number');
+			$customer->btn_id = $request->input('btn_id');
+			$customer->btn_account_number = $request->input('btn_account_number');
+			$customer->btn_branch = $request->input('btn_branch');
+			$customer->mk_application = $request->input('mk_application');
+			$customer->deposit_loan_akad = $request->input('deposit_loan_akad');
+			$customer->status = $request->input('status');
+			$customer->priority_status = $request->input('priority_status');
 
-    if(empty(Input::file('image'))){
-      $customer->image = $customer->image;
-    }else{
-      $image = Input::file('image');
-      $namafile = time().'.'.$image->getClientOriginalExtension();
-      $path = public_path('image/'.$namafile);
-      Image::make($image->getRealPath())->resize(200,200)->save($path);
-      $customer->image = $namafile;
-    }
+	    if(empty(Input::file('image'))){
+	      $customer->image = $customer->image;
+	    }else{
+	      $image = Input::file('image');
+	      $namafile = time().'.'.$image->getClientOriginalExtension();
+	      $path = public_path('image/'.$namafile);
+	      Image::make($image->getRealPath())->resize(200,200)->save($path);
+	      $customer->image = $namafile;
+	    }
+
       $customer->update();
       alert()->success('Data berhasil diupdate !')->autoclose(3000);
       return redirect()->route('customer.view');
@@ -232,25 +232,42 @@ class BookingController extends Controller
       'project'=>'required',
       'customer'=>'required',
       ]);
+      $customer = customer::where('id',$request->input('customer'))->first();
 
       $nup = new nup();
+      $nup->code = $customer->code;
       $nup->project_id = $request->input('project');
       $nup->customer_id = $request->input('customer');
+      $nup->comission_status = "Pending";
+      $nup->agen_id = 1;
       $nup->save();
       alert()->success('Data berhasil disimpan !')->autoclose(3000);
       return redirect()->route('nup.view');
 
     }
     public function getNupdata(){
-        $nup = nup::all();
+        $nup = nup::join('project','nup.project_id','=','project.id');
         return Datatables::of($nup)
             ->addColumn('action',function($nup){
                 return
-                '<a href="nup/edit/'.$nup->id.'" class="btn btn-xs btn-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                 <a id="delete-btn" href="nup/hapus/'.$nup->id.'" class="btn btn-xs btn-danger">
-                 <i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
+                '<a href="nup/edit/'.$nup->id.'" class="btn btn-xs btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                 <a href="nup/hapus/'.$nup->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus Nup dengan code'. $nup->code.' ?\')">
                  ';
               })
+           	->editColumn('customer',function($nup){
+           		return $nup->customer->first_name." ".$nup->customer->last_name;
+           	})
+           	->editColumn('comission_status',function($nup){
+           		if($nup->comission_status == 'Pending'){
+           			return" <span class='label label-danger'>$nup->comission_status</span>";
+           		}else{
+           			return" <span class='label label-primary'>$nup->comission_status</span>";
+           		}
+
+           	})
+           	->editColumn('nup_free',function($nup){
+           		return "Rp ".number_format($nup->nup_free,0,'','.').',-';
+           	})
             ->make(true);
 		}
   public function getHapusNup($id){
@@ -282,12 +299,28 @@ class BookingController extends Controller
               })
             ->make(true);
         }
-     public function getBookingfee(){
+    public function getBookingfree(){
         $booking = customer::all();
-            return view('page.booking.booking-fee',compact('booking'));
+        return view('page.booking.booking-fee',compact('booking'));
     }
-      public function getAddBooking(){
+    public function getBookingdata(){
+    	$booking = bf::all();
+    	return Datatables::of($booking)->make(true);
+    }
+    public function getAddBooking(){
       return view('page.booking.addbooking');
+    }
+    public function postAddBooking(){
+
+    }
+    public function getEditBooking(){
+
+    }
+    public function postUpdateBooking(){
+
+    }
+    public function getHapusBooking(){
+
     }
 
 }

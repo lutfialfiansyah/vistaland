@@ -11,7 +11,7 @@ class project extends Model
     	'name','company','area','unit_total','location','booking_free','booking_comission','nup_free','nup_comission','akad_comission'
     ];
 
-    public function siteplan(){
+  public function siteplan(){
 		return $this->hasMany('App\siteplan','project_id');
 	}
 
@@ -29,6 +29,10 @@ class project extends Model
 	public function nup(){
 		return $this->belongsTo('App\nup','project_id');
 	}
+	public function authorizeduser(){
+		return $this->hasOne('App\authorized_user','project_id');
+	}
+
 	public $timestamps = false;
 
 }

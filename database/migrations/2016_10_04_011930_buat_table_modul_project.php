@@ -55,7 +55,24 @@ class BuatTableModulProject extends Migration
             $table->foreign('project_id')->references('id')->on('project')->onDelete('CASCADE');
             $table->integer('price');
         });
-        Schema::create('kavling', function (Blueprint $table) {
+
+         Schema::create('price', function (Blueprint $table) {
+            $table->increments('id');
+            $table->date('expired_date');
+            $table->integer('price');
+            $table->integer('administration_price');
+            $table->integer('renovation_price');
+            $table->integer('left_over_price');
+            $table->integer('move_kavling_price');
+            $table->integer('change_name_price');
+            $table->string('management_confirm_status');
+            $table->string('memo');
+            $table->unsignedInteger('project_id');
+            $table->foreign('project_id')->references('id')->on('project')->onDelete('CASCADE');
+            $table->unsignedInteger('kavling_type_id');
+            $table->foreign('kavling_type_id')->references('id')->on('kavling_type')->onDelete('CASCADE');
+        });
+         Schema::create('kavling', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('number');
             $table->string('field_size');
@@ -75,22 +92,8 @@ class BuatTableModulProject extends Migration
             $table->foreign('project_id')->references('id')->on('project')->onDelete('CASCADE');
             $table->unsignedInteger('kavling_type_id');
             $table->foreign('kavling_type_id')->references('id')->on('kavling_type')->onDelete('CASCADE');
-        });
-         Schema::create('price', function (Blueprint $table) {
-            $table->increments('id');
-            $table->date('expired_date');
-            $table->integer('price');
-            $table->integer('administration_price');
-            $table->integer('renovation_price');
-            $table->integer('left_over_price');
-            $table->integer('move_kavling_price');
-            $table->integer('change_name_price');
-            $table->string('management_confirm_status');
-            $table->string('memo');
-            $table->unsignedInteger('project_id');
-            $table->foreign('project_id')->references('id')->on('project')->onDelete('CASCADE');
-            $table->unsignedInteger('kavling_type_id');
-            $table->foreign('kavling_type_id')->references('id')->on('kavling_type')->onDelete('CASCADE');
+            $table->unsignedInteger('price_id')->nullable();
+            $table->foreign('price_id')->references('id')->on('price')->onDelete('CASCADE');
         });
         Schema::create('complaint', function (Blueprint $table) {
             $table->increments('id');
@@ -134,8 +137,28 @@ class BuatTableModulProject extends Migration
             $table->string('transfer_title_pbb');
             $table->date('transfer_title_pbb_date');
         });
-       
-       
+        Schema::create('authorized_user', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('project_manager');
+            $table->string('project_manager_assistant');
+            $table->string('finance_spv');
+            $table->string('inhouse_spv');
+            $table->string('field_executive');
+            $table->string('admin');
+            $table->string('legal');
+            $table->unsignedInteger('project_id');
+            $table->foreign('project_id')->references('id')->on('project')->onDelete('CASCADE');
+        });
+        Schema::create('official', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('email');
+            $table->string('status');
+            $table->string('role');
+        });
+
+
+
     }
 
     /**
@@ -158,6 +181,8 @@ class BuatTableModulProject extends Migration
             Schema::drop('tax_payment');
             Schema::drop('fractional_certificate');
             Schema::drop('lpa');
+            Schema::drop('authorized_user');
+            Schema::drop('official');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

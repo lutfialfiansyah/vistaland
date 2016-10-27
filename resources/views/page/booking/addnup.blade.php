@@ -57,11 +57,14 @@
                     @foreach ($nupcus as $nups)
                     <option value="{{$nups->id}}">{{$nups->first_name.' '.$nups->last_name}}</option>
                   @endforeach
+                    @foreach ( $nupcus as $nups )
+                    	<option value="{{ $nups->id }}">{{ $nups->code." - ".$nups->first_name." ".$nups->last_name }}</option>
+                 		@endforeach
                   </select>
                   @if($errors->has('customer'))
                   <span class="help-block">
                     <strong>{{ $errors->first('customer')}}</strong>
-                  </span><span id="select2-customer-5o-container" class="select2-selection__rendered" title="Choose One">Choose Oneeeeeeeeee</span>
+                  </span><span id="select2-customer-5o-container" class="select2-selection__rendered" title="Choose One">Choose One</span>
                   @endif
                   </div>
                 <div class="form-group">

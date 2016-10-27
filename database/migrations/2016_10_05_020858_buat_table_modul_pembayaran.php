@@ -31,7 +31,7 @@ class BuatTableModulPembayaran extends Migration
        Schema::create('NUP', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('code');
-            $table->foreign('code')->references('code')->on('payment')->onDelete('CASCADE');
+            // $table->foreign('code')->references('code')->on('payment')->onDelete('CASCADE');
             $table->string('comission_status');
             $table->unsignedInteger('project_id');
             $table->foreign('project_id')->references('id')->on('project')->onDelete('CASCADE');
@@ -56,7 +56,7 @@ class BuatTableModulPembayaran extends Migration
         Schema::create('BF', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('code');
-            $table->foreign('code')->references('code')->on('payment')->onDelete('CASCADE');
+            // $table->foreign('code')->references('code')->on('payment')->onDelete('CASCADE');
             $table->string('comission_status');
             $table->unsignedInteger('nup_id');
             $table->foreign('nup_id')->references('id')->on('NUP')->onDelete('CASCADE');

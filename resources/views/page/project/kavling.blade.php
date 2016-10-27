@@ -19,12 +19,14 @@
           <div class="box box-primary">
             <div class="box-header">
               <h3 class="box-title">Data Kavling <strong><u>{{ $project->name }}</u></strong></h3>
-               <div class="box-tools pull-right">
-               	<a href='{{ url("project/$project->id/kavling/add") }}' class="btn btn-xs btn-success">
+							<div class="box-tools pull-right">
+								<a href="{{ URL::to('project/'.$project->id.'/kavling') }}" class="btn btn-xs btn-success ">
+                	<i class="fa fa-refresh" aria-hidden="true"></i>
+              	</a>
+               	<a href='{{ url("project/$project->id/kavling/add") }}' class="btn btn-xs btn-success ">
                 	<i class="fa fa-plus-circle" aria-hidden="true"></i> Add Kavling
                 </a>
-              </div>
-
+							</div>
             </div>
             <!-- /.box-header -->
             <div class="box-body">

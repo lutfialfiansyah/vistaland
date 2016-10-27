@@ -30,7 +30,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-            <table id="data" class="table table-condesed table-bordered table-hover table-striped">
+            <table id="data" class="table table-condesed table-bordered table-hover">
               <thead>
                 <tr>
                   <th>Name</th>
@@ -42,11 +42,13 @@
                   <th>Action</th>
                 </tr>
               </thead>
-              </table>
+            </table>
 						</div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
+        </div>
+      </div>
     </section>
 <script src="{{ asset('dist/sweetalert.min.js')}}"></script>
 @include('sweet::alert')
