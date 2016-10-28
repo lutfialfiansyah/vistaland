@@ -31,13 +31,16 @@
 
               <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
                 <label for="type">Type</label>
-                <select name="type" class="form-control" id="type">
+                <select name="type" id="type" class="form-control">
                   <option disabled="disabled" selected>Choose Type</option>
                   <option disabled="disabled"></option>
-                  <option value="booking_free">Booking Free</option>
-                  <option value="change_name">Change Name</option>
-                  <option value="move_kavling">Move Kavling</option>
-                  <option value="nup">NUP</option>
+                  <option value="Booking Free">Booking Free</option>
+                  <option value="Change Name">Change Name</option>
+                  <option value="Move Kavling">Move Kavling</option>
+                  <option value="NUP">NUP</option>
+                 {{--  @foreach($k_type as $data)
+                  	<option value="{{ $data->id }}">{{ $data->type }}</option>
+                  @endforeach --}}
                 </select>
 								@if($errors->has('type'))
 									<span class="help-block">
@@ -46,16 +49,9 @@
 								@endif
               </div>
               <div class="form-group{{ $errors->has('customer_id') ? ' has-error' : '' }}">
-                <label for="customer_id" id="customer">Customer</label>
-                <select name="customer_id" class="form-control">
+                <label for="customer_id" >Customer</label>
+                <select name="customer" id="customer" class="form-control">
 									<option value=""></option>
-									@if(count($customer) == 0)
-										<option disabled="disabled">No data customer</option>
-									@else
-										@foreach($customer as $data)
-											<option value="{{ $data->id }}">{{ $data->ktp_number." - ".$data->first_name." ".$data->last_name}} </option>
-										@endforeach
-									@endif
                 </select>
 								@if($errors->has('customer_id'))
 									<span class="help-block">
@@ -106,23 +102,54 @@
         </div>
      </div>
     </section>
+
 @endsection
-<!--
-<script type="text/javascript">
-		$('#type').on('change',function(e){
-			var type = e.target.value;
+@push('script')
+<script>
+	$(document).on('change','#type',function(e){
+		console.log(e);
 
-			/* Ajax */
+		var type = e.target.value;
 
-			$.get('/ajax-customer?type=' + type, function(data){
+		if(type == 'NUP'){
+			$.get('/ajax-customer',function(data){
+				// console.log(data)
 				$('#customer').empty();
-				$.each(data,function(index, subCatOjb){
-					$('#customer').append('<option value="'+customer.id+'">'+customer.first_name+'</option>');
-
+				$.each(data,function(index, data){
+					$('#customer').append('<option value="'+ data.id +'">'+data.first_name+'</option>');
 				});
 			});
-		)};
+		}
+		if(type == 'Move Kavling'){
+			$.get('/ajax-customer/movekavling',function(data){
+				// console.log(data)
+				$('#customer').empty();
+				$.each(data,function(index, data){
+					$('#customer').append('<option value="'+ data.id +'">'+data.number+'</option>');
+				});
+			});
+		}
+		if(type == "Change Name"){
+			$.get('/ajax-customer/changename',function(data){
+				// console.log(data)
+				$('#customer').empty();
+				$.each(data,function(index, data){
+					$('#customer').append('<option value="'+ data.id +'">'+data.last_name+'</option>');
+				});
+			});
+		}
+		if(type == "Booking Free"){
+			$.get('/ajax-customer/booking',function(data){
+				// console.log(data)
+				$('#customer').empty();
+				$.each(data,function(index, data){
+					$('#customer').append('<option value="'+ data.id +'">'+data.nup_id+'</option>');
+				});
+			});
+		}
+
+	});
 </script>
--->
+@endpush
 
 

@@ -34,9 +34,9 @@
                 <tr>
                   <th>Name</th>
                   <th>Email</th>
+                  <th>Position</th>
                   <th>Status</th>
                   <th>Action</th>
-                  <th>Position</th>
                 </tr>
               </thead>
               </table>

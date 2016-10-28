@@ -10,6 +10,7 @@ use Datatables;
 use App\price;
 use App\tax_payment;
 use App\kavling;
+use App\kavling_type;
 use App\customer;
 use App\payment;
 
@@ -39,14 +40,9 @@ class PaymentController extends Controller
  	}
 
  	public function getAddFormpayment(){
- 		$key = Input::get('customer_id');
- 					if($key == "booking_free"){
- 						$booking	= bf::all();
- 					}elseif($key == "change_name"){
- 						$change = change::all();
- 					}
+ 		$k_type = kavling_type::all();
  		$customer = customer::all();
- 		return view('page.payment.addformpayment',compact('customer','booking','change'));
+ 		return view('page.payment.addformpayment',compact('customer','booking','change','k_type'));
  	}
 
  	public function postAddFormpayment(Request $request){

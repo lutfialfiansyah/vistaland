@@ -85,13 +85,15 @@ class ProjectController extends Controller
     }
 
     public function getHapusProject($id){
+    	$authorizeduser = authorized_user::where('project_id',$id);
     	$kavling = kavling::where('project_id',$id);
     	$price = price::where('project_id',$id);
     	$project = project::find($id);
+    					$authorizeduser->delete();
 				    	$kavling->delete();
 				    	$price->delete();
 				    	$project->delete();
-    	alert()->success('Data berhasil dihapus !')->autoclose(3000);
+    	alert()->success('Data berhasil dihapus !')->autoclose(1500);
     	return redirect()->route('project.view');
     }
 
@@ -147,8 +149,16 @@ class ProjectController extends Controller
     				return $kavling->kavling_type->type;
     			})
     		->addColumn('price',function($kavling){
-	    			return "Rp ".number_format($kavling->kavling_type->price->price,0,',','.').',-';
-
+    				$harga = $kavling->project->price->where('kavling_type_id','=',$kavling->kavling_type_id)->first();
+    				if(count($harga) > 0){
+	    				if($harga->management_confirm_status == "Received"){
+	    					return "Rp ".number_format($harga->price,0,',','.').',-';
+	    				}else{
+	    					return "Rp ".number_format(0,0,',','.').',-';
+	    				}
+    				}else{
+	    				return "Rp ".number_format(0,0,',','.').',-';
+	    			}
     			})
             ->addColumn('action',function($kavling){
                 return
@@ -242,21 +252,21 @@ class ProjectController extends Controller
     	$kavling->kavling_type_id = $request->input('kavling_type_id');
     	$kavling->project_id = $id;
     	$kavling->update();
-    	alert()->success('Data telah diperbaharui !')->autoclose(3000);
+    	alert()->success('Data telah diperbaharui !')->autoclose(1500);
 			return redirect()->route('kavling.view',$id);
 	}
 
     public function getHapusKavling($id,$kav_id){
     	$kavling = kavling::where('id','=',$kav_id,'and','project_id','=',$id)->first();
     	$kavling->delete();
-    	alert()->success('Data berhasil dihapus !')->autoclose(3000);
+    	alert()->success('Data berhasil dihapus !')->autoclose(1500);
     	return redirect()->route('kavling.view',$id);
     }
 
     // Pricelist
     public function getPricelist($id){
     	$project= project::where('id','=',$id)->first();
-        return view('page.project.pricelist',compact('project'));
+       return view('page.project.pricelist',compact('project'));
     }
 
     public function getAddPricelist($id){
@@ -267,34 +277,68 @@ class ProjectController extends Controller
     }
 
     public function postAddPricelist(Request $request,$id){
-    	$this->validate($request,[
-    		'kavling_type_id'=>'required',
-    		'expired_date'=>'required|date',
-    		'price'=>'required|numeric|min:0',
-    		'administration_price'=>'required|numeric|min:0',
-    		'renovation_price'=>'required|numeric|min:0',
-    		'left_over_price'=>'required|numeric|min:0',
-    		'move_kavling_price'=>'required|numeric|min:0',
-    		'change_name_price'=>'required|numeric|min:0',
-    		'status'=>'required',
-    	]);
+    	$code_id = price::where('project_id','=',$id)->get();
+    	$input = $request->all();
+    	$rules = [
+    		'kavling_type_id'		=> 'required',
+    		'expired_date'			=> 'required|date',
+    		'price'							=> 'required|numeric|min:0',
+    		'administration_price'=> 'required|numeric|min:0',
+    		'renovation_price'	=> 'required|numeric|min:0',
+    		'left_over_price'		=> 'required|numeric|min:0',
+    		'move_kavling_price'=> 'required|numeric|min:0',
+    		'change_name_price'	=> 'required|numeric|min:0',
+    		'status'						=> 'required',
+    	];
+  		$message = [
+  									'kavling_type_id.required'			=> 'The Field: Kavling Type must choose one',
+						    		'expired_date.required'					=> 'The Field: Expired Date is required',
+						    		'expired_date.date'							=> 'The Field: Expired Date must format date',
+						    		'price.required'								=> 'The Field: Price Type is required',
+						    		'price.numeric'									=> 'The Field: Price must format number',
+						    		'administration_price.required' => 'The Field: Administration Price Type is required',
+						    		'administration_price.numeric'	=> 'The Field: Administration Price must format number',
+						    		'renovation_price.required'			=> 'The Field: Renovation Price Type is required',
+						    		'renovation_price.numeric'			=> 'The Field: Renovation Price must format number',
+						    		'left_over_price.required'			=> 'The Field: Left Over Price Type is required',
+						    		'left_over_price.numeric'				=> 'The Field: Left Over Price must format number',
+						    		'move_kavling_price.required'		=> 'The Field: Move Kavling Price Type is required',
+						    		'move_kavling_price.numeric'		=> 'The Field: Move Kavling Price must format number',
+						    		'change_name_price.required'		=> 'The Field: Change Name Price Type is required',
+						    		'change_name_price.numeric'			=> 'The Field: Change Name Price must format number',
+						    		'status.required'								=> 'The Field: Status Type is required'
+  		];
 
-    	$price = new price();
-    	$price->kavling_type_id = $request->input('kavling_type_id');
-    	$price->expired_date = $request->input('expired_date');
-    	$price->price = $request->input('price');
-    	$price->administration_price = $request->input('administration_price');
-    	$price->renovation_price = $request->input('renovation_price');
-    	$price->left_over_price = $request->input('left_over_price');
-    	$price->move_kavling_price = $request->input('move_kavling_price');
-    	$price->change_name_price = $request->input('change_name_price');
-    	$price->management_confirm_status = $request->input('status');
-    	$price->memo = $request->input('memo');
-    	$price->project_id = $id;
-    	$price->save();
-    	alert()->success('Data berhasil disimpan !')->autoclose(3000);
+  		$validator = Validator::make($input,$rules,$message);
 
-			return redirect()->route('pricelist.view',$id);
+  		if($validator->passes()){
+
+  				if( count($code_id->where('kavling_type_id',$request->input('kavling_type_id'))->first()) <= 0 ){
+
+				    	$price = new price();
+				    	$price->kavling_type_id 					= $request->input('kavling_type_id');
+				    	$price->expired_date		 					= $request->input('expired_date');
+				    	$price->price 										= $request->input('price');
+				    	$price->administration_price 			= $request->input('administration_price');
+				    	$price->renovation_price 					= $request->input('renovation_price');
+				    	$price->left_over_price 					= $request->input('left_over_price');
+				    	$price->move_kavling_price 				= $request->input('move_kavling_price');
+				    	$price->change_name_price 				= $request->input('change_name_price');
+				    	$price->management_confirm_status = $request->input('status');
+				    	$price->memo 											= $request->input('memo');
+				    	$price->project_id 								= $id;
+				    	$price->save();
+
+				    	alert()->success('Data berhasil disimpan !')->autoclose(1500);
+							return redirect()->route('pricelist.view',$id);
+					}else{
+							return redirect()->route('pricelist.add',$id)->with('PesanError','Data yang Anda isi sudah ada !');
+					}
+
+			}else{
+						return redirect()->route('pricelist.add',$id)->withErrors($validator)->withInput();
+			}
+
     }
 
     public function getEditPricelist($id,$price_id){
@@ -329,7 +373,7 @@ class ProjectController extends Controller
     	$price->memo = $request->input('memo');
     	$price->project_id = $id;
     	$price->update();
-    	alert()->success('Data berhasil diperbaharui !')->autoclose(3000);
+    	alert()->success('Data berhasil diperbaharui !');
 
 			return redirect()->route('pricelist.view',$id);
 	}
@@ -337,12 +381,12 @@ class ProjectController extends Controller
 	public function getHapusPricelist($id,$price_id){
     	$price = price::where('id','=',$price_id,'and','project_id','=',$id)->first();
     	$price->delete();
-    	alert()->success('Data berhasil dihapus !')->autoclose(3000);
+    	alert()->success('Data berhasil dihapus !')->autoclose(1500);
 
     	return redirect()->route('pricelist.view',$id);
-    }
+  }
 
-    // Siteplan
+   // Siteplan
     public function getSiteplan($id){
     	$project= project::where('id','=',$id)->first();
         return view('page.project.siteplan',compact('project'));
@@ -386,7 +430,7 @@ class ProjectController extends Controller
 	        Image::make($image->getRealPath())->resize(600,600)->save($path);
 
 	        $update->image = $namafile;
-	        alert()->success('Update foto berhasil !')->autoclose(3000);
+	        alert()->success('Update foto berhasil !')->autoclose(1500);
     	}
     	$update->update();
     	return redirect()->route('siteplan.view',$id);
@@ -396,14 +440,14 @@ class ProjectController extends Controller
     public function getHapusSiteplan($id,$siteplan_id){
     	$siteplan = siteplan::where('id','=',$siteplan_id,'and','project_id','=',$id)->first();
     	$siteplan->delete();
-    	alert()->success('Data berhasil dihapus !')->autoclose(3000);
+    	alert()->success('Data berhasil dihapus !')->autoclose(1500);
     	return redirect()->route('siteplan.view',$id);
     }
 
     public function getDropSiteplan($id){
     	$siteplan = siteplan::where('project_id','=',$id);
     	$siteplan->delete();
-    	alert()->success('Data berhasil dihapus !')->autoclose(3000);
+    	alert()->success('Data berhasil dihapus !')->autoclose(1500);
     	return redirect()->route('siteplan.view',$id);
     }
 
@@ -415,18 +459,24 @@ class ProjectController extends Controller
 
     public function getAddAuthorizeduser($id){
     	$data = project::where('id',$id)->first();
-    	$project_manager = official::where('role','=','Project Manager','and','status = Active')
-    			->pluck('name');
-    	$project_manager_assistant = official::where('role','=','Project Manager Assistant','and','status = Active')
-    			->pluck('name');
-    	$staff_finance = official::where('role','=','Staff Finance','and','status = Active')
-    			->pluck('name');
-    	$staff_inhouse = official::where('role','=','Staff Inhouse','and','status = Active')
-    			->pluck('name');
-    	$field_executive = official::where('role','=','Field Executive','and','status = Active')
-    			->pluck('name');
-    	$admin = official::where('role','=','Admin','and','status = Active')
-    		->pluck('name');
+    	$project_manager = official::where('role','=','Project Manager')
+    			->where('status','=','Active')->pluck('name');
+
+    	$project_manager_assistant = official::where('role','=','Project Manager Assistant')
+    			->where('status','=','Active')->pluck('name');
+
+    	$staff_finance = official::where('role','=','Staff Finance')
+    			->where('status','=','Active')->pluck('name');
+
+    	$staff_inhouse = official::where('role','=','Staff Inhouse')
+    			->where('status','=','Active')->pluck('name');
+
+    	$field_executive = official::where('role','=','Field Executive')
+    			->where('status','=','Active')->pluck('name');
+
+    	$admin = official::where('role','=','Admin')
+    			->where('status','=','Active')->pluck('name');
+
     	return view('page.project.addauthorizeduser',compact('data','project_manager','project_manager_assistant','staff_finance','staff_inhouse','field_executive','admin'));
     }
 
@@ -477,12 +527,70 @@ class ProjectController extends Controller
     }
 
     public function getEditAuthorizeduser($id,$authorized_id){
-    	$edit = authorized_user::where('project_id','=',$id,'and');
-    	return view('page.project.editauthorizeduser');
+    	$edit = authorized_user::where('project_id',$id)->where('id',$authorized_id)->first();
+    	$project_manager = official::where('role','=','Project Manager')
+    			->where('status','=','Active')->pluck('name');
+
+    	$project_manager_assistant = official::where('role','=','Project Manager Assistant')
+    			->where('status','=','Active')->pluck('name');
+
+    	$staff_finance = official::where('role','=','Staff Finance')
+    			->where('status','=','Active')->pluck('name');
+
+    	$staff_inhouse = official::where('role','=','Staff Inhouse')
+    			->where('status','=','Active')->pluck('name');
+
+    	$field_executive = official::where('role','=','Field Executive')
+    			->where('status','=','Active')->pluck('name');
+
+    	$admin = official::where('role','=','Admin')
+    			->where('status','=','Active')->pluck('name');
+    	return view('page.project.editauthorizeduser',compact('edit','project_manager','project_manager_assistant','staff_finance','staff_inhouse','field_executive','admin'));
     }
 
-    public function postUpdateAuthorizeduser(Request $request,$id){
-    	$authorizeduser = authorized_user::where('project_id',$id);
+    public function postUpdateAuthorizeduser(Request $request,$id,$authorized_id){
+    	$input = Input::all();
+    	$rules = [
+    						'project_manager' => 'required',
+    						'project_manager_assistant' => 'required',
+    						'finance_spv' => 'required',
+    						'inhouse_spv' => 'required',
+    						'field_executive' => 'required',
+    						'admin' => 'required',
+    						'legal' => 'required'
+    	];
+    	$message = [
+
+				'project_manager.required'	=> 'The Field: Project Manager is required',
+				'project_manager_assistant.required'	=> 'The Field: Project Manager Assistant is required',
+				'finance_spv.required'	=> 'The Field: Finance SPV is required',
+				'inhouse_spv.required'	=> 'The Field: inhouse SPV is required',
+				'field_executive.required'	=> 'The Field: Field Executive is required',
+				'admin.required'	=> 'The Field: Admin is required',
+				'legal.required'	=> 'The Field: Legal is required'
+
+    	];
+
+    				$validator = validator::make($input,$rules,$message);
+
+    				if($validator->passes()){
+
+    							$authorizeduser = authorized_user::where('id',$authorized_id)->first();
+    							$authorizeduser->project_manager 					 = Input::get('project_manager');
+    							$authorizeduser->project_manager_assistant = Input::get('project_manager_assistant');
+    							$authorizeduser->finance_spv 							 = Input::get('finance_spv');
+    							$authorizeduser->inhouse_spv 							 = Input::get('inhouse_spv');
+    							$authorizeduser->field_executive					 = Input::get('field_executive');
+    							$authorizeduser->admin 										 = Input::get('admin');
+    							$authorizeduser->legal 										 = Input::get('legal');
+    							$authorizeduser->update();
+
+    							alert()->success('Data berhasil diupdate !');
+    							return redirect()->route('authorizeduser.view',$id);
+    				}else{
+    							return redirect()->route('authorizeduser.edit',$id)->withErrors($validator)->withInput();
+    				}
+
     }
 
     public function getHapusAuthorizeduser(){
@@ -589,7 +697,7 @@ class ProjectController extends Controller
     					$official->role   = Input::get('role');
     					$official->update();
 
-    					alert()->success('Data berhasil diupdate !')->autoclose(3000);
+    					alert()->success('Data berhasil diupdate !')->autoclose(1500);
     					return redirect()->route('official.view');
     			}else{
 
@@ -600,7 +708,7 @@ class ProjectController extends Controller
     public function getHapusOfficial($id){
     	$official = official::where('id',$id)->first();
     	$official->delete();
-    	alert()->success('Data berhasil dihapus !')->autoclose(3000);
+    	alert()->success('Data berhasil dihapus !')->autoclose(1500);
     	return redirect()->route('official.view');
 
     }
@@ -674,14 +782,14 @@ class ProjectController extends Controller
 		$promo->agent_bonus = $request->input('agent_bonus');
 		$promo->team_bonus = $request->input('team_bonus');
 		$promo->update();
-		alert()->success('Data berhasil diperbaharui !')->autoclose(3000);
+		alert()->success('Data berhasil diperbaharui !')->autoclose(1500);
 		return redirect()->route('promo.view');
     }
 
     public function getHapusPromo($id){
     	$promo = promo::where('id',$id)->first();
     	$promo->delete();
-    	alert()->success('Data berhasil dihapus !')->autoclose(3000);
+    	alert()->success('Data berhasil dihapus !')->autoclose(1500);
     	return redirect()->route('promo.view');
     }
 

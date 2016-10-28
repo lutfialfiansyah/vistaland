@@ -61,6 +61,10 @@
                 </tr>
               </thead>
               </table>
+              <a href="{{ URL::to('project/authorizeduser/'.$data->id.'/edit',$data->authorizeduser->id) }}"
+              class="btn btn-sm btn-warning pull-right">
+              	<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+              </a>
             </div>
             </div>
             <!-- /.box-body -->

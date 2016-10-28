@@ -30,5 +30,7 @@ class bf extends Model
 
     }
 
+    public $timestamps = false;
+
 
 }

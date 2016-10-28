@@ -20,20 +20,17 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Add Authorized user</h3>
-              <a href='{{ URL::to("/project/authorizeduser/$data->id") }}' class="btn btn-xs btn-success pull-right">
-                <i class="fa fa-eye" aria-hidden="true"></i> Lihat data
-              </a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-							<form action="" method="post">
+							<form action="{{ route('authorizeduser.add',$data->id) }}" method="post">
 								<div class="form-group{{ $errors->has('project_manager') ? ' has-error' : '' }}">
 									<label for="project_manager">Project Manager</label>
 									<select name="project_manager" class="form-control">
 										<option value=""></option>
-										@foreach($project_manager as $data)
-											<option value="{{ $data }}">{{ $data }}</option>
-										@endforeach
+											@foreach($project_manager as $data)
+												<option value="{{ $data }}">{{ $data }}</option>
+											@endforeach
 									</select>
 									@if($errors->has('project_manager'))
 										<span class="help-block">
@@ -45,9 +42,9 @@
 									<label for="project_manager_assistant">Project Manager Assistant</label>
 									<select name="project_manager_assistant" class="form-control">
 										<option value=""></option>
-										@foreach($project_manager_assistant as $data)
-											<option value="{{ $data }}">{{ $data }}</option>
-										@endforeach
+											@foreach($project_manager_assistant as $data)
+												<option value="{{ $data }}">{{ $data }}</option>
+											@endforeach
 									</select>
 									@if($errors->has('project_manager_assistant'))
 										<span class="help-block">

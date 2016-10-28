@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Validator;
 use App\customer;
 use App\project;
 use App\nup;
 use App\booking;
 use App\spr;
 use App\bf;
+use App\kavling;
 use App\priority;
 use Datatables;
 use Illuminate\Support\Facades\Input;
@@ -251,7 +253,8 @@ class BookingController extends Controller
             ->addColumn('action',function($nup){
                 return
                 '<a href="nup/edit/'.$nup->id.'" class="btn btn-xs btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                 <a href="nup/hapus/'.$nup->id.'" class="btn btn-xs btn-danger" onclick="return confirm(\'Hapus Nup dengan code'. $nup->code.' ?\')">
+                 <a href="nup/hapus/'.$nup->id.'" class="btn btn-xs btn-danger" id="delete-btn">
+                	<i class="fa fa-trash-o" aria-hidden="true"></i> Hapus</a>
                  ';
               })
            	->editColumn('customer',function($nup){
@@ -298,7 +301,8 @@ class BookingController extends Controller
                  ';
               })
             ->make(true);
-        }
+    }
+
     public function getBookingfree(){
         $booking = customer::all();
         return view('page.booking.booking-fee',compact('booking'));
@@ -308,10 +312,41 @@ class BookingController extends Controller
     	return Datatables::of($booking)->make(true);
     }
     public function getAddBooking(){
-      return view('page.booking.addbooking');
+    	$nup = nup::all();
+      return view('page.booking.addbooking',compact('nup'));
     }
-    public function postAddBooking(){
+    public function postAddBooking(Request $request){
+   		$input = $request->all();
+   		$rules = [
+   				'comission_status'=> 'required',
+					'nup'=> 'required',
+					'kavling'=> 'required',
+   		];
+   		$message = [
+									'comission_status.required'=>'The Field: Status Comission  is required',
+									'nup.required'=>'The Field: NUP is required',
+									'kavling.required'=>'The Field: Kavling is required',
+   		];
 
+   				$validator = Validator::make($input,$rules,$message);
+   				if($validator->passes()){
+
+   							$booking = new bf();
+   							$booking->code = $request->input('code');
+   							$booking->comission_status  = $request->input('comission_status');
+   							$booking->nup_id = $request->input('nup');
+   							$booking->kavling_id = $request->input('kavling');
+
+   							$updatekav = kavling::where('id',$request->input('kavling'))->first();
+   							$updatekav->status = "BF";
+   							$updatekav->update();
+   							$booking->save();
+
+   							alert()->success('Data berhasil disimpan !');
+   							return redirect()->route('booking.view');
+   				}else{
+   							return redirect()->route('booking.add')->withErrors($validator)->withInput();
+   				}
     }
     public function getEditBooking(){
 

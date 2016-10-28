@@ -30,7 +30,7 @@
                   <select class="form-control" name="kavling_type_id">
                     <option value="{{ $edit->kavling_type_id }}" selected="selected">{{$edit->kavling_type->type }}
                     </option>
-                    <option ></option>
+                    <option disabled></option>
                     @foreach($s_kavling_type as $data)
                       <option value="{{ $data->id }}">{{ $data->type }}</option>
                     @endforeach
@@ -40,13 +40,13 @@
                         {{ $errors->first('kavling_type_id') }}
                       </span>
                     @endif
-                </div>               
+                </div>
                 <div class="form-group{{ $errors->has('strategic_type_id') ? ' has-error' : '' }}">
                   <label for="">Strategic Type</label>
                   <select class="form-control" name="strategic_type_id" >
                     <option value="{{ $edit->strategic_type_id }}" selected="selected">{{$edit->strategic_type->type }}
                     </option>
-                    <option value=""></option>
+                    <option disabled></option>
                     @foreach($s_strategic_type as $data)
                       <option value="{{ $data->id }}">{{ $data->type }}</option>
                     @endforeach
@@ -205,9 +205,9 @@
                       </span>
                     @endif
                 </div>
-      
+
                 <div class="form-group">
-                  <a href="{{ route('kavling.view',$edit->project_id) }}" class="btn btn-danger" 
+                  <a href="{{ route('kavling.view',$edit->project_id) }}" class="btn btn-danger"
                   onclick="return confirm('Clik OK to confirm !')">BATAL</a>
                   <input type="submit" class="btn btn-primary" value="UPDATE">
                 </div>
@@ -218,5 +218,5 @@
           </div>
           <!-- /.box -->
     </section>
-  
+
 @endsection
