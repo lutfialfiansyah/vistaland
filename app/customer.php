@@ -24,6 +24,8 @@ class customer extends Model
     public function payment(){
         return $this->hasOne('App\payment','customer_id');
     }
-
+    public function interview(){
+        return $this->hasOne('App\interview','customer_id');
+    } 
     public $timestamps = true;
 }

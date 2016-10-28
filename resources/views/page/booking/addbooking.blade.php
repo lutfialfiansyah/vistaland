@@ -19,7 +19,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Add Booking</h3>
-              <a href="{{ route('booking.view') }}" class="btn btn-xs btn-success pull-right">
+              <a href="{{ url('/booking-free') }}" class="btn btn-xs btn-success pull-right">
                 <i class="fa fa-eye" aria-hidden="true"></i> Lihat data
               </a>
             </div>

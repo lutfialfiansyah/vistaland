@@ -52,6 +52,7 @@
                 <div class="form-group {{ $errors->has('type') ? ' has-error' : ''}}">
                   <label>Type</label>
                   <select name="type" id="type" class="form-control" required>
+                    <option value=""></option>
                     <option value="kpr">KPR</option>
                     <option value="cash">Cash</option>
                   </select>
@@ -78,8 +79,9 @@
                 <div class="form-group">
                   <label>Status</label>
                   <select name="status" id="status" class="form-control" required>
-                    <option value="0">Not Approved</option>
-                    <option value="1">Approved </option>
+                    <option value=""></option>
+                    <option value="Not Approved">Not Approved</option>
+                    <option value="Approved">Approved </option>
                   </select>
                   <span class="help-block"></span>
                 </div>

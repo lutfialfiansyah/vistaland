@@ -2,7 +2,7 @@
 @section('konten')
    <section class="content-header">
       <h1>
-        Project
+        Formpayment
         <small>Control Panel</small>
       </h1>
       <ol class="breadcrumb">
@@ -92,7 +92,7 @@
               </div>
               <div class="form-group">
                 <button type="reset" class="btn btn-default">RESET</button>
-                <button type="submit" class="btn btn-primary">SIMPAN</button>
+                <button type="submit" class="btn btn-primary pull-right">SIMPAN</button>
               </div>
               </form>
             </div>

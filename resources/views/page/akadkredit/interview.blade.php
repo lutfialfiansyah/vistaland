@@ -18,7 +18,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Data Interview</h3>
-              <a href="{{ route('interview.add') }}" class="btn btn-xs btn-success pull-right">
+              <a href="{{ url('interview/add') }}" class="btn btn-xs btn-success pull-right">
                 <i class="fa fa-plus-circle" aria-hidden="true"></i> Add Interview 
               </a>
 

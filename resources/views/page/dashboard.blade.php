@@ -9,15 +9,15 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{url('/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-        
+
       </ol>
     </section>
 
     <!-- Main content -->
-    <section class="content"> 
+    <section class="content">
 <div class=" row">
      @foreach ($projects->sortBy('name') as $pro)
-    
+
         <div class="col-lg-3 col-xs-6">
         <div class="small-box bg-aqua">
           <div class="inner">
@@ -30,15 +30,20 @@
           <i class="ion-ios-bookmarks"></i>
         </div>
           <a class="small-box-footer" href="#">
-            Select This Project 
+            Select This Project
             <i class="fa fa-arrow-circle-right"></i>
           </a>
         </div>
       </div>
     @endforeach
     </div>
-
+    @if (count($projects) === 0)
+      <div class="callout callout-warning">
+        <h4>No Data Project!</h4>
+          <p>Please input project data.</p>
+      </div>
+    @endif
       </form>
     </section>
-  
+
 @endsection
