@@ -105,6 +105,16 @@
 	<!-- AdminLTE for demo purposes -->
 	<script src="{{ asset('AdminLTE/js/demo.js') }}"></script>
 	<!-- page script -->
-
 </body>
 </html>
+
+{{-- <img src="{{asset('load.gif')}}" id="loadbro" style="margin-top: 0%;"><br>
+    <button onmousedown="tampil()">contoh</button>
+@push('script')
+<script>
+document.getElementById('loadbro').style.display = 'none';
+function tampil(){
+  document.getElementById('loadbro').style.display = '';
+}
+</script>
+@endpush --}}
