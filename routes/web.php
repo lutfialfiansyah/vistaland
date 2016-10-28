@@ -445,11 +445,8 @@ Route::group(['middleware' => ['auth']],function(){
 			'as' => 'booking.hapus'
 		]);
 		Route::get('booking/get-booking','BookingController@getBookingdata');
-		Route::get('/ajax-kavling',function(Request $request){
-			$nup = $request::input(['nup']);
-			$kavling = \App\kavling::where('project_id','=',$nup)->where('status','=','Open')->get();
-			return Response::json($kavling);
-		});
+		Route::get('/ajax-kavling','AjaxController@getKavlingnup');
+		Route::get('/ajax-code','AjaxController@getcodenup');
 
 		/*end customer*/
 

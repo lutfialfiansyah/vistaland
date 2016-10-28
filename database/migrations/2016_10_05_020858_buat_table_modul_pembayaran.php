@@ -62,7 +62,7 @@ class BuatTableModulPembayaran extends Migration
             $table->foreign('nup_id')->references('id')->on('NUP')->onDelete('CASCADE');
             $table->unsignedInteger('kavling_id');
             $table->foreign('kavling_id')->references('id')->on('kavling')->onDelete('CASCADE');
-            $table->unsignedInteger('promo_id');
+            $table->unsignedInteger('promo_id')->nullable();
             $table->foreign('promo_id')->references('id')->on('promo')->onDelete('CASCADE');
         });
 

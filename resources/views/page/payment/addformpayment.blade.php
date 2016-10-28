@@ -34,8 +34,8 @@
                 <select name="type" id="type" class="form-control">
                   <option disabled="disabled" selected>Choose Type</option>
                   <option disabled="disabled"></option>
-                  <option value="1">Booking Free</option>
-                  <option value="2">Change Name</option>
+                  <option value="Booking Free">Booking Free</option>
+                  <option value="Change Name">Change Name</option>
                   <option value="Move Kavling">Move Kavling</option>
                   <option value="NUP">NUP</option>
                  {{--  @foreach($k_type as $data)
@@ -129,7 +129,7 @@
 				});
 			});
 		}
-		if(type == 2){
+		if(type == "Change Name"){
 			$.get('/ajax-customer/changename',function(data){
 				// console.log(data)
 				$('#customer').empty();
@@ -138,7 +138,7 @@
 				});
 			});
 		}
-		if(type == 1){
+		if(type == "Booking Free"){
 			$.get('/ajax-customer/booking',function(data){
 				// console.log(data)
 				$('#customer').empty();

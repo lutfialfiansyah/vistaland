@@ -35,9 +35,9 @@
                   <th>Code Payment</th>
                   <th>Project</th>
                   <th>Customer</th>
-                  <th>NUP Fee</th>
+                  <th>NUP Free</th>
                   <th>Comission Status</th>
-                  <th>Payment Status</th>
+
                   <th>Action</th>
                 </tr>
               </thead>
@@ -65,7 +65,7 @@
         { data : 'customer', name: 'customer' },
         { data : 'nup_free', name: 'project.nup_free' },
         { data : 'comission_status', name: 'comission_status' },
-        { data : 'payment_status', name: 'payment_status' },
+
         { data : 'action', name:'action', orderable: false, searchable: false },
       ]
     });

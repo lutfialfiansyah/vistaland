@@ -54,9 +54,6 @@
                   <label>Customer</label>
                   <select name="customer" id="customer" class="form-control">
                     <option value=""></option>
-                    @foreach ($nupcus as $nups)
-                    <option value="{{$nups->id}}">{{$nups->first_name.' '.$nups->last_name}}</option>
-                  @endforeach
                     @foreach ( $nupcus as $nups )
                     	<option value="{{ $nups->id }}">{{ $nups->code." - ".$nups->first_name." ".$nups->last_name }}</option>
                  		@endforeach

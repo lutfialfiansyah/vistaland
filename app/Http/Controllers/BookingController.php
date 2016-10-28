@@ -11,6 +11,7 @@ use App\nup;
 use App\booking;
 use App\spr;
 use App\bf;
+use App\kavling;
 use App\priority;
 use Datatables;
 use Illuminate\Support\Facades\Input;
@@ -335,7 +336,10 @@ class BookingController extends Controller
    							$booking->comission_status  = $request->input('comission_status');
    							$booking->nup_id = $request->input('nup');
    							$booking->kavling_id = $request->input('kavling');
-   							$booking->promo_id = $request->input('promo');
+
+   							$updatekav = kavling::where('id',$request->input('kavling'))->first();
+   							$updatekav->status = "BF";
+   							$updatekav->update();
    							$booking->save();
 
    							alert()->success('Data berhasil disimpan !');

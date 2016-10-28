@@ -41,7 +41,7 @@
                   <select name="nup" id="nup" class="form-control">
                     <option value=""></option>
                     @foreach($nup as $data)
-                    	<option value="{{ $data->project_id }}">
+                    	<option value="{{ $data->id }}">
                     		{{ $data->code." - ".$data->customer->first_name." ".$data->customer->last_name }}
                     	</option>
                     @endforeach
@@ -52,7 +52,6 @@
                   </span><span id="select2-customer-5o-container" class="select2-selection__rendered" title="Choose One">Choose One</span>
                   @endif
                   </div>
-
                 <div class="form-group{{ $errors->has('kavling') ? ' has-error' : ''}}">
                   <label>Kavling</label>
                   <select name="kavling" id="kavling" class="form-control">
@@ -87,7 +86,7 @@
                   </select>
                   <span class="help-block"></span>
                 </div>
-
+								<input type="hidden" name="code" id="code">
                 <div class="form-group">
                   <button type="reset" class="btn btn-default">RESET</button>
                   <input type="submit" class="btn btn-primary pull-right" value="Submit">
@@ -126,9 +125,15 @@
 				$('#kavling').empty();
 				$.each(data,function(index, data){
 						$('#kavling').append('<option disabled></option>');
-					$('#kavling').append('<option value="'+data.id+'">'+data.number+'</option>');
+					$('#kavling').append('<option value="'+data.id+'">'+data.name+" - "+data.number+'</option>');
 				});
 			});
+
+			$.get('/ajax-code?nup=' + nup,function(data){
+					document.getElementById('code').value = data.code;
+			});
+
+
 
 });
 </script>
