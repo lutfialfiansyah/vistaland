@@ -1,3 +1,8 @@
+@if(count($project->siteplan) == 0)
+	<script type="text/javascript">
+		document.location.href="{{ URL::to("project/siteplan/$project->id/add") }}"
+	</script>
+@endif
 @extends('master')
 @section('konten')
    <section class="content-header">
@@ -30,23 +35,15 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-            <div class="row">
+            	<div class="row">
                 <div class="col-md-12">
-          @if(count($project->siteplan) == 0)
-          	<script type="text/javascript">
-          		document.location.href="{{ URL::to("project/siteplan/$project->id/add") }}"
-          	</script>
-
-          @else
-            @foreach($project->siteplan as $data)
-            <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                  <img src='{{ asset("image/$data->image") }}' class="img-responsive" alt="Responsive image">
-                </a>
-            </div>
-            @endforeach
-
-          @endif
+		            @foreach($project->siteplan as $data)
+		            <div class="col-xs-6 col-md-3">
+		                <a href="#" class="thumbnail">
+		                  <img src='{{ asset("image/$data->image") }}' class="img-responsive" alt="Responsive image">
+		                </a>
+		            </div>
+		            @endforeach
             </div>
             </div>
             <!-- /.box-body -->

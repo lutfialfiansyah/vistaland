@@ -51,11 +51,15 @@ class ProjectSeed extends Seeder
         ]);
 
         DB::table('strategic_type')->insert([
-            'type' =>  'Park',
+            'type' =>  'Non Strategic',
         ]);
 
         DB::table('strategic_type')->insert([
-            'type' =>  'Cool',
+            'type' =>  'Strategic Park',
+        ]);
+
+        DB::table('strategic_type')->insert([
+            'type' =>  'Strategic Road',
         ]);
 
         DB::table('kavling_type')->insert([

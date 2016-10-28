@@ -55,17 +55,21 @@
                 @foreach($project->price as $data)
                   <tr>
                     <td>{{ $data->kavling_type->type }}</td>
-                    <td>{{ "Rp.".number_format($data->price,0,',','.') }}</td>
-                    <td>{{ "Rp.".number_format($data->administration_price,0,'','.') }}</td>
-                    <td>{{ "Rp.".number_format($data->renovation_price,0,',','.') }}</td>
-                    <td>{{ "Rp.".number_format($data->left_over_price,0,'','.') }}</td>
-                    <td>{{ "Rp.".number_format($data->move_kavling_price,0,'','.') }}</td>
-                    <td>{{ "Rp.".number_format($data->change_name_price,0,'','.') }}</td>
+                    <td>{{ "Rp.".number_format($data->price,0,',','.').',-' }}</td>
+                    <td>{{ "Rp.".number_format($data->administration_price,0,'','.').',-' }}</td>
+                    <td>{{ "Rp.".number_format($data->renovation_price,0,',','.').',-' }}</td>
+                    <td>{{ "Rp.".number_format($data->left_over_price,0,'','.').',-' }}</td>
+                    <td>{{ "Rp.".number_format($data->move_kavling_price,0,'','.').',-' }}</td>
+                    <td>{{ "Rp.".number_format($data->change_name_price,0,'','.').',-' }}</td>
                     <td>{{ $data->memo }}</td>
-                    <td><span class="label label-primary">{{ $data->management_confirm_status }}</span></td>
+                    @if($data->management_confirm_status == "Received")
+                    	<td><span class="label label-primary">{{ $data->management_confirm_status }}</span></td>
+                    @else
+                    	<td><span class="label label-danger">{{ $data->management_confirm_status }}</span></td>
+                    @endif
                     <td>
                       <a href='{{ url("project/$project->id/pricelist/edit/$data->id") }}' class="btn btn-xs btn-warning"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
-                      <a href='{{ ("pricelist/hapus/$data->id")}}' class="btn btn-xs btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Hapus</a>
+                      <a href='{{ ("pricelist/hapus/$data->id")}}' class="btn btn-xs btn-danger" id="confirm"><i class="fa fa-trash" aria-hidden="true"></i> Hapus</a>
                     </td>
                   </tr>
                 @endforeach
@@ -80,6 +84,32 @@
         </div>
       </div>
     </section>
-<script src="{{ asset('dist/sweetalert.min.js')}}"></script>
+<script src="{{ asset('dist/sweetalert.min.js') }}"></script>
 @include('sweet::alert')
 @endsection
+
+@push('script')
+<script>
+	$(document).on('click', '#confirm', function(e) {
+        e.preventDefault();
+        var link = $(this);
+        swal({
+            title: "Delete Record !",
+            text: "Are you sure?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes",
+            closeOnConfirm: true
+         },
+         function(isConfirm){
+             if(isConfirm){
+                window.location = link.attr('href');
+             }
+             else{
+                swal("cancelled","Category deletion Cancelled", "error");
+             }
+         });
+  });
+</script>
+@endpush

@@ -22,15 +22,12 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              @if(Session::has('success'))
-                <div class="alert alert-success">
-                  {{ Session::get('success') }}
-                </div>
-              @elseif(Session::has('error'))
-                <div class="alert alert-danger">
-                  {{ Session::get('error') }}
-                </div>
-              @endif
+              @if(Session::has('PesanError'))
+	            	<div class="alert alert-danger">
+	            		{{ Session::get('PesanError') }} Click <a href='{{ URL::to("project/$project->id/pricelist") }}'>
+	            		disini</a> Untuk edit
+	            	</div>
+           		@endif
               <form action="{{ route('pricelist.add',$project->id) }}" method="post">
               {!! csrf_field() !!}
                 <div class="form-group{{ $errors->has('kavling_type_id') ? ' has-error' : ''}}">
@@ -67,7 +64,7 @@
                       <span class="help-block">
                         <strong>{{ $errors->first('price') }}</strong>
                       </span>
-                    @endif                    
+                    @endif
                 </div>
 
                 <div class="form-group{{ $errors->has('administration_price') ? ' has-error' : '' }}">
@@ -130,7 +127,7 @@
                       <span class="help-block">
                         <strong>{{ $errors->first('status') }}</strong>
                       </span>
-                    @endif                      
+                    @endif
                 </div>
 
                 <div class="form-group{{ $errors->has('memo') ? ' has-error' : '' }}">
@@ -140,9 +137,9 @@
                       <span class="help-block">
                         <strong>{{ $errors->first('memo') }}</strong>
                       </span>
-                    @endif                     
+                    @endif
                 </div>
-                
+
                 <div class="form-group">
                   <button type="reset" class="btn btn-default">RESET</button>
                   <input type="submit" class="btn btn-primary" value="SIMPAN">
@@ -155,5 +152,5 @@
           </div>
           <!-- /.box -->
     </section>
-  
+
 @endsection

@@ -225,12 +225,31 @@ Route::group(['middleware' => ['auth']],function(){
 		]);
 		Route::get('formpayment/get-formpayment','PaymentController@getFormpaymentdata');
 
-		// Route::get('/ajax-customer',function(){
-		// 	$customer = Input::get('type');
-		// 	if($customer == "booking_free"){
-		// 		$customer = booking_free::all();
-		// 	}
-		// });
+		Route::get('/ajax-customer',function(Request $request){
+
+			$kavling = \App\nup::all();
+			$customer = \App\customer::where('id','>=',1)->get();
+			return Response::json($customer);
+
+		});
+		Route::get('/ajax-customer/movekavling',function(Request $request){
+
+			$kavling = \App\kavling::all();
+			return Response::json($kavling);
+
+		});
+		Route::get('/ajax-customer/changename',function(Request $request){
+
+			$changename = \App\customer::where('status','Active')->get();
+			return Response::json($changename);
+
+		});
+		Route::get('/ajax-customer/booking',function(Request $request){
+
+			$booking = \App\bf::all();
+			return Response::json($booking);
+
+		});
 
 		/*
 				******Tax Payment******
@@ -415,7 +434,7 @@ Route::group(['middleware' => ['auth']],function(){
 		]);
 		Route::get('booking/edit/{id}',[
 			'uses' => 'BookingController@getEditBooking',
-			'as' => 'booking.view'
+			'as' => 'booking.edit'
 		]);
 		Route::post('booking/update/{id}',[
 			'uses' => 'BookingController@postUpdateBooking',
@@ -426,16 +445,21 @@ Route::group(['middleware' => ['auth']],function(){
 			'as' => 'booking.hapus'
 		]);
 		Route::get('booking/get-booking','BookingController@getBookingdata');
+		Route::get('/ajax-kavling',function(Request $request){
+			$nup = $request::input(['nup']);
+			$kavling = \App\kavling::where('project_id','=',$nup)->where('status','=','Open')->get();
+			return Response::json($kavling);
+		});
+
 		/*end customer*/
 
 		/*
 		*****SPR*****
 		*/
-		Route::get('spr','BookingController@getSpr');
 		Route::get('spr',[
 			'uses' => 'BookingController@getSpr',
 			'as' => 'spr.view'
-			]);
+		]);
 		Route::get('spr/add','BookingController@getAddSpr');
 		Route::post('spr/add',[
 			'uses' => 'BookingController@postAddSpr',

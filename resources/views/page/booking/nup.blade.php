@@ -57,6 +57,7 @@
     $('#data').DataTable({
       "processing" : true,
       "serverSide" : true,
+      "sScrollX" : false,
       "ajax" : "{{ url('nup/get-nup') }}",
       "columns" : [
         { data : 'code', name: 'nup.code' },

@@ -8,7 +8,7 @@
       <ol class="breadcrumb">
         <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active"><a href="{{ route('booking.view') }}">Booking</a></li>
-        <li class="active"><a href="{{ url('/booking/add') }}">Add Booking</a></li>
+        <li class="active"><a href="{{ route('booking.add') }}">Add Booking</a></li>
       </ol>
     </section>
 
@@ -29,18 +29,22 @@
               {!! csrf_field() !!}
                 <div class="form-group{{ $errors->has('date') ? ' has-error' : ''}}">
                   <label for="date">Date</label>
-                  <input type="text" name="date" autofocus="autofocus" class="form-control " value="{{date('d-M-Y')}}" disabled="">
+                  <input type="text" name="date" autofocus="autofocus" class="form-control " value="{{date('d-M-Y')}}" disabled>
                     @if($errors->has('date'))
                       <span class="help-block">
                         <strong>{{ $errors->first('date') }}</strong>
                       </span>
                     @endif
                 </div>
-                <div class="form-group {{ $errors->has('nup') ? ' has-error' : ''}}">
+                <div class="form-group{{ $errors->has('nup') ? ' has-error' : ''}}">
                   <label>NUP</label>
                   <select name="nup" id="nup" class="form-control">
                     <option value=""></option>
-                    <option value=""></option>
+                    @foreach($nup as $data)
+                    	<option value="{{ $data->project_id }}">
+                    		{{ $data->code." - ".$data->customer->first_name." ".$data->customer->last_name }}
+                    	</option>
+                    @endforeach
                   </select>
                   @if($errors->has('nup'))
                   <span class="help-block">
@@ -49,7 +53,7 @@
                   @endif
                   </div>
 
-                <div class="form-group {{ $errors->has('kavling') ? ' has-error' : ''}}">
+                <div class="form-group{{ $errors->has('kavling') ? ' has-error' : ''}}">
                   <label>Kavling</label>
                   <select name="kavling" id="kavling" class="form-control">
                     <option value=""></option>
@@ -62,7 +66,7 @@
                   @endif
                   </div>
 
-                <div class="form-group {{ $errors->has('promo') ? ' has-error' : ''}}">
+                <div class="form-group{{ $errors->has('promo') ? ' has-error' : ''}}">
                   <label>Promo</label>
                   <select name="promo" id="promo" class="form-control">
                     <option value=""></option>
@@ -75,7 +79,7 @@
                   @endif
                   </div>
 
-                <div class="form-group {{ $errors->has('comission_status') ? ' has-error' : ''}}">
+                <div class="form-group{{ $errors->has('comission_status') ? ' has-error' : ''}}">
                   <label>Comission Status</label>
                   <select name="comission_status" id="comission_status" class="form-control" required>
                     <option value="Pending">Pending</option>
@@ -100,16 +104,32 @@
 @endsection
 @push('script')
 <script>
-      $(document).ready(function () {
-        $("#nup").select2({
-          placeholder: "Chose One"
-          });
-        $("#kavling").select2({
-          placeholder: "Chose One"
-          });
-        $("#promo").select2({
-          placeholder: "Chose One"
-          });
-        });
+  $(document).ready(function () {
+    $("#nup").select2({
+      placeholder: "Chose One"
+      });
+    $("#kavling").select2({
+      placeholder: "Chose One"
+      });
+    $("#promo").select2({
+      placeholder: "Chose One"
+      });
+    });
+
+  $(document).on('change','#nup',function(e){
+		console.log(e);
+
+		var nup = e.target.value;
+
+			$.get('/ajax-kavling?nup=' + nup,function(data){
+				// console.log(data)
+				$('#kavling').empty();
+				$.each(data,function(index, data){
+						$('#kavling').append('<option disabled></option>');
+					$('#kavling').append('<option value="'+data.id+'">'+data.number+'</option>');
+				});
+			});
+
+});
 </script>
 @endpush

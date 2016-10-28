@@ -30,7 +30,7 @@
                   <select name="kavling_type_id" class="form-control">
                     <option value="{{ $edit->kavling_type->id }}" selected="selected">{{ $edit->kavling_type->type }}
                     </option>
-                    <option value=""></option>
+                    <option disabled="disabled"></option>
                     @foreach($s_kavling_type as $data)
                       <option value="{{ $data->id }}">{{ $data->type }}</option>
                     @endforeach
@@ -61,7 +61,7 @@
                       <span class="help-block">
                         <strong>{{ $errors->first('price') }}</strong>
                       </span>
-                    @endif                    
+                    @endif
                 </div>
 
                 <div class="form-group{{ $errors->has('administration_price') ? ' has-error' : '' }}">
@@ -117,15 +117,18 @@
                 <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
                   <label for="status">Status</label>
                   <select name="status" class="form-control">
-                    <option value="{{$edit->management_confirm_status}}" selected="selected">{{$edit->management_confirm_status}}</option>
-                    <option value="Recaived">Received</option>
+                    <option value="{{ $edit->management_confirm_status }}" selected="selected">
+                    	{{ $edit->management_confirm_status }}
+                    </option>
+                    <option disabled="disabled"></option>
+                    <option value="Received">Received</option>
                     <option value="Rejected">Rejected</option>
                   </select>
                     @if($errors->has('status'))
                       <span class="help-block">
                         <strong>{{ $errors->first('status') }}</strong>
                       </span>
-                    @endif                      
+                    @endif
                 </div>
 
                 <div class="form-group{{ $errors->has('memo') ? ' has-error' : '' }}">
@@ -135,11 +138,11 @@
                       <span class="help-block">
                         <strong>{{ $errors->first('memo') }}</strong>
                       </span>
-                    @endif                     
+                    @endif
                 </div>
-                
+
                 <div class="form-group">
-                  <a href="{{ route('pricelist.view',$edit->project_id) }}" class="btn btn-danger" 
+                  <a href="{{ route('pricelist.view',$edit->project_id) }}" class="btn btn-danger"
                   onclick="return confirm('Clik OK to confirm !')">BATAL</a>
                   <input type="submit" class="btn btn-primary" value="UPDATE">
 
@@ -151,5 +154,5 @@
           </div>
           <!-- /.box -->
     </section>
-  
+
 @endsection
