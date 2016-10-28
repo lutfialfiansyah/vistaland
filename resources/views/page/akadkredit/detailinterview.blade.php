@@ -64,7 +64,7 @@ DKI Jakarta 14250
 <tbody>
 <tr>
 <td>
-<a href="{{route('interview.detail',$detailinterview->customer_id)}}" target="_blank" id="cus"> name customer</a>
+<a href="{{route('customer.detail',$detailinterview->customer_id)}}" target="_blank" id="cus">{{ $detailinterview->customer->first_name." ".$detailinterview->customer->last_name }}</a>
 </td>
 </tr>
 </tbody>
@@ -81,6 +81,6 @@ Print
 </div>
 </form>
 </section>
+@endsection
 <script src="{{ asset('dist/sweetalert.min.js')}}"></script>
 @include('sweet::alert')
-@endsection

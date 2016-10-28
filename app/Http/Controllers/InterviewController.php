@@ -65,7 +65,7 @@ public function getInterview(){
         return view('page.akadkredit.editinterview',compact('edit','interview'));
     }
     public function getDetailInterview($id){
-        $interview = customer::all();
+    $interview = customer::all();
       $detailinterview = interview::where('id',$id)->first();
       return view('page.akadkredit.detailinterview',compact('detailinterview','interview'));
     }
