@@ -415,6 +415,14 @@ Route::group(['middleware' => ['auth']],function(){
 			'uses' => 'BookingController@getHapusNup',
 			'as' => 'nup.hapus'
 		]);
+		Route::get('nup/edit/{id}',[
+			'uses' => 'BookingController@getEditNup',
+			'as' => 'nup.edit'
+		]);
+		Route::post('nup/update/{id}',[
+					'uses' => 'BookingController@postUpdateNup',
+					'as' => 'nup.update'
+				]);
 		/*end up*/
 
 		/*

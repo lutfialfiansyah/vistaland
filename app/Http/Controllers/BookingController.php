@@ -225,8 +225,25 @@ class BookingController extends Controller
         return view('page.booking.addnup',compact('nupcus','nuppro'));
     }
     public function getEditNup($id){
-      $edit = customer::where('id',$id)->first();
-      return view('page.booking.editnup',compact('edit'));
+      $nupcus = customer::all();
+      $nuppro = project::all();
+      $edit = nup::where('id',$id)->first();
+      return view('page.booking.editnup',compact('edit','nupcus','nuppro'));
+    }
+     public function postUpdateNup(Request $request,$id){
+      $this->validate($request,[
+      'project'=>'required',
+      'customer'=>'required',
+      ]);
+
+      $nup = nup::where('id',$id)->first();
+      $nup->customer_id = $request->input('customer');
+      $nup->project_id = $request->input('project');
+      $nup->comission_status = "Pending";
+
+      $nup->update();
+      alert()->success('Data berhasil diupdate !')->autoclose(3000);
+      return redirect()->route('nup.view');
     }
 
     public function postAddNup(Request $request){
