@@ -220,7 +220,7 @@ class BookingController extends Controller
     return view('page.booking.nup',compact('nup'));
     }
     public function getAddNup(){
-    $nupcus = customer::all();
+    $nupcus = customer::where('status','=','Active')->get();
     $nuppro = project::all();
         return view('page.booking.addnup',compact('nupcus','nuppro'));
     }
@@ -258,8 +258,8 @@ class BookingController extends Controller
                  ';
               })
            	->editColumn('customer',function($nup){
-           		return $nup->customer->first_name." ".$nup->customer->last_name;
-           	})
+           			return $nup->customer->first_name." ".$nup->customer->last_name;
+           		})
            	->editColumn('comission_status',function($nup){
            		if($nup->comission_status == 'Pending'){
            			return" <span class='label label-danger'>$nup->comission_status</span>";
@@ -309,7 +309,16 @@ class BookingController extends Controller
     }
     public function getBookingdata(){
     	$booking = bf::all();
-    	return Datatables::of($booking)->make(true);
+    	return Datatables::of($booking)
+    		->editColumn('nup_id',function($booking){
+    			  $customer = $booking->nup->where('id',$booking->nup_id)->first();
+    				return $customer->customer->first_name." ".$customer->customer->last_name;
+    		})
+    		->editColumn('kavling_id',function($booking){
+    				$kavling = $booking->nup->project->kavling->where('id',$booking->kavling_id)->g();
+    				return $kavling->number;
+    		})
+    		->make(true);
     }
     public function getAddBooking(){
     	$nup = nup::all();

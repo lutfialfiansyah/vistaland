@@ -32,11 +32,12 @@
               <table id="data" class="table table-bordered table-hover table-striped table-condesed">
               <thead>
                 <tr>
+                	<th>Code</th>
                   <th>Customer</th>
                   <th>Kavling</th>
                   <th>Promo</th>
                   <th>Comission Status</th>
-                  <th>Payment Status</th>
+                 {{--  <th>Payment Status</th> --}}
                   <th>Action</th>
                 </tr>
               </thead>
@@ -60,11 +61,12 @@
       "sScrollX" : false,
       "ajax" : "{{ url('booking/get-booking') }}",
       "columns" : [
-        { data : 'customer', name: 'customer' },
-        { data : 'kavling', name: 'kavling' },
-        { data : 'promo', name: 'promo' },
+        { data : 'code', name: 'code' },
+        { data : 'nup_id', name: 'nup_id' },
+        { data : 'kavling_id', name: 'kavling_id' },
+        { data : 'promo_id', name: 'promo_id' },
         { data : 'comission_status', name: 'comission_status' },
-        { data : 'payment_status', name: 'payment_statusstatus' },
+        // { data : 'payment_status', name: 'payment_statusstatus' },
         { data : 'action', name:'action', orderable: false, searchable: false },
       ]
     });

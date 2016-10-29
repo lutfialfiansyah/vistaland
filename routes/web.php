@@ -526,7 +526,6 @@ Route::group(['middleware' => ['auth']],function(){
 
 	});
 
-
 		Route::get('/lockscreen',[
 			'uses' => 'userController@getlocked',
 			'as' => 'user.locked',
@@ -548,11 +547,6 @@ Route::group(['middleware' => ['auth']],function(){
 			'uses' => 'userController@postChangepasswordProfile',
 			'as' => 'profile.changepassword'
 	]);
-
-
-
-
-
 
 Route::get('/login',[
 	'uses' => 'userController@getLogin',

@@ -48,7 +48,7 @@
                   <label for="expired_date">Expired Date</label>
                   <div class="input-group">
                     <div class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
-                    <input type="date" name="expired_date" class="form-control" value="{{ old('expired_date') }}">
+                    <input type="date" name="expired_date" id="datepicker" placeholder="mm/dd/yyyy" class="form-control" value="{{ old('expired_date') }}">
                   </div>
                     @if($errors->has('expired_date'))
                       <span class="help-block">
@@ -152,5 +152,14 @@
           </div>
           <!-- /.box -->
     </section>
-
 @endsection
+@push('script')
+<script>
+$( function() {
+  $( "#datepicker").datepicker({
+      autoclose: true,
+      format : 'yyyy-mm-dd'
+    });
+});
+</script>
+@endpush

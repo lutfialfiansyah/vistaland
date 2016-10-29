@@ -238,6 +238,6 @@ $( function() {
       format : 'yyyy-mm-dd'
     });
   $( ".marketer" ).select2();
-} );
+});
 </script>
 @endpush
